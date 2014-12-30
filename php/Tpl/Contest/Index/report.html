@@ -20,13 +20,13 @@
         </div>
         <div id="contest-info" style="width: 80%;height: 500px;background: #e0dede; left:50%;margin-left: -40%; border-radius: 20px 20px 0 0;position: absolute;top: 150px">
             <ul class="nav nav-tabs " role="tablist" style="margin: 5px 0 0 5px;">
-              <li role="presentation" class=""><a href='{:U("Index/problemlist","","")}?cid={$contestinfo[0]["cid"]}'>Overview</a></li>
+              <li role="presentation" class=""><a href='{:U("Index/Problemlist","","")}?cid={$contestinfo[0]["cid"]}'>Overview</a></li>
               <li role="presentation" class="active"><a href='#'>Report<span class="badge"></span></a></li>
-              <li role="presentation" class=""><a href='{:U("Index/clarify","","")}?cid={$contestinfo[0]["cid"]}'>Clarify</a></li>
-              <li role="presentation" class=""><a href='{:U("Index/problem","","")}?pid=A&cid={$contestinfo[0]["cid"]}'>Problems</a></li>
-              <li role="presentation" class=""><a href='{:U("Index/status","","")}?cid={$contestinfo[0]["cid"]}'>Status</a></li>
-              <li role="presentation"><a href='{:U("Index/rank","","")}?cid={$contestinfo[0]["cid"]}'>Rank</a></li>
-              <li role="presentation"><a href='{:U("Index/prin","","")}?cid={$contestinfo[0]["cid"]}'>Print</a></li>
+              <li role="presentation" class=""><a href='{:U("Index/Clarify","","")}?cid={$contestinfo[0]["cid"]}'>Clarify</a></li>
+              <li role="presentation" class=""><a href='{:U("Index/Problem","","")}?pid=A&cid={$contestinfo[0]["cid"]}'>Problems</a></li>
+              <li role="presentation" class=""><a href='{:U("Index/Status","","")}?cid={$contestinfo[0]["cid"]}'>Status</a></li>
+              <li role="presentation"><a href='{:U("Index/Rank","","")}?cid={$contestinfo[0]["cid"]}'>Rank</a></li>
+              <li role="presentation"><a href='{:U("Index/Prin","","")}?cid={$contestinfo[0]["cid"]}'>Print</a></li>
             </ul>
             <div style="width: 90%;margin: 0 auto;">
                 <foreach name="news" item="v">
@@ -47,8 +47,8 @@
     <script type="text/ecmascript">
             var start_time = "{$contestinfo[0]['startinunix']}";
             var len = "{$contestinfo[0]['len']}";
-            var problemUrl = '{:U("Index/problem?cid=".$problems[0]["cid"]."&pid=".$problem[0]["newid"])}}';
-            var countUrl ='{:U("Contest/Index/newscount", '', '')}';
+            var problemUrl = '{:U("Index/Problem?cid=".$problems[0]["cid"]."&pid=".$problem[0]["newid"])}}';
+            var countUrl ='{:U("Contest/Index/Newscount", '', '')}';
             var cid="{$contestinfo[0]['cid']}";
         </script>
         <script src="__PUBLIC__/Js/jquery-1.10.2.min.js"></script>

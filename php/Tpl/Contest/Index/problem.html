@@ -20,21 +20,21 @@
         </div>
         <div id="contest-info" style="width: 80%;background: #e0dede;height: auto; left:50%;margin-left: -40%; border-radius: 20px 20px 0 0;position: absolute;top: 150px">
             <ul class="nav nav-tabs " role="tablist" style="margin: 5px 0 0 5px;">
-              <li role="presentation" class=""><a href='{:U("Index/problemlist","","")}?cid={$contestinfo[0]["cid"]}'>Overview</a></li>
-              <li role="presentation" class=""><a href='{:U("Index/report","","")}?pid={$v.newid}&cid={$contestinfo[0]["cid"]}'>Report<span class="badge"></span></a></li>
-              <li role="presentation" class=""><a href='{:U("Index/clarify","","")}?cid={$contestinfo[0]["cid"]}'>Clarify</a></li>
+              <li role="presentation" class=""><a href='{:U("Index/Problemlist","","")}?cid={$contestinfo[0]["cid"]}'>Overview</a></li>
+              <li role="presentation" class=""><a href='{:U("Index/Report","","")}?pid={$v.newid}&cid={$contestinfo[0]["cid"]}'>Report<span class="badge"></span></a></li>
+              <li role="presentation" class=""><a href='{:U("Index/Clarify","","")}?cid={$contestinfo[0]["cid"]}'>Clarify</a></li>
               <li role="presentation" class="active"><a href='#'>Problems</a></li>
-              <li role="presentation" class=""><a href='{:U("Index/status","","")}?cid={$contestinfo[0]["cid"]}'>Status</a></li>
-              <li role="presentation"><a href='{:U("Index/rank","","")}?cid={$contestinfo[0]["cid"]}'>Rank</a></li>
-              <li role="presentation"><a href='{:U("Index/prin","","")}?cid={$contestinfo[0]["cid"]}'>Print</a></li>
+              <li role="presentation" class=""><a href='{:U("Index/Status","","")}?cid={$contestinfo[0]["cid"]}'>Status</a></li>
+              <li role="presentation"><a href='{:U("Index/Rank","","")}?cid={$contestinfo[0]["cid"]}'>Rank</a></li>
+              <li role="presentation"><a href='{:U("Index/Prin","","")}?cid={$contestinfo[0]["cid"]}'>Print</a></li>
             </ul>
             <div style="text-align: center">
             <ul class="pagination">
                 <foreach name="problems" item="v">
                     <if condition="$v.newid eq $problem[0]['newid']">  
-                            <li><a href='{:U("Index/problem","","")}?pid={$v.newid}&cid={$contestinfo[0]["cid"]}' style="background: rgb(66,139,202);color: #fff">{$v.newid}</a></li> 
+                            <li><a href='{:U("Index/Problem","","")}?pid={$v.newid}&cid={$contestinfo[0]["cid"]}' style="background: rgb(66,139,202);color: #fff">{$v.newid}</a></li> 
                         <else />
-                            <li><a href='{:U("Index/problem","","")}?pid={$v.newid}&cid={$contestinfo[0]["cid"]}'>{$v.newid}</a></li> 
+                            <li><a href='{:U("Index/Problem","","")}?pid={$v.newid}&cid={$contestinfo[0]["cid"]}'>{$v.newid}</a></li> 
                     </if>
                 </foreach>
             </ul>
@@ -121,10 +121,10 @@
         <script type="text/ecmascript">
             var start_time = "{$contestinfo[0]['startinunix']}";
             var len = "{$contestinfo[0]['len']}";
-            var problemUrl = '{:U("Index/problem?cid=".$problems[0]["cid"]."&pid=".$problem[0]["newid"])}}';
-            var statusUrl = '{:U("Contest/Index/status", '', '')}'+'?cid={$problems[0]["cid"]}';
-            var submitproUrl ='{:U("Contest/Index/submitpro", '', '')}';
-            var countUrl ='{:U("Contest/Index/newscount", '', '')}';
+            var problemUrl = '{:U("Index/Problem?cid=".$problems[0]["cid"]."&pid=".$problem[0]["newid"])}}';
+            var statusUrl = '{:U("Contest/Index/Status", '', '')}'+'?cid={$problems[0]["cid"]}';
+            var submitproUrl ='{:U("Contest/Index/Submitpro", '', '')}';
+            var countUrl ='{:U("Contest/Index/Newscount", '', '')}';
             var cid="{$contestinfo[0]['cid']}";
         </script>
         <script src="__PUBLIC__/Js/problems.js"></script>

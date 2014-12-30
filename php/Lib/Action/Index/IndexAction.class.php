@@ -29,7 +29,7 @@ class IndexAction extends Action {
 		session('username',$data['username']);
 		$this->ajaxReturn(0,'json');
 	}
-	public function checkValue(){
+	public function Checkvalue(){
 		$username=I('username','','');
 		$flag=I('flag','','');
 		if($flag==0){
@@ -54,13 +54,13 @@ class IndexAction extends Action {
 			$this->ajaxreturn(0,'json');
 		}
 	}
-	public function verify(){
+	public function Verify(){
 		import('ORG.Util.Image');
         ob_end_clean();
 		Image::buildImageVerify(6,5,'png',80,34);
 	    
     }
-	public function ProblemList(){
+	public function Problemlist(){
 		$page=I('page',1); //获取要显示的页面值
 		$info=I('info',NULL);
 		$num=10; //每页显示数目

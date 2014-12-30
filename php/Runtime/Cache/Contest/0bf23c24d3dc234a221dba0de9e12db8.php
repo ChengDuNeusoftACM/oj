@@ -124,102 +124,80 @@
 	</div>
 	
 
-    <div id="mainlist" class="container">
-	<div class="container-fluid" style="background-color:#787676;">
-	<div class="navbar-form">
-		<div class="input-group navbar-left searchbar" style="margin-bottom: 10px;">
-          <input type="text" id="searchinfo" class="form-control" placeholder="enter any words">
-         <span class="input-group-addon" id="submitinfo">Search</span>
-         </div>
-	   <nav class="navbar-right">
-	      <ul class="pagination" style="margin: 0">
-	       <?php $rear=$nowpage-1; $str=''; if($info!=null)$str='&info='.$info; if($nowpage==1) echo'<li class="disabled"><a href="#">&laquo;</a></li>'; else echo'<li><a href="'.U('Index/Index','','').'?p='.$rear.$str.'">&laquo;</a></li>' ?>
-            <?php
- $str=''; if($info!=null)$str='&info='.$info; if($pages<=5) { for($i=1;$i<=$pages;$i++) { if($i==$nowpage)echo'<li class="active"><a href="#">'.$i.'</a></li>'; else echo'<li><a href="'.U('Index/Index','','').'?p='.$i.$str.'">'.$i.'</a></li>'; } } else { if($nowpage<=3) for($i=1;$i<=5;$i++) { if($i==$nowpage)echo'<li class="active"><a href="#">'.$i.'</a></li>'; else echo'<li><a href="'.U('Index/Index','','').'?p='.$i.$str.'">'.$i.'</a></li>'; } else if($pages-$nowpage<=2) for($i=$pages-4;$i<=$pages;$i++) { if($i==$nowpage)echo'<li class="active"><a href="#">'.$i.'</a></li>'; else echo'<li><a href="'.U('Index/Index','','').'?p='.$i.$str.'">'.$i.'</a></li>'; } else for($i=$nowpage-2;$i<=$nowpage+2;$i++) { if($i==$nowpage)echo'<li class="active"><a href="#">'.$i.'</a></li>'; else echo'<li><a href="'.U('Index/Index','','').'?p='.$i.$str.'">'.$i.'</a></li>'; } } ?>
-            <?php $front=$nowpage+1; $str=''; if($info!=null)$str='&info='.$info; if($nowpage==$pages) echo'<li class="disabled"><a href="#">&raquo;</a></li>'; else echo'<li><a href="'.U('Index/Index','','').'?p='.$front.$str.'">&raquo;</a></li>' ?>
-	      </ul>
-	    </nav>
-	</div>
-	</div>
-        <table class="altrowstable" id="alternatecolor">
+        <div id="contest_bar" style="width: 100%;margin: 0 auto;height: 200px;background: #434343;padding-top: 20px;">
+            <div id="title-info">
+                <div id="contest-name" style="">
+                    <h1 class="contestname"><?php echo ($contestinfo[0]['name']); ?></h1>
+                </div>
+                <div id="time-info" style="padding: 5px 0 5px 0;">
+                    <div style="text-align: center">
+                        <span style="color:#4EA1F4">Current Time:</span><span style="color: #fff;" id="currenttime"></span>
+                        <span style="color:#4EA1F4">Start Time:</span><span style="color: #fff"><?php echo ($contestinfo[0]['start_time']); ?></span>
+                        <span style="color:#4EA1F4">End Time:</span><span style="color: #fff"><?php echo ($contestinfo[0]['end_time']); ?></span>
+                        <span style="color:#4EA1F4">Contest Status:</span><span style="color: #00ff21"><?php echo ($contestinfo[0]['sta']); ?></span>
+                    </div>
+                </div>
+                <div class="progress" style="width: 80%;margin: 0 auto;height: 40px;border-radius: 40px;">
+                    <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" id="processbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="">
+                </div>
+                </div>
+            </div>
+        </div>
+        <div id="contest-info" style="width: 80%;height: 500px;background: #e0dede; left:50%;margin-left: -40%; border-radius: 20px 20px 0 0;position: absolute;top: 150px">
+            <ul class="nav nav-tabs " role="tablist" style="margin: 5px 0 0 5px;">
+              <li role="presentation" class=""><a href='<?php echo U("Index/Problemlist","","");?>?cid=<?php echo ($contestinfo[0]["cid"]); ?>'>Overview</a></li>
+              <li role="presentation" class=""><a href='<?php echo U("Index/Report","","");?>?pid=<?php echo ($v["newid"]); ?>&cid=<?php echo ($contestinfo[0]["cid"]); ?>'>Report<span class="badge"></span></a></li>
+              <li role="presentation" class=""><a href='<?php echo U("Index/Clarify","","");?>?cid=<?php echo ($contestinfo[0]["cid"]); ?>'>Clarify</a></li>
+              <li role="presentation" class=""><a href='<?php echo U("Index/Problem","","");?>?pid=A&cid=<?php echo ($contestinfo[0]["cid"]); ?>'>Problems</a></li>
+              <li role="presentation" class="active"><a href='#'>Status</a></li>
+              <li role="presentation"><a href='<?php echo U("Index/Rank","","");?>?cid=<?php echo ($contestinfo[0]["cid"]); ?>'>Rank</a></li>
+              <li role="presentation"><a href='<?php echo U("Index/Prin","","");?>?cid=<?php echo ($contestinfo[0]["cid"]); ?>'>Print</a></li>
+            </ul>
+            <nav class="navbar navbar-default" role="navigation" style="margin-bottom: 0; background-color: #808080">
+              <div class="container-fluid" style="background-color: #808080">
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <div class="navbar-form navbar-right">
+                        <nav>
+                           <ul class="pagination" style="margin: 0">
+                            <?php  $rear=$nowpage-1; if($nowpage==1) echo'<li class="disabled"><a href="#">&laquo;</a></li>'; else echo'<li><a href="'.U('Index/Status','','').'?p='.$rear.'">&laquo;</a></li>' ?>
+                            <?php
+ if($pages<=5) { for($i=1;$i<=$pages;$i++) { if($i==$nowpage)echo'<li class="active"><a href="#">'.$i.'</a></li>'; else echo'<li><a href="'.U('Index/Status','','').'?p='.$i.'">'.$i.'</a></li>'; } } else { if($nowpage<=3) for($i=1;$i<=5;$i++) { if($i==$nowpage)echo'<li class="active"><a href="#">'.$i.'</a></li>'; else echo'<li><a href="'.U('Index/Status','','').'?p='.$i.'">'.$i.'</a></li>'; } else if($pages-$nowpage<=2) for($i=$pages-4;$i<=$pages;$i++) { if($i==$nowpage)echo'<li class="active"><a href="#">'.$i.'</a></li>'; else echo'<li><a href="'.U('Index/Status','','').'?p='.$i.'">'.$i.'</a></li>'; } else for($i=$nowpage-2;$i<=$nowpage+2;$i++) { if($i==$nowpage)echo'<li class="active"><a href="#">'.$i.'</a></li>'; else echo'<li><a href="'.U('Index/Status','','').'?p='.$i.'">'.$i.'</a></li>'; } } ?>
+                            <?php $front=$nowpage+1; if($nowpage>=$pages) echo'<li class="disabled"><a href="#">&raquo;</a></li>'; else echo'<li><a href="'.U('Index/Status','','').'?p='.$front.'">&raquo;</a></li>' ?>
+                          </ul>
+                        </nav>
+                    </div>
+                </div><!-- /.navbar-collapse -->
+              </div><!-- /.container-fluid -->
+            </nav>
+            <table class="altrowstable" id="alternatecolor" style="width: 100%; margin: 0 auto">
             <tr>
-                <th class="id">CID</th>
-                <th class="name">Name</th>
-                <th class="time">Time</th>
-                <th class="length">Length</th>
-                <th class="type">Type</th>
-                <th class="status">Status</th>
+                <th >ID</th>
+                <th >User</th>
+                <th >Result</th>
+                <th >Memory</th>
+                <th >Time</th>
+                <th >Length</th>
+                <th >Submit Time</th>
             </tr>
-            <?php if(is_array($data)): foreach($data as $key=>$v): ?><tr <?php if($v['level']=='2') echo' style="background-color:#fc9f9f " '; else if($v['level']=='1') echo' class="secondrow" style="background-color:#ffcfa4" '; ?> >
-                <td <?php if($v['level']=='2') echo' style="background-color:#f87373 " '; else if($v['level']=='1') echo' class="secondrow" style="background-color:#f9be69" '; ?> ><?php echo ($v["cid"]); ?></td>
-                <td class="contest" onclick="fun(<?php echo ($v["cid"]); ?>)"><a href="javascript:void(0)"><?php echo ($v["name"]); ?></a></td>
-                <td><?php echo ($v["start_time"]); ?></td>
-                <td><?php echo ($v["length"]); ?></td>
-                <td>
-                    <span <?php if($v['private']=='0')echo' class="public" ';else if($v['private']=='1')echo'class="register" onclick="register('.$v["cid"].')" class="register"';else echo'class="private"'; ?> >
-                        <?php if($v['private']=='0')echo'Public';else if($v['private']=='1')echo'<a href="javascript:void(0)">Register</a>';else echo'Private'; ?>
-                    </span>
-                    <?php if($v['private']=='1') echo' <a href="'.U("Contest/Index/Register", '', '').'?cid='.$v['cid'].'"><span class="glyphicon glyphicon-search"></span></a>'; ?>
-                </td>
-                <td><?php echo ($v["sta"]); ?></td>
-            </tr><?php endforeach; endif; ?>
+            <?php if(is_array($solution)): foreach($solution as $key=>$v): ?><tr>
+                    <td><?php echo ($v["soid"]); ?></td>
+                    <?php
+ if($youruid==$v['uid']||$isend==1) echo'<td>'. $v["uid"].'</td><td>'. $v["result"].'</td><td>'. $v["memory"].'</td><td>'. $v["time"].'</td><td>'. $v["length"].'</td>'; else echo'<td>---</td><td>---</td><td>---</td><td>---</td><td>---</td>'; ?>
+                    <td><?php echo ($v["create_time"]); ?></td>
+
+                </tr><?php endforeach; endif; ?>
         </table>
-        </div>
-       <div class="modal fade bs-example-modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-describedby="Inform" aria-hidden="false">
-        <div class="modal-dialog modal-sm">
-        <div class="modal-content" id="modalcontext">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">
-                <span aria-hidden="true">×</span>
-                <span class="sr-only">Close</span>
-            </button>
-            <h4 class="modal-title" id="myLargeModalLabel">Message</h4>
-        </div>
-        <h4 class="modal-body" id="modalmessage">
-        ....
-        </h4>
-        <div class="modal-body" id="passwordbar" style="display: none">
-            <input type="password" class="form-control" id="passwordvalue" placeholder="Password">
-        </div>
-        <div class="modal-body" id="passwordsend" style="display: none">
-            <button type="button" class="btn btn-primary" id="passwordbtn">Submit</button>
-        </div>
-        </div>
-      </div>
-    </div>
-         <script type="text/ecmascript">
-            var formUrl = '<?php echo U("Contest/Index/Form", '', '');?>';
-            var handleUrl = '<?php echo U("Contest/Index/Problemlist", '', '');?>';
-            var registerUrl='<?php echo U("Contest/Index/Register", '', '');?>';
-            var indexUrl='<?php echo U("Contest/Index/Index", '', '');?>';
+    <script type="text/ecmascript">
+            var start_time = "<?php echo ($contestinfo[0]['startinunix']); ?>";
+            var len = "<?php echo ($contestinfo[0]['len']); ?>";
+            var problemUrl = '<?php echo U("Index/Problem?cid=".$problems[0]["cid"]."&pid=".$problem[0]["newid"]);?>}';
             var countUrl ='<?php echo U("Contest/Index/Newscount", '', '');?>';
             var cid="<?php echo ($contestinfo[0]['cid']); ?>";
         </script>
-        <script src="__PUBLIC__/Js/onload.js"></script>
+        <script src="__PUBLIC__/Js/jquery-1.10.2.min.js"></script>
+        <script src="__PUBLIC__/Js/loop.js"></script>
         <script src="__PUBLIC__/Js/jquery-ui.min.js"></script>
-        <link href="__PUBLIC__/Css/contest.css" rel="stylesheet">
-
-<div id="BottombarI">
-	<div class="container">
-	<div id="BottombaI" >
-	<div>CDOJ</div>
-	<div style="color:#1f4368;">for ACM</div>
-	</div>
-	<div id="BottombaII">
-	<div>UESTC Online Judge</div>
-	<div>Any Problem,Please Report</div>
-	<div>xxx xx xxx xx</div>
-	</div>
-	<div id="BottombaIII">
-	<div>Neusoft</div>
-	<div>Any Problem,Please Report</div>
-	<div>xxx xx xxx xx</div>
-	</div>
-	</div>
-	</div>
-	<div id="BottombarII">
-	
-	</div>
-	<link rel="stylesheet" href="__PUBLIC__/Css/Bottom.css" />
-</body>
+        <link href="__PUBLIC__/Css/bootstrap-theme.min.css" rel="stylesheet">
+        <link href="__PUBLIC__/Css/problemlist.css" rel="stylesheet">
+    </body>
 </html>

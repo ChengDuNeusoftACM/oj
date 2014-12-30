@@ -13,7 +13,7 @@
 	var LoginUrl="<?php echo U('Index/Index/Login','','');?>";
 	var Checkname="<?php echo U('Index/Index/Checkvalue','','');?>";
 </script>
-<title><?php echo ($data["pname"]); ?></title>
+<title>Contest</title>
 </head>
 <body>
 	<div id="topba" style="width: 80%; margin:  0 auto" >
@@ -124,111 +124,71 @@
 	</div>
 	
 
-
-<div id="pno">Problem<span style="font-weight:bold;color:rgb(170,170,170);margin:0 10px">></span><span class="pnoid">PID: <?php echo ($data["pid"]); ?></span></div>
-<div id="topline"></div>
-<div id="back">
-	<div id="pname"><?php echo ($data["pname"]); ?></div>
-	<div id="limit">
-	<span>Time Limit: </span><span class="limitdata"><?php echo ($data["time"]); ?> Sec</span> 
-	<span>Memory Limit: </span><span class="limitdata"><?php echo ($data["memory"]); ?> MB</span>
-	<span>Submit: </span><span class="limitdata"><?php echo ($data["submit"]); ?></span> 
-	<span>Solve: </span><span class="limitdata"><?php echo ($data["solved"]); ?></span>
-	</div>
-	<div class="btns">
-		<button type="button" class="Pre btn">Previous</button>
-	<?php
- if(isset($_SESSION['username'])==false){ echo '<button type="button" class="Submit btn submitbtn" onclick="loginFalse()">Submit</button>'; } else{ echo '<button type="button" class="Submit btn submitbtn" onclick="loginTrue()">Submit</button>'; } ?>
-		<button type="button" class="Status btn">Status</button>
-		<button type="button" class="Next btn">Next</button>
-	</div>
-</div>
-	<div id="back1">
-	<div class="problemTag">
-	--&nbsp;<span style="font:42px arial;">D</span>escription&nbsp;--
-	</div>
-	<div class="problemTagtext">
-	<?php echo ($data["desci"]); ?>
-	</div>
-	<div class="problemTag">
-	--&nbsp;<span style="font:42px arial;">I</span>nput&nbsp;--
-	</div>
-	<div class="problemTagtext">
-	<?php echo ($data["input"]); ?>
-	</div>
-	<div class="problemTag">
-	--&nbsp;<span style="font:42px arial;">O</span>utput&nbsp;--
-	</div>
-	<div class="problemTagtext">
-	<?php echo ($data["output"]); ?>
-	</div>
-	<div class="problemTag">
-	--&nbsp;<span style="font:42px arial;">S</span>imple&nbsp;&nbsp;input&nbsp;&&nbsp;output&nbsp;--
-	</div>
-	<div class="problemTagtext">
-	<table id="inoutable">
-	<tr>
-		<th>Simple Input</th>
-		<th>Simple Output</th>
-	</tr>
-	<tr>
-		<td><?php echo ($data["indata"]); ?></td>
-		<td><?php echo ($data["outdata"]); ?></td>
-	</tr>
-	</table>
-	</div>
-	<div class="problemTag">
-	--&nbsp;<span style="font:42px arial;">S</span>ource&nbsp;--
-	</div>
-	<div class="problemTagtext">
-	<?php echo ($data["source"]); ?>
-	</div>
-</div>
-<div class="btns" id="bottombtn">
-		<button type="button" class="Pre btn">Previous</button>
-		<?php
- if(isset($_SESSION['username'])==false){ echo '<button type="button" class="Submit btn submitbtn" onclick="loginFalse()">Submit</button>'; } else{ echo '<button type="button" class="Submit btn submitbtn" onclick="loginTrue()">Submit</button>'; } ?>
-		<button type="button" class="Status btn">Status</button>
-		<button type="button" class="Next btn">Next</button>
-</div>
-
-<div id="submitbar" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content" id="SubmitContent">
-    <div id="submitba">Submit</div>
-      <textarea id="cpp-code"></textarea>
-      <div class="btn-group" id="btnsgroup">
-  		<button type="button" class="btn btn-default" id="0Btn">C</button>
-  		<button type="button" class="btn btn-default active" id="1Btn">C++</button>
- 	    <button type="button" class="btn btn-default" id="2Btn">Java</button>
-	  </div>
-	  <div id="submitbarBtnbar">
-	  	<button type="button" id="SubmitBtn" class="SubmitbarBtn btn btn-primary">Submit</button>
-		<button type="button" id="CancelBtn" class="SubmitbarBtn btn btn-primary">Cancel</button>
-	  </div>
-    </div>
-  </div>
-</div>
-
-<script type="text/javascript" src='__PUBLIC__/Js/problem.js'></script>
-<script type="text/javascript" src='__PUBLIC__/Js/codemirror.js'></script>
-<script type="text/javascript" src='__PUBLIC__/Js/clike.js'></script>
-<link rel="stylesheet" href="__PUBLIC__/Css/codemirror.css" />
-<link rel="stylesheet" href="__PUBLIC__/Css/Problem.css" />
-<script>
-	var ProblemUrl="<?php echo U('Index/Problem','','');?>";
-	var SubmitUrl="<?php echo U('Index/Submit','','');?>";
-</script>
-<script type="text/javascript">
-
-var myCodeMirror = CodeMirror.fromTextArea(document.getElementById('cpp-code'), {
-    lineNumbers: true,
-    smartIndent: true,
-    electricChars:true,
-    theme: 'default',
-    mode: 'text/x-c++src'
-}); 
-
-</script>
-</body>
+        <div id="contest_bar" style="width: 100%;margin: 0 auto;height: 200px;background: #434343;padding-top: 20px;">
+            <div id="title-info">
+                <div id="contest-name" style="">
+                    <h1 class="contestname"><?php echo ($contestinfo[0]['name']); ?></h1>
+                </div>
+                <div id="time-info" style="padding: 5px 0 5px 0;">
+                    <div style="text-align: center">
+                        <span style="color:#4EA1F4">Current Time:</span><span style="color: #fff;" id="currenttime"></span>
+                        <span style="color:#4EA1F4">Start Time:</span><span style="color: #fff"><?php echo ($contestinfo[0]['start_time']); ?></span>
+                        <span style="color:#4EA1F4">End Time:</span><span style="color: #fff"><?php echo ($contestinfo[0]['end_time']); ?></span>
+                        <span style="color:#4EA1F4">Contest Status:</span><span style="color: #00ff21"><?php echo ($contestinfo[0]['sta']); ?></span>
+                    </div>
+                </div>
+                <div class="progress" style="width: 80%;margin: 0 auto;height: 40px;border-radius: 40px;">
+                    <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" id="processbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="">
+                </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="contest-info" style="width: 80%;height: auto;background: #e0dede; left:50%;margin-left: -40%; border-radius: 20px 20px 0 0;position: absolute;top: 150px">
+            <ul class="nav nav-tabs " role="tablist" style="margin: 5px 0 0 5px;">
+              <li role="presentation" class="active"><a href="#">Overview</a></li>
+              <li role="presentation" class=""><a href='<?php echo U("Index/Report","","");?>?pid=<?php echo ($v["newid"]); ?>&cid=<?php echo ($contestinfo[0]["cid"]); ?>'>Report<span class="badge"></span></a></li>
+              <li role="presentation" class=""><a href='<?php echo U("Index/Clarify","","");?>?cid=<?php echo ($contestinfo[0]["cid"]); ?>'>Clarify</a></li>
+              <li role="presentation" class=""><a href='<?php echo U("Index/Problem","","");?>?pid=A&cid=<?php echo ($contestinfo[0]["cid"]); ?>'>Problems</a></li>
+              <li role="presentation" class=""><a href='<?php echo U("Index/Status","","");?>?cid=<?php echo ($contestinfo[0]["cid"]); ?>'>Status</a></li>
+              <li role="presentation"><a href='<?php echo U("Index/Rank","","");?>?cid=<?php echo ($contestinfo[0]["cid"]); ?>'>Rank</a></li>
+              <li role="presentation"><a href='<?php echo U("Index/Prin","","");?>?cid=<?php echo ($contestinfo[0]["cid"]); ?>'>Print</a></li>
+            </ul>
+            
+            <?php if($isrunning==2) echo'
+            <h3 class="notstart">Not start yet!</h3>
+            <h3 class="notstart">Start at <span style="color: #ff6a00">'.$contestinfo[0]["start_time"].'</span></h3>
+            '; else echo'
+            <table class="altrowstable" id="alternatecolor" style="width: 100%;">
+            <tr>
+                <th class="id">ID</th>
+                <th class="name">Title</th>
+                <th class="time">AC</th>
+            </tr>'; foreach($data as $row=>$each) echo '
+            <tr>
+                <td class="id">'.$data[$row]["newid"].'</td>
+                <td class="name"><a href="'.U("Contest/Index/Problem", '', '').'?pid='.$data[$row]["newid"].'&cid='.$contestinfo[0]['cid'].'">'.$data[$row]["newname"].'</a></td>
+                <td>'.$data[$row]["accpet"].'/'.$data[$row]["submit"].'</td>
+            </tr>
+            
+            '?>
+        </table>
+            <div class="jumbotron">
+              <p><?php echo ($contestinfo[0]['desci']); ?></p>
+            </div>
+        </div>
+        
+        <script type="text/ecmascript">
+            var start_time="<?php echo ($contestinfo[0]['startinunix']); ?>";
+            var len="<?php echo ($contestinfo[0]['len']); ?>";
+            var problemUrl = '<?php echo U("Contest/Index/Problem", '', '');?>';
+            var countUrl ='<?php echo U("Contest/Index/Newscount", '', '');?>';
+            var cid="<?php echo ($contestinfo[0]['cid']); ?>";
+        </script>
+        <script src="__PUBLIC__/Js/jquery-1.10.2.min.js"></script>
+        <script src="__PUBLIC__/Js/loop.js"></script>
+        <script src="__PUBLIC__/Js/jquery-ui.min.js"></script>
+        <link href="__PUBLIC__/Css/bootstrap-theme.min.css" rel="stylesheet">
+        <link href="__PUBLIC__/Css/problemlist.css" rel="stylesheet">
+    </body>
 </html>

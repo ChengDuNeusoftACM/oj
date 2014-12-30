@@ -255,6 +255,7 @@ function modifyrow(obj,toid)
     $('#' + toid + 'name').html(obj.pa_name);
     $('#' + toid + 'solve').html(obj.slv_problems);
     $('#' + toid + 'time').html(obj.tot_time);
+    var leng = obj.is_first.length;
     for (var j = 0; j < leng; j++) {
         var tid = '#' + toid + String.fromCharCode(65 + j);
         $(tid).removeClass();

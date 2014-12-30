@@ -5,6 +5,7 @@ return array(
     'APP_GROUP_LIST'=>'Index,Admin,Contest',
     //默认分组
     'DEFAULT_GROUP'=>'Index',
+    'URL_CASE_INSENSITIVE' =>FALSE,
     'USERNAME'=>'Yangjie',
 	//'配置项'=>'配置值'
     'SHOW_PAGE_TRACE' =>true,

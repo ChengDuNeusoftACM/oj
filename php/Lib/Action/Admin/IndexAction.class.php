@@ -5,10 +5,6 @@
         {
             echo 'This is Admin';
             echo '<br>';
-            say();
-            echo '<br>';
-            echo C('user');
-            $this->display();
         }
     }
 

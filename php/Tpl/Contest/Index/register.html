@@ -1,24 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <title></title>
-        <script type="text/ecmascript">
-            var registerUrl = '{:U("Contest/Index/register", '', '')}';
-            var formUrl = '{:U("Contest/Index/form", '', '')}';
-            var handleUrl = '{:U("Contest/Index/problemlist", '', '')}';
-            var countUrl ='{:U("Contest/Index/newscount", '', '')}';
-            var cid="{$contestinfo[0]['cid']}";
-        </script>
-        <script src="__PUBLIC__/Js/jquery-1.10.2.min.js"></script>
-        <script src="__PUBLIC__/Js/bootstrap.min.js"></script>
-        <script src="__PUBLIC__/Js/onload.js"></script>
-        <script src="__PUBLIC__/Js/jquery-ui.min.js"></script>
-        <link href="__PUBLIC__/Css/bootstrap.min.css" rel="stylesheet">
-        <link href="__PUBLIC__/Css/bootstrap-theme.min.css" rel="stylesheet">
-        <link href="__PUBLIC__/Css/contest.css" rel="stylesheet">
-    </head>
-    <body>
+<include file="../../Index/Index/Top" title="Contest"/>
         <div style="width: 80%; height: auto; margin: 0 auto;">
         <?php
             if($data['flag']==1) echo '<h2><span class="label label-success">Registration Successful</span></h2>';
@@ -49,5 +29,18 @@
             </foreach>
         </table>
         </div>
+            <script type="text/ecmascript">
+            var registerUrl = '{:U("Contest/Index/Register", '', '')}';
+            var formUrl = '{:U("Contest/Index/Form", '', '')}';
+            var handleUrl = '{:U("Contest/Index/Problemlist", '', '')}';
+            var countUrl ='{:U("Contest/Index/Newscount", '', '')}';
+            var cid="{$contestinfo[0]['cid']}";
+        </script>
+        <script src="__PUBLIC__/Js/jquery-1.10.2.min.js"></script>
+        <script src="__PUBLIC__/Js/onload.js"></script>
+        <script src="__PUBLIC__/Js/jquery-ui.min.js"></script>
+        <link href="__PUBLIC__/Css/bootstrap-theme.min.css" rel="stylesheet">
+        <link href="__PUBLIC__/Css/contest.css" rel="stylesheet">
     </body>
+
 </html>

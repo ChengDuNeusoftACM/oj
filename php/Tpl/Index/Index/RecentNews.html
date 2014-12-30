@@ -9,7 +9,7 @@
 	   <nav class="navbar-right">
 	      <ul class="pagination" style="margin: 0">
 	       <?php 
-	       		$SearchUrl=U('Index/RecentNews','','');
+	       		$SearchUrl=U('Index/Recentnews','','');
 				$rear=$nowpage-1;
                 $str='';
                 if($info!=null)$str='&info='.$info;
@@ -135,10 +135,10 @@
 	</div>
 </div>
 <script>
-	var SearchUrl="{:U('Index/RecentNews','','')}";
+	var SearchUrl="{:U('Index/Recentnews','','')}";
 	</script>
-	<link rel="stylesheet" href="__PUBLIC__/CSS/Tabletpl.css" />
-	<script type="text/javascript" src='__PUBLIC__/JS/LiSt.js'></script>
-	<script type="text/javascript" src='__PUBLIC__/JS/News.js'></script>
+	<link rel="stylesheet" href="__PUBLIC__/Css/Tabletpl.css" />
+	<script type="text/javascript" src='__PUBLIC__/Js/LiSt.js'></script>
+	<script type="text/javascript" src='__PUBLIC__/Js/News.js'></script>
 </body>
 </html>

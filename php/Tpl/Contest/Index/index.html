@@ -12,7 +12,7 @@
                     $str='';
                     if($info!=null)$str='&info='.$info;
                     if($nowpage==1) echo'<li class="disabled"><a href="#">&laquo;</a></li>';
-                    else echo'<li><a href="'.U('Index/index','','').'?p='.$rear.$str.'">&laquo;</a></li>'
+                    else echo'<li><a href="'.U('Index/Index','','').'?p='.$rear.$str.'">&laquo;</a></li>'
             ?>
             <?php
                 $str='';
@@ -22,7 +22,7 @@
                     for($i=1;$i<=$pages;$i++)
                     {
                         if($i==$nowpage)echo'<li class="active"><a href="#">'.$i.'</a></li>';
-                        else echo'<li><a href="'.U('Index/index','','').'?p='.$i.$str.'">'.$i.'</a></li>';   
+                        else echo'<li><a href="'.U('Index/Index','','').'?p='.$i.$str.'">'.$i.'</a></li>';   
                     }
                 }
                 else
@@ -31,18 +31,18 @@
                     for($i=1;$i<=5;$i++)
                     {
                         if($i==$nowpage)echo'<li class="active"><a href="#">'.$i.'</a></li>';
-                        else echo'<li><a href="'.U('Index/index','','').'?p='.$i.$str.'">'.$i.'</a></li>';  
+                        else echo'<li><a href="'.U('Index/Index','','').'?p='.$i.$str.'">'.$i.'</a></li>';  
                     }
                     else if($pages-$nowpage<=2)
                     for($i=$pages-4;$i<=$pages;$i++)
                     {
                         if($i==$nowpage)echo'<li class="active"><a href="#">'.$i.'</a></li>';
-                        else echo'<li><a href="'.U('Index/index','','').'?p='.$i.$str.'">'.$i.'</a></li>';   
+                        else echo'<li><a href="'.U('Index/Index','','').'?p='.$i.$str.'">'.$i.'</a></li>';   
                     }
                     else for($i=$nowpage-2;$i<=$nowpage+2;$i++)
                     {
                         if($i==$nowpage)echo'<li class="active"><a href="#">'.$i.'</a></li>';
-                        else echo'<li><a href="'.U('Index/index','','').'?p='.$i.$str.'">'.$i.'</a></li>';  
+                        else echo'<li><a href="'.U('Index/Index','','').'?p='.$i.$str.'">'.$i.'</a></li>';  
                     }
                 }
             ?>
@@ -50,7 +50,7 @@
                     $str='';
                     if($info!=null)$str='&info='.$info;
                     if($nowpage==$pages) echo'<li class="disabled"><a href="#">&raquo;</a></li>';
-                    else echo'<li><a href="'.U('Index/index','','').'?p='.$front.$str.'">&raquo;</a></li>'
+                    else echo'<li><a href="'.U('Index/Index','','').'?p='.$front.$str.'">&raquo;</a></li>'
             ?>
 	      </ul>
 	    </nav>
@@ -75,7 +75,7 @@
                     <span <?php if($v['private']=='0')echo' class="public" ';else if($v['private']=='1')echo'class="register" onclick="register('.$v["cid"].')" class="register"';else echo'class="private"'; ?> >
                         <?php if($v['private']=='0')echo'Public';else if($v['private']=='1')echo'<a href="javascript:void(0)">Register</a>';else echo'Private'; ?>
                     </span>
-                    <?php if($v['private']=='1') echo' <a href="'.U("Contest/Index/register", '', '').'?cid='.$v['cid'].'"><span class="glyphicon glyphicon-search"></span></a>'; ?>
+                    <?php if($v['private']=='1') echo' <a href="'.U("Contest/Index/Register", '', '').'?cid='.$v['cid'].'"><span class="glyphicon glyphicon-search"></span></a>'; ?>
                 </td>
                 <td>{$v.sta}</td>
             </tr>
@@ -105,14 +105,13 @@
       </div>
     </div>
          <script type="text/ecmascript">
-            var formUrl = '{:U("Contest/Index/form", '', '')}';
-            var handleUrl = '{:U("Contest/Index/problemlist", '', '')}';
-            var registerUrl='{:U("Contest/Index/register", '', '')}';
-            var indexUrl='{:U("Contest/Index/index", '', '')}';
-            var countUrl ='{:U("Contest/Index/newscount", '', '')}';
+            var formUrl = '{:U("Contest/Index/Form", '', '')}';
+            var handleUrl = '{:U("Contest/Index/Problemlist", '', '')}';
+            var registerUrl='{:U("Contest/Index/Register", '', '')}';
+            var indexUrl='{:U("Contest/Index/Index", '', '')}';
+            var countUrl ='{:U("Contest/Index/Newscount", '', '')}';
             var cid="{$contestinfo[0]['cid']}";
         </script>
-        <script src="__PUBLIC__/Js/jquery-1.10.2.min.js"></script>
         <script src="__PUBLIC__/Js/onload.js"></script>
         <script src="__PUBLIC__/Js/jquery-ui.min.js"></script>
         <link href="__PUBLIC__/Css/contest.css" rel="stylesheet">

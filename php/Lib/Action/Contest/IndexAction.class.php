@@ -1,6 +1,6 @@
 <?php
     class IndexAction extends Action{
-        public function index()
+        public function Index()
         {
             header("content-type:text/html;charset=utf-8");
             $nowpage=I('p',1);
@@ -44,7 +44,7 @@
             $this->data=$arr;
             $this->display(index);
         }
-        public function form()
+        public function Form()
         {
             $conid=I('contestid');
             $conpas=I('contestpas',"");
@@ -187,7 +187,7 @@
             }
             $this->display();
         }
-        public function problem()
+        public function Problem()
         {
             $conid=I('cid',0);
             $proid=I('pid','0');
@@ -243,7 +243,7 @@
             //dump($Model->getdberror());
             $this->display();
         }
-        public function submitpro(){
+        public function Submitpro(){
             if($_POST){
                 $cid=I('cid',0);
                 $pid=I('pid',0);
@@ -295,7 +295,7 @@
                 }
             }
         }
-        public function register()
+        public function Register()
         {
             header("content-type:text/html;charset=utf-8");
             if($_POST){
@@ -357,7 +357,7 @@
             }
             
         }
-        public function status()
+        public function Status()
         {
             $conid=I('cid',0);
             if($conid=='0')
@@ -422,7 +422,7 @@
             //dump($Model->getdberror());
             $this->display();
         }
-        public function report()
+        public function Report()
         {
             $conid=I('cid',0);
             if($conid=='0')
@@ -469,7 +469,7 @@
             if($res)$this->news=$res;
             $this->display();
         }
-        public function replay(){
+        public function Replay(){
             $type=I('type',0);
             $id=I('id',0);
             $context=I('context','');
@@ -515,7 +515,7 @@
                 }
             }
         }
-        public function clarify()
+        public function Clarify()
         {
             $conid=I('cid',0);
             if($conid=='0')
@@ -572,7 +572,7 @@
             $this->replay=$arr;
             $this->display();
         }
-        public function prin(){
+        public function Prin(){
             $conid=I('cid',0);
             if($conid=='0')
             {
@@ -615,7 +615,7 @@
             }
             $this->display();
         }
-        public function rank(){
+        public function Rank(){
             $conid=I('cid',0);
             if($conid=='0')
             {
@@ -658,7 +658,7 @@
             }
             $this->display();
         }
-        public function rankdata(){
+        public function Rankdata(){
             $conid=I('cid',0);
             $Model = new Model();
             $sql='select uid as pa_id,pid,result,create_time from solution where cid='.$conid.' order by pa_id,pid,create_time;';
@@ -705,7 +705,7 @@
             //p($res);
             $this->ajaxReturn($res,'json');
         }
-        public function newscount(){
+        public function Newscount(){
             $conid=I('cid',0);
             $Model = new Model();
             $sql='select * from news where cid='.$conid;
