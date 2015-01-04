@@ -30,6 +30,8 @@ return array(
     'TEMP_VAR_IDENTIFY'=>'array',
 
     //模板后缀
-    //'TMPL_TEMPLATE_SUFFIX'=>'.tpl'
+	//'TMPL_TEMPLATE_SUFFIX'=>'.tpl'
+	
+	'APP_NAME' => 'oj'
 );
 ?>

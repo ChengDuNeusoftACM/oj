@@ -42,7 +42,7 @@
                 $arr[$row]['length']=$hou.':'.$min.':'.$sec;
             }
             $this->data=$arr;
-            $this->display(index);
+            $this->display();
         }
         public function Form()
         {

@@ -2,13 +2,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="__PUBLIC__/CSS/bootstrap.min.css" />
-<link rel="stylesheet" href="__PUBLIC__/CSS/Top.css" />
-<script src="__PUBLIC__/JS/jquery-1.11.1.min.js"></script>
-<script src="__PUBLIC__/JS/bootstrap.min.js"></script>
-<script src="__PUBLIC__/JS/Top.js"></script>
+<link rel="stylesheet" href="__PUBLIC__/Css/bootstrap.min.css" />
+<link rel="stylesheet" href="__PUBLIC__/Css/Top.css" />
+<script src="__PUBLIC__/Js/jquery-1.11.1.min.js"></script>
+<script src="__PUBLIC__/Js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/Js/Top.js"></script>
 <script>
-	var verifyUrl="<?php echo U('Index/Index/verify','','');?>";
+	var verifyUrl="<?php echo U('Index/Index/Verify','','');?>";
 	var RegistUrl="<?php echo U('Index/Index/Register','','');?>";
 	var LoginUrl="<?php echo U('Index/Index/Login','','');?>";
 	var Checkname="<?php echo U('Index/Index/Checkvalue','','');?>";
@@ -79,7 +79,7 @@
 				<div class="input-group">
 				  <span class="input-group-addon">Verify:</span>
 				  <input type="text" class="form-control must" id="rgverify">
-				  <img src=<?php echo U("Index/Index/verify",'','');?> id="verify_code"/>
+				  <img src=<?php echo U("Index/Index/Verify",'','');?> id="verify_code"/>
 				</div>
 			</div>
 			
@@ -113,7 +113,7 @@
 		    <a class="dropdown-toggle" data-toggle="dropdown"  href="#" >Contests<span class="caret"></span></a>
 		    
 		    <ul class="dropdown-menu" role="menu">
-		    	 <li><a href="<?php echo U('Contest/Index/index','','');?>">School Contests</a></li>
+		    	 <li><a href="<?php echo U('Contest/Index/Index','','');?>">School Contests</a></li>
 		    	 <li><a href="#">Virtual Contests</a></li>
 		    	 <li><a href="#">Recent Contests</a></li>
 		    </ul>
