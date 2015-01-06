@@ -80,15 +80,22 @@
                                         echo "<td>-</td> <td>-</td>";
                                     }
                                     echo "<td>".$language_state[$row['language']]."</td>";
-                                    echo "<td>".$row['length']."</td>";
+                                    echo "<td><a href='javascript:showCode(".$row['soid'].")'>".$row['length']."</a></td>";
                                     echo "<td>".$row['create_time']."</td>";
                                     echo "</tr>";
                                 }
                             }
-						?> 
+						?>
 					</tbody>
 				</table>
 			</div>
 		</div>
+        <?php 
+         echo '<div id="showSourceModel" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">';
+        echo '<div class="modal-dialog modal-lg">';
+        echo '<div class="modal-content">';
+        echo '<input type="text" id="result"></input>';
+        echo '</div></div></div>';                          
+        ?>
 	</body>
 </html>
