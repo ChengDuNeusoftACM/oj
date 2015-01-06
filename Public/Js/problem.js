@@ -15,6 +15,8 @@ var $_GET = (function(){
 })();
 var id=new Number($_GET['problemid']);
 $(function(){
+	var back1top=document.getElementById("back").offsetHeight+document.getElementById("back").offsetTop-50;
+	$("#back1").css("top",back1top);
 	var top=document.getElementById("back1").offsetHeight-20;
 	var backwidth=$("#topba").width();
 	var backmarginleft=backwidth/2;
@@ -26,7 +28,12 @@ $(function(){
 		"width":backwidth+"px",
 		"margin-left":-backmarginleft+"px"
 	});
-	
+	if(id==1){
+		$(".Pre").addClass("disabled");
+	}
+	if(id==MaxId){
+		$(".Next").addClass("disabled");
+	}
 	$("#submitbar").on('hidden.bs.modal', function () {
 		myCodeMirror.setValue("");
 	});
@@ -50,13 +57,15 @@ $(function(){
 	});
 	$("#SubmitBtn").click(function(){
 		var lg=$(".active").attr('id');
+		if(myCodeMirror.getValue()!=""){
 		$.post(SubmitUrl,{
 			"pid":id,
 			"code":myCodeMirror.getValue(),
 			"language":new Number(lg[0])
 		},function(data){
+			window.location.href="Status";
 		},'json');
-		window.location.href="Status";
+		}
 	});
 })
 function loginTrue(){

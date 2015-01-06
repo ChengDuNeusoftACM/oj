@@ -2,13 +2,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="__PUBLIC__/Css/bootstrap.min.css" />
-<link rel="stylesheet" href="__PUBLIC__/Css/Top.css" />
-<script src="__PUBLIC__/Js/jquery-1.11.1.min.js"></script>
-<script src="__PUBLIC__/Js/bootstrap.min.js"></script>
-<script src="__PUBLIC__/Js/Top.js"></script>
+<link rel="stylesheet" href="__PUBLIC__/CSS/bootstrap.min.css" />
+<link rel="stylesheet" href="__PUBLIC__/CSS/Top.css" />
+<script src="__PUBLIC__/JS/jquery-1.11.1.min.js"></script>
+<script src="__PUBLIC__/JS/bootstrap.min.js"></script>
+<script src="__PUBLIC__/JS/Top.js"></script>
 <script>
-	var verifyUrl="{:U('Index/Index/Verify','','')}";
+	var verifyUrl="{:U('Index/Index/verify','','')}";
 	var RegistUrl="{:U('Index/Index/Register','','')}";
 	var LoginUrl="{:U('Index/Index/Login','','')}";
 	var Checkname="{:U('Index/Index/Checkvalue','','')}";
@@ -16,22 +16,22 @@
 <title>[title]</title>
 </head>
 <body>
-	<div id="topba" style="width: 80%; margin:  0 auto" >
+	<div id="topba" class="container">
 	<ul class="nav nav-pills" role="tablist" id="topmenu">
-	<li role="presentation"><a href="#">RecentsNews</a></li>
+	<li role="presentation"><a href="<?php echo U('Index/Index/RecentNews','','');?>">RecentsNews</a></li>
     <li role="presentation"><a href="#">Step-By-Step</a></li>
   	<li role="presentation"><a href="#">Download</a></li>
-  	<li role="presentation"><a href="#">Ranklist</a></li>
+  	<li role="presentation"><a href="<?php echo U('Index/Index/Ranklist','','');?>">Ranklist</a></li>
   	<li role="presentation"><a href="#">FA.Qs</a></li>
   	<li role="presentation"><a href="#">BBS</a></li>
-  	<li role="presentation"><a href="#">Users</a></li>
+  	<li role="presentation"<?php if(isset($_SESSION['username'])==false){ echo 'onclick="Userclick()"';}?>><a <?php if(isset($_SESSION['username'])==true) echo 'href="'.U('Index/Index/User','','').'?user='.$_SESSION['uid'].'"';?>>User</a></li>
   	<li>
   	<?php
   	if(isset($_SESSION['username'])==false){
     	echo '<button type="button" class="btn" id="signin">Sign In...</button>';
     	}
     	else{
-    		echo '<span id="welcome"><a href="#">'.$_SESSION['username'].'</a>欢迎你     <a id="loginout" href="#">退出</a></span>';
+    		echo '<span id="welcome"><span id="signname"><a href="User?user='.$_SESSION[uid].'">'.$_SESSION['username'].'</a></span><a id="loginout" href="#" style="padding-left:30px;">Sign Out</a></span>';
     	}
   	?>
   	</li>
@@ -39,7 +39,7 @@
 	</ul>
 	</div>
 	<div id="loginbar" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-	  <div class="modal-dialog modal-sm">
+	  <div class="modal-dialog modal-sm ">
 	    <div class="modal-content loginbar">
 	    	<div class="loginba">Login<span aria-hidden="true" id="close" data-dismiss="modal" ><img src="__PUBLIC__/Image/LoginRegist/X.png"></span></div>
 		    
@@ -85,7 +85,7 @@
 				<div class="input-group">
 				  <span class="input-group-addon">Verify:</span>
 				  <input type="text" class="form-control must" id="rgverify">
-				  <img src={:U("Index/Index/Verify",'','')} id="verify_code"/>
+				  <img src=verify id="verify_code"/>
 				</div>
 			</div>
 			
@@ -107,21 +107,22 @@
 	</div>
 	</div>
 	<div class="container">
-	<a id="Brand" href="#">
+	<a id="Brand" href="<?php echo U('Index/Index','','');?>">
 		<div id="cdoj">CDOJ</div>
 		<div id="neu">Neusoft University</div>
 	</a>
 		<div id="navi">
 		<ul class="nav nav-pills">
-		    <li role="presentation"><a href="<?php echo U('Index/Index/Index','','');?>">Home</a></li>
+		    <li role="presentation"><a href="<?php echo U('Index/Index','','');?>">Home</a></li>
 		    <li role="presentation"><a href="<?php echo U('Index/Index/Problemlist','','');?>">Problems</a></li>
 		    <li role="presentation" class="dropdown">
-		    <a class="dropdown-toggle" data-toggle="dropdown"  href="#" >Contests<span class="caret"></span></a>
-		    
+		    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+		    Contests<span class="caret"></span>
+		    </a>
 		    <ul class="dropdown-menu" role="menu">
-		    	 <li><a href="<?php echo U('Contest/Index/Index','','');?>">School Contests</a></li>
-		    	 <li><a href="#">Virtual Contests</a></li>
-		    	 <li><a href="#">Recent Contests</a></li>
+		    	 <li role="presentation"><a href="<?php echo U('Contest/Index','','');?>">School Contests</a></li>
+		    	 <li role="presentation"><a href="#">Virtual Contests</a></li>
+		    	 <li role="presentation"><a href="#">Recent Contests</a></li>
 		    </ul>
 		  	</li>
 			<li role="presentation"><a href="<?php echo U('Index/Index/Status','','');?>">Status</a></li>

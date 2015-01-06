@@ -1,0 +1,13 @@
+@CHARSET "UTF-8";
+#ranktitle{
+	width:90%;
+	margin:0 auto;
+	text-align:center;
+	padding:10px 0;
+	color:#000;
+	margin-top:10px;
+	margin-bottom:10px; 
+	border-bottom:2px solid rgb(44,112,180);
+	font:32px arial;
+	background:#fff;
+}

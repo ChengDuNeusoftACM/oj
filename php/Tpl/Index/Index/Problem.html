@@ -26,25 +26,25 @@
 </div>
 	<div id="back1">
 	<div class="problemTag">
-	--&nbsp;<span style="font:42px arial;">D</span>escription&nbsp;--
+	--&nbsp;<span style="font:32px arial;">D</span>escription&nbsp;--
 	</div>
 	<div class="problemTagtext">
 	{$data.desci}
 	</div>
 	<div class="problemTag">
-	--&nbsp;<span style="font:42px arial;">I</span>nput&nbsp;--
+	--&nbsp;<span style="font:32px arial;">I</span>nput&nbsp;--
 	</div>
 	<div class="problemTagtext">
 	{$data.input}
 	</div>
 	<div class="problemTag">
-	--&nbsp;<span style="font:42px arial;">O</span>utput&nbsp;--
+	--&nbsp;<span style="font:32px arial;">O</span>utput&nbsp;--
 	</div>
 	<div class="problemTagtext">
 	{$data.output}
 	</div>
 	<div class="problemTag">
-	--&nbsp;<span style="font:42px arial;">S</span>imple&nbsp;&nbsp;input&nbsp;&&nbsp;output&nbsp;--
+	--&nbsp;<span style="font:32px arial;">S</span>imple&nbsp;&nbsp;Input&nbsp;&&nbsp;Output&nbsp;--
 	</div>
 	<div class="problemTagtext">
 	<table id="inoutable">
@@ -59,7 +59,7 @@
 	</table>
 	</div>
 	<div class="problemTag">
-	--&nbsp;<span style="font:42px arial;">S</span>ource&nbsp;--
+	--&nbsp;<span style="font:32px arial;">S</span>ource&nbsp;--
 	</div>
 	<div class="problemTagtext">
 	{$data.source}
@@ -103,8 +103,10 @@
 <link rel="stylesheet" href="__PUBLIC__/Css/codemirror.css" />
 <link rel="stylesheet" href="__PUBLIC__/Css/Problem.css" />
 <script>
-	var ProblemUrl="{:U('Index/Problem','','')}";
-	var SubmitUrl="{:U('Index/Submit','','')}";
+	var ProblemUrl="{:U('Index/Index/Problem','','')}";
+	var SubmitUrl="{:U('Index/Index/Submit','','')}";
+
+	var MaxId={$data.maxid};
 </script>
 <script type="text/javascript">
 

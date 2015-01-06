@@ -13,7 +13,7 @@
 	var LoginUrl="<?php echo U('Index/Index/Login','','');?>";
 	var Checkname="<?php echo U('Index/Index/Checkvalue','','');?>";
 </script>
-<title>Contest</title>
+<title>User</title>
 </head>
 <body>
 	<div id="topba" class="container">
@@ -125,54 +125,92 @@
 	</div>
 	
 
-        <div id="contest_bar" style="width: 100%;margin: 0 auto;height: 200px;background: #434343;padding-top: 20px;">
-            <div id="title-info">
-                <div id="contest-name" style="">
-                    <h1 class="contestname"><?php echo ($contestinfo[0]['name']); ?></h1>
-                </div>
-                <div id="time-info" style="padding: 5px 0 5px 0;">
-                    <div style="text-align: center">
-                        <span style="color:#4EA1F4">Current Time:</span><span style="color: #fff;" id="currenttime"></span>
-                        <span style="color:#4EA1F4">Start Time:</span><span style="color: #fff"><?php echo ($contestinfo[0]['start_time']); ?></span>
-                        <span style="color:#4EA1F4">End Time:</span><span style="color: #fff"><?php echo ($contestinfo[0]['end_time']); ?></span>
-                        <span style="color:#4EA1F4">Contest Status:</span><span style="color: #00ff21"><?php echo ($contestinfo[0]['sta']); ?></span>
-                    </div>
-                </div>
-                <div class="progress" style="width: 80%;margin: 0 auto;height: 40px;border-radius: 40px;">
-                    <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" id="processbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="">
-                </div>
-                </div>
-            </div>
-        </div>
-        <div id="contest-info" style="width: 80%;height: 500px;background: #e0dede; left:50%;margin-left: -40%; border-radius: 20px 20px 0 0;position: absolute;top: 150px">
-            <ul class="nav nav-tabs " role="tablist" style="margin: 5px 0 0 5px;">
-              <li role="presentation" class=""><a href='<?php echo U("Index/Problemlist","","");?>?cid=<?php echo ($contestinfo[0]["cid"]); ?>'>Overview</a></li>
-              <li role="presentation" class=""><a href='<?php echo U("Index/Report","","");?>?pid=<?php echo ($v["newid"]); ?>&cid=<?php echo ($contestinfo[0]["cid"]); ?>'>Report<span class="badge"></span></a></li>
-              <li role="presentation" class=""><a href='<?php echo U("Index/Clarify","","");?>?cid=<?php echo ($contestinfo[0]["cid"]); ?>'>Clarify</a></li>
-              <li role="presentation" class=""><a href='<?php echo U("Index/Problem","","");?>?pid=A&cid=<?php echo ($contestinfo[0]["cid"]); ?>'>Problems</a></li>
-              <li role="presentation" class=""><a href='<?php echo U("Index/Status","","");?>?cid=<?php echo ($contestinfo[0]["cid"]); ?>'>Status</a></li>
-              <li role="presentation" class="active"><a href='#'>Rank</a></li>
-              <li role="presentation"><a href='<?php echo U("Index/Prin","","");?>?cid=<?php echo ($contestinfo[0]["cid"]); ?>'>Print</a></li>
-            </ul>
-            <div id="info">
-            </div>
-        </div>
-
-        <div style="position: fixed; bottom: 10%;right: 5%; ">
-            <a href="javascript:scroll(0,0)"><span style="font-size: x-large" class="glyphicon glyphicon-circle-arrow-up"></span></a> 
-        </div>
-        <script type="text/ecmascript">
-            var start_time = "<?php echo ($contestinfo[0]['startinunix']); ?>";
-            var len = "<?php echo ($contestinfo[0]['len']); ?>";
-            var conid = '<?php echo ($contestinfo[0]["cid"]); ?>';
-            var rankdataUrl = '<?php echo U("Index/Rankdata","","");?>' + '?cid=<?php echo ($contestinfo[0]["cid"]); ?>';
-            var countUrl ='<?php echo U("Contest/Index/Newscount", '', '');?>';
-            var cid="<?php echo ($contestinfo[0]['cid']); ?>";
-        </script>
-        <script src="__PUBLIC__/Js/jquery-1.10.2.min.js"></script>
-        <script src="__PUBLIC__/Js/rank.js"></script>
-        <script src="__PUBLIC__/Js/jquery-ui.min.js"></script>
-        <link href="__PUBLIC__/Css/bootstrap-theme.min.css" rel="stylesheet">
-        <link href="__PUBLIC__/Css/rank.css" rel="stylesheet">
-    </body>
+	<div id="back">
+		<div style="width:80%;height:100%;margin:0 auto;">
+		<img src="__PUBLIC__/Image/Home/head2.png" id="headimg">
+		<div id="userbar">
+		<div class="infouser"><span id="username"><?php echo $info[0]['username'];?></span><span>from:  chengdu</span><span>Registered on:  <?php echo $info[0]['create_time'];?></span></div>
+		<div class="infouser"><span>Name:  <?php echo $info[0]['name'];?></span><span>Rank:  1</span></div>
+		<div class="infouser"><span>Submitted:  <?php echo $info[0]['submit'];?></span><span>Solved:  <?php echo $info[0]['solved'];?></span><span>Accepted:  xxx</span></div>
+		<div class="infouser"><span>签名：  <?php echo $info[0]['note'];?></span></div>
+		</div>
+		</div>
+	</div>
+	<div id="userinfo" class="container">
+	<ul class="nav nav-tabs" role="tablist">
+  	<li role="presentation" class="active"><a href="#Problems" role="tab" data-toggle="tab">Problems</a></li>
+  	<li role="presentation"><a href="#Team" role="tab" data-toggle="tab">Team</a></li>
+  	<li role="presentation"><a href="#Messages" role="tab" data-toggle="tab">Messages</a></li>
+	<?php
+ if($_SESSION['uid']==$info[0]['uid']&&isset($_SESSION['username'])==true){ echo '<li role="presentation"><a href="#Modify" role="tab" data-toggle="tab">Modify</a></li>'; } ?>
+	</ul>
+		<div class="tab-content">
+ 	    <div role="tabpanel" class="tab-pane active" id="Problems">
+ 	     <?php
+ for($i=1;$i<=$total;$i++){ echo '<span class="pid'; if($data[$i]==1) echo ' wa'; if($data[$i]==2) echo ' ac'; echo '"'; if($i==$total) echo 'style="margin-bottom:40px;"'; echo '><a herf="#">'.$i.'</a></span>'; } ?>
+ 	    </div>
+  		<div role="tabpanel" class="tab-pane" id="Team">
+  			<div class="gname"><span class="glyphicon glyphicon-stop teamfont"></span> Group Name:  <span class="teamfont">大傻逼</span></div>
+  			<table id="teaminfo" class="table table-striped">
+  				<tr class="teamfont">
+  					<td>Display Name</td>
+  					<td>User Name</td>
+  					<td>Action</td>
+  				</tr>
+  				<tr>
+  					<td>xxx</td>
+  					<td>xxxxxxxxxxxxx</td>
+  					<td>xx</td>
+  				</tr>
+			</table>
+  		</div>
+  		<div role="tabpanel" class="tab-pane" id="Messages">...</div>
+  		
+  		 <?php
+ if($_SESSION['uid']==$info[0]['uid']&&isset($_SESSION['username'])==true){ echo '<div role="tabpanel" class="tab-pane" id="Modify">
+  		<div class="gname"><span class="glyphicon glyphicon-stop teamfont"></span><span class="motitle">Update Your Information</span></div>
+		  <div class="input-group">
+		  	<span class="input-group-addon userinput">Real Name：</span>
+		 	<input type="text" class="form-control" placeholder="Enter real name or not">
+		  </div>
+		  <div class="input-group">
+		  	<span class="input-group-addon userinput">Old password：</span>
+		 	<input type="password" class="form-control must" id="oldpwd" placeholder="Please enter Old Password">
+		  </div>
+		  <div class="input-group">
+		  	<span class="input-group-addon userinput">New password：</span>
+		 	<input type="password" class="form-control" id="newpwd" placeholder="If you do not want to change can not fill">
+		  </div>
+		  <div class="input-group">
+		  	<span class="input-group-addon userinput">Confirm password：</span>
+		 	<input type="password" class="form-control" id="cnpwd" placeholder="Confirm New Password">
+		  </div>
+		  <div class="input-group">
+		  	<span class="input-group-addon userinput">Individuality Signature：</span>
+		 	<input type="text" class="form-control" placeholder="Enter Individuality Signature">
+		  </div>
+		   <div class="input-group">
+		   <span class="input-group-addon userinput">Sex：</span>
+			  <select style="font:16px Helvetica;">  
+			  	<option value ="1">male</option>  
+			  	<option value ="2">female</option>  
+			  </select>  
+		  </div> 
+		  <div class="input-group">
+		  	<span class="input-group-addon userinput">Major：</span>
+		 	<input type="text" class="form-control" placeholder="Enter Major">
+		  </div>
+		  <div class="input-group">
+		  	<span class="input-group-addon userinput">Grade：</span>
+		 	<input type="text" class="form-control" placeholder="Enter grade">
+		  </div>
+		  <div class="input-group">
+		  	<span class="input-group-addon userinput">Class：</span>
+		 	<input type="text" class="form-control" placeholder="Enter Class">
+		  </div>
+		</div>'; } ?>
+		</div>
+	</div>
+<link rel="stylesheet" href="__PUBLIC__/CSS/User.css" />
+</body>
 </html>

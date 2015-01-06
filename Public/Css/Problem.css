@@ -77,10 +77,10 @@ body{
 	background:rgb(238,238,238);
 }
 .problemTag{
-	height:60px;
+	height:40px;
 	margin:2px 8px 0 8px;
-	line-height:60px;
-	font:24px arial;
+	line-height:40px;
+	font:20px arial;
 	color:#ffffff;
 	padding-left:10px;
 	background:rgb(44,112,180);
@@ -93,13 +93,11 @@ body{
 }
 #inoutable{
 	width:100%;
-	text-align:center;
 	line-height:40px;
 }
 #inoutable th{
 	height:40px;
 	border:1px solid #e0dede;
-	text-align:center;
 	font:18px arial;
 }
 #inoutable td{

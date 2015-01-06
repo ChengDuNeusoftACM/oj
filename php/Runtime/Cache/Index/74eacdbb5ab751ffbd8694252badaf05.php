@@ -13,7 +13,7 @@
 	var LoginUrl="<?php echo U('Index/Index/Login','','');?>";
 	var Checkname="<?php echo U('Index/Index/Checkvalue','','');?>";
 </script>
-<title>Contest</title>
+<title>welcome to Neusoft Online Judge</title>
 </head>
 <body>
 	<div id="topba" class="container">
@@ -125,54 +125,97 @@
 	</div>
 	
 
-        <div id="contest_bar" style="width: 100%;margin: 0 auto;height: 200px;background: #434343;padding-top: 20px;">
-            <div id="title-info">
-                <div id="contest-name" style="">
-                    <h1 class="contestname"><?php echo ($contestinfo[0]['name']); ?></h1>
-                </div>
-                <div id="time-info" style="padding: 5px 0 5px 0;">
-                    <div style="text-align: center">
-                        <span style="color:#4EA1F4">Current Time:</span><span style="color: #fff;" id="currenttime"></span>
-                        <span style="color:#4EA1F4">Start Time:</span><span style="color: #fff"><?php echo ($contestinfo[0]['start_time']); ?></span>
-                        <span style="color:#4EA1F4">End Time:</span><span style="color: #fff"><?php echo ($contestinfo[0]['end_time']); ?></span>
-                        <span style="color:#4EA1F4">Contest Status:</span><span style="color: #00ff21"><?php echo ($contestinfo[0]['sta']); ?></span>
-                    </div>
-                </div>
-                <div class="progress" style="width: 80%;margin: 0 auto;height: 40px;border-radius: 40px;">
-                    <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" id="processbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="">
-                </div>
-                </div>
-            </div>
+<div id="Topcarousel">
+<img src="__PUBLIC__/Image/Home/head1.png" style="position:absolute;left:138px;">
+<img src="__PUBLIC__/Image/Home/head2.png" style="position:absolute;left:570px;">
+<div id="carousel-example-generic" class="carousel slide  container" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="1" class=""></li>
+        <li data-target="#carousel-example-generic" data-slide-to="2" class=""></li>
+      </ol>
+      <div class="carousel-inner" role="listbox">
+        <div class="item active" >
+        <div style="color:white;padding:200px;">1..........</div>
         </div>
-        <div id="contest-info" style="width: 80%;height: 500px;background: #e0dede; left:50%;margin-left: -40%; border-radius: 20px 20px 0 0;position: absolute;top: 150px">
-            <ul class="nav nav-tabs " role="tablist" style="margin: 5px 0 0 5px;">
-              <li role="presentation" class=""><a href='<?php echo U("Index/Problemlist","","");?>?cid=<?php echo ($contestinfo[0]["cid"]); ?>'>Overview</a></li>
-              <li role="presentation" class=""><a href='<?php echo U("Index/Report","","");?>?pid=<?php echo ($v["newid"]); ?>&cid=<?php echo ($contestinfo[0]["cid"]); ?>'>Report<span class="badge"></span></a></li>
-              <li role="presentation" class=""><a href='<?php echo U("Index/Clarify","","");?>?cid=<?php echo ($contestinfo[0]["cid"]); ?>'>Clarify</a></li>
-              <li role="presentation" class=""><a href='<?php echo U("Index/Problem","","");?>?pid=A&cid=<?php echo ($contestinfo[0]["cid"]); ?>'>Problems</a></li>
-              <li role="presentation" class=""><a href='<?php echo U("Index/Status","","");?>?cid=<?php echo ($contestinfo[0]["cid"]); ?>'>Status</a></li>
-              <li role="presentation" class="active"><a href='#'>Rank</a></li>
-              <li role="presentation"><a href='<?php echo U("Index/Prin","","");?>?cid=<?php echo ($contestinfo[0]["cid"]); ?>'>Print</a></li>
-            </ul>
-            <div id="info">
-            </div>
+        <div class="item">
+        <div style="color:white;padding:200px;">2..........</div>
         </div>
+        <div class="item">
+        <div style="color:white;padding:200px;">3..........</div>
+        </div>
+      </div>
+      <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+</div>
+<div id="Announcement" class="container">
+<span id="Palogo"><div style="margin:30px 0;font:24px arial;">Public<span class="glyphicon glyphicon-arrow-right" style="margin-left:20px;"></span></div>Announcement</span>
+<span id="PaContext">
+<div id="Patitle">Title</div>
+<div id="PaCon">xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</div>
+</span>
+</div>
+<div class="container">
+<div id="RecentsConba">Contests  ∨</div>
 
-        <div style="position: fixed; bottom: 10%;right: 5%; ">
-            <a href="javascript:scroll(0,0)"><span style="font-size: x-large" class="glyphicon glyphicon-circle-arrow-up"></span></a> 
-        </div>
-        <script type="text/ecmascript">
-            var start_time = "<?php echo ($contestinfo[0]['startinunix']); ?>";
-            var len = "<?php echo ($contestinfo[0]['len']); ?>";
-            var conid = '<?php echo ($contestinfo[0]["cid"]); ?>';
-            var rankdataUrl = '<?php echo U("Index/Rankdata","","");?>' + '?cid=<?php echo ($contestinfo[0]["cid"]); ?>';
-            var countUrl ='<?php echo U("Contest/Index/Newscount", '', '');?>';
-            var cid="<?php echo ($contestinfo[0]['cid']); ?>";
-        </script>
-        <script src="__PUBLIC__/Js/jquery-1.10.2.min.js"></script>
-        <script src="__PUBLIC__/Js/rank.js"></script>
-        <script src="__PUBLIC__/Js/jquery-ui.min.js"></script>
-        <link href="__PUBLIC__/Css/bootstrap-theme.min.css" rel="stylesheet">
-        <link href="__PUBLIC__/Css/rank.css" rel="stylesheet">
-    </body>
+<?php if(is_array($data)): foreach($data as $key=>$p): ?><span class="RecentCon" style="border-top:8px solid rgb(168,80,0);">
+<div class="ContestFrom">RECENT SCHOOL CONTEST →</div>
+<div class="ContestTitle"><?php echo ($p["name"]); ?></div>
+<div class="ContestDesci"><?php echo ($p["desci"]); ?><a href="#" style="margin-left:10px;">Read More...</a></div>
+</span><?php endforeach; endif; ?>
+</div>
+<div id="download">
+<div id="downloadbar">
+<div id="Downlogo"><div style="margin:30px 0;font:24px arial;">Download</div>U can find anything</div>
+<div id="DownSearch"><div style="font:28px arial; color:rgb(41,65,99);">Please enter the focus word</div>
+or choose the type
+<div >
+<div class="input-group" style="padding:10px;" id="downsearchbar">
+      <input type="text" class="form-control" placeholder="enter a name or  word" style="width:320px;">
+        <button class="btn btn-primary" type="button" style="width:100px;">Search</button>
+    </div>
+</div>
+
+</div>
+<img src="__PUBLIC__/Image/Bottom/no2-line.png" style="height:100%;float:left;">
+<div id="downtypebar">
+<span class="typebar" ><a href="#" style="color:rgb(185,220,219);"><span class="glyphicon glyphicon-stop"></span>software</a></span>
+<span class="typebar" ><a href="#" style="color:rgb(77,143,182);"><span class="glyphicon glyphicon-stop"></span>movie</a></span>
+<span class="typebar" ><a href="#" style="color:rgb(237,118,66);"><span class="glyphicon glyphicon-stop"></span>word</a></span>
+<span class="typebar" ><a href="#" style="color:rgb(242,246,73);"><span class="glyphicon glyphicon-stop"></span>study</a></span>
+</div>
+</div>
+</div>
+<link rel="stylesheet" href="__PUBLIC__/CSS/Index.css" />
+<script src="__PUBLIC__/JS/Index.js"></script>
+<div id="BottombarI">
+	<div class="container">
+	<div id="BottombaI" >
+	<div>CDOJ</div>
+	<div style="color:#1f4368;">for ACM</div>
+	</div>
+	<div id="BottombaII">
+	<div>UESTC Online Judge</div>
+	<div>Any Problem,Please Report</div>
+	<div>xxx xx xxx xx</div>
+	</div>
+	<div id="BottombaIII">
+	<div>Neusoft</div>
+	<div>Any Problem,Please Report</div>
+	<div>xxx xx xxx xx</div>
+	</div>
+	</div>
+	</div>
+	<div id="BottombarII">
+	
+	</div>
+	<link rel="stylesheet" href="__PUBLIC__/Css/Bottom.css" />
+</body>
 </html>

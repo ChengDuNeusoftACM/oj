@@ -29,35 +29,46 @@
       </a>
     </div>
 </div>
+<div id="Announcement" class="container">
+<span id="Palogo"><div style="margin:30px 0;font:24px arial;">Public<span class="glyphicon glyphicon-arrow-right" style="margin-left:20px;"></span></div>Announcement</span>
+<span id="PaContext">
+<div id="Patitle">Title</div>
+<div id="PaCon">xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</div>
+</span>
+</div>
 <div class="container">
 <div id="RecentsConba">Contests  ∨</div>
-<div class="row container">
-  <div class="col-sm-6 col-md-4">
-    <div class="thumbnail">
-      <div class="caption">
-        <h3>Thumbnail label</h3>
-        <p>...</p>
-        </div>
+
+<foreach name="data" item="p">
+<span class="RecentCon" style="border-top:8px solid rgb(168,80,0);">
+<div class="ContestFrom">RECENT SCHOOL CONTEST →</div>
+<div class="ContestTitle">{$p.name}</div>
+<div class="ContestDesci">{$p.desci}<a href="#" style="margin-left:10px;">Read More...</a></div>
+</span>
+</foreach>
+</div>
+<div id="download">
+<div id="downloadbar">
+<div id="Downlogo"><div style="margin:30px 0;font:24px arial;">Download</div>U can find anything</div>
+<div id="DownSearch"><div style="font:28px arial; color:rgb(41,65,99);">Please enter the focus word</div>
+or choose the type
+<div >
+<div class="input-group" style="padding:10px;" id="downsearchbar">
+      <input type="text" class="form-control" placeholder="enter a name or  word" style="width:320px;">
+        <button class="btn btn-primary" type="button" style="width:100px;">Search</button>
     </div>
-  </div>
-   <div class="col-sm-6 col-md-4">
-    <div class="thumbnail">
-      <div class="caption">
-        <h3>Thumbnail label</h3>
-        <p>...</p>
-        </div>
-    </div>
-  </div>
-   <div class="col-sm-6 col-md-4">
-    <div class="thumbnail">
-      <div class="caption">
-        <h3>Thumbnail label</h3>
-        <p>...</p>
-      </div>
-    </div>
-  </div>
+</div>
+
+</div>
+<img src="__PUBLIC__/Image/Bottom/no2-line.png" style="height:100%;float:left;">
+<div id="downtypebar">
+<span class="typebar" ><a href="#" style="color:rgb(185,220,219);"><span class="glyphicon glyphicon-stop"></span>software</a></span>
+<span class="typebar" ><a href="#" style="color:rgb(77,143,182);"><span class="glyphicon glyphicon-stop"></span>movie</a></span>
+<span class="typebar" ><a href="#" style="color:rgb(237,118,66);"><span class="glyphicon glyphicon-stop"></span>word</a></span>
+<span class="typebar" ><a href="#" style="color:rgb(242,246,73);"><span class="glyphicon glyphicon-stop"></span>study</a></span>
 </div>
 </div>
-<link rel="stylesheet" href="__PUBLIC__/Css/Index.css" />
-</body>
-</html>
+</div>
+<link rel="stylesheet" href="__PUBLIC__/CSS/Index.css" />
+<script src="__PUBLIC__/JS/Index.js"></script>
+<include file="Bottom" />

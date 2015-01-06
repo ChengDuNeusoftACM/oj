@@ -16,4 +16,117 @@
 	font:24px arial;
 	line-height:50px;
 	background-color:rgb(117,117,117);
+	margin-bottom:20px;
+}
+#Announcement{
+	margin-top:10px;
+}
+#Palogo{
+	text-align:center;
+	font:18px arial;
+	color:#fff;
+	width:20%;
+	height:200px;
+	border-top:5px solid rgb(62,151,197);
+	background:rgb(41,65,99);
+	
+	float:left;
+	display:inline-block;
+}
+#PaContext{
+	border:2px solid rgb(194,192,191);
+	border-left:0px;
+	width:80%;
+	height:200px;
+	float:left;
+	display:inline-block;
+}
+#Patitle{
+	font:20px arial;
+	color:rgb(62,151,197);
+	padding:20px 40px;
+}
+#PaCon{
+	font:16px arial;
+	color:rgb(194,192,191);
+	padding:10px 40px;
+	word-wrap:break-word; 
+	word-break:break-all;
+}
+.RecentCon{
+	width:30%;
+	height:400px;
+	display:inline-block;
+	box-shadow: 0px 0px 30px #888888;
+	margin-bottom:20px;
+}
+.ContestFrom{
+	padding:10px 20px;
+	color:rgb(117,117,117);
+	font:16px arial;
+}
+.ContestTitle{
+	margin-top:30px;
+	color:rgb(41,65,99);
+	font:24px arial;
+	padding:10px 20px;
+	padding-bottom:20px;
+}
+.ContestDesci{
+	color:#000;
+	font:14px arial;
+	padding:0 20px;
+	padding-bottom:10px;
+	word-wrap:break-word; 
+	word-break:break-all;
+}
+#download{
+	position:relative;
+	width:100%;
+	height:260px;
+	background:rgb(225,224,226);
+	margin-top:20px;
+}
+#downloadbar{
+	width:80%;
+	left:10%;
+	position:absolute;
+	top:20px;
+	background:#fff;
+	height:200px;
+}
+#Downlogo{
+	text-align:center;
+	font:18px arial;
+	color:#fff;
+	width:15%;
+	height:200px;
+	border-top:5px solid rgb(62,151,197);
+	background:rgb(41,65,99);
+	float:left;
+}
+#DownSearch{
+	width:50%;
+	color:rgb(117,117,117);
+	font:16px arial;
+	margin:30px;
+	float:left;
+}
+#downsearchbar{
+	background:rgb(225,224,226);
+	margin-top:30px;
+}
+#downtypebar{
+	width:25%;
+	height:100%;
+	float:left;
+	word-wrap:break-word; 
+	word-break:break-all;
+}
+.typebar{
+	margin:30px 17px;	
+	float:left;
+	width:100px;
+	font:20px arial;
+	display:inline-block;
 }

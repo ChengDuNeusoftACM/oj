@@ -4,6 +4,7 @@ $(function () {
     for (var i = 0; i < 7; i++) {
         validate[i] = 0;
     }
+
     $("#signin").click(function () {
         $("#loginbar").modal();
     })
@@ -190,3 +191,9 @@ $(function () {
 
     })
 })
+function Userclick(){
+
+    $("#loginbar").modal();
+    $(".loginba").parent().find($('.alert')).remove();
+    $(".loginba").after("<div class='alert alert-warning'><a href='#' class='close' data-dismiss='alert'>&times;</a>Please login first</div>");
+}

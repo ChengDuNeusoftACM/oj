@@ -1,4 +1,7 @@
 @CHARSET "UTF-8";
+.container{
+	width:80%;
+}
 a:hover{
 	text-decoration:none;
 }
@@ -11,9 +14,6 @@ a:hover{
 #topba a{
 	color:#ffffff;
 	font:18px arial;
-}
-.container{
-    width: 80%;
 }
 #topba a:hover{
 	color:#2c70b4;
@@ -186,4 +186,27 @@ a:hover{
 	font:18px Helvetica;
 	width:140px;
 	height:45px;
+}
+#welcome{
+	border: 1px solid #413e3e;
+	background-color:#413e3e;
+	width:250px;
+	padding:5px 0px;
+	color:#ffffff;
+	margin-top:4px;
+	margin-left:50px;
+	
+	display:block;
+	-moz-border-radius: 5px;      /* Gecko browsers */
+    -webkit-border-radius: 5px;   /* Webkit browsers */
+    border-radius:5px;    
+}
+#welcome a{
+	font:16px arial;
+}
+#signname{
+	width:50%;
+	text-align: center;
+	border-right:2px solid #fff;
+	display:inline-block;
 }

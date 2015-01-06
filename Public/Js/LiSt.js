@@ -14,9 +14,9 @@ $(function(){
         window.location.href = SearchUrl + "?info=" + str;
     });
 	$('.panel').on('hide.bs.collapse', function () {
-		 $(this).find('.pointerimg').attr('src','../../Public/Image/News/1.png');
+		 $(this).find('.pointerimg').attr('src','../../../Public/Image/News/1.png');
 	});
 	$('.panel').on('show.bs.collapse', function () {
-		 $(this).find('.pointerimg').attr('src','../../Public/Image/News/2.png');
+		 $(this).find('.pointerimg').attr('src','../../../Public/Image/News/2.png');
 	});
 })

@@ -1,6 +1,6 @@
-<include file="Top" title="Status"/>
-	<div id="mainlist" class="container">
-	<div class="container-fluid" style="background-color:#787676;">
+<include file="Top" title="RecentNews"/>
+<div id="mainlist" class="container">
+<div class="container-fluid" style="background-color:#787676;">
 	<div class="navbar-form">
 		<div class="input-group navbar-left searchbar">
           <input type="text" id="searchinfo" class="form-control" placeholder="enter any words">
@@ -9,7 +9,7 @@
 	   <nav class="navbar-right">
 	      <ul class="pagination" style="margin: 0">
 	       <?php 
-	       		$SearchUrl=U('Index/Index/Status','','');
+	       		$SearchUrl=U('Index/RecentNews','','');
 				$rear=$nowpage-1;
                 $str='';
                 if($info!=null)$str='&info='.$info;
@@ -46,49 +46,45 @@
 				$front=$nowpage+1;
             	$str='';
       			if($info!=null)$str='&info='.$info;
-	            if($nowpage>=$pages) echo'<li class="disabled"><a href="#">&raquo;</a></li>';
+	            if($nowpage==$pages) echo'<li class="disabled"><a href="#">&raquo;</a></li>';
    	            else echo'<li><a href="'.$SearchUrl.'?page='.$front.$str.'">&raquo;</a></li>'
            ?>
 	      </ul>
 	    </nav>
 	</div>
 	</div>
-	<div id="mainlist">
-	<table id="list" class="list">
-		<tr>
-			<th>Run ID</th>
-			<th>User</th>
-			<th>Problem</th>
-			<th>Result</th>
-			<th>Memory</th>
-			<th>Time</th>
-			<th>Language</th>
-			<th>Length</th>
-			<th>Submit Time</th>
-		</tr>
+	<?php $index=0;?>
+	<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 		<foreach name="data" item="p">
-		<tr>
-			<td id="pi">{$p.soid}</td>
-			<td>{$p.username}</td>
-			<td>{$p.pid}</td>
-			<td>{$p.result}</td>
-			<td>{$p.memory}</td>
-			<td>{$p.time}</td>
-			<td>
-			<?php
-			if($p['language']=="0")
-			echo "C";
-			else if($p['language']=="1")
-			echo "C++";
-			else
-			echo "Java";
-			?>
-			</td>
-			<td>{$p.length}</td>
-			<td>{$p.create_time}</td>
-		</tr>
+		
+		  <div class="panel">
+		    <div class="panel-heading title" role="tab" <?php echo 'id="heading'.$index.'"'?> >
+		      <h4 class="panel-title title" <?php 
+		        if($index==0){
+		        echo 'data-toggle="collapse" data-parent="#accordion" href="#collapse'.$index.'" aria-expanded="true" aria-controls="collapse'.$index.'"';
+		        }
+		        else{
+		        echo 'class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse'.$index.'" aria-expanded="false" aria-controls="collapse'.$index.'"';
+		        } 
+		        ?>>
+		        <div id="newtitle">{$p.title}xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx<?php if($index==0)echo'<img class="pointerimg" src="__PUBLIC__/Image/News/2.png" style="margin-left:100px;">';else echo'<img class="pointerimg" src="__PUBLIC__/Image/News/1.png" style="margin-left:100px;">';?></div>
+		        <div id="newtime"><img src="__PUBLIC__/Image/News/tiem.png" style="margin-right:10px;">Fri.{$p.create_time}<span><img src="__PUBLIC__/Image/News/by.png" style="margin-left:100px;">{$p.username}</span></div>
+		      </h4>
+		    </div>
+		    <div <?php echo 'id="collapse'.$index.'"'?> class="panel-collapse collapse <?php 
+				if($index==0){
+				echo ' in"';}
+				else{
+				echo '"';}?>  
+			role="tabpanel" <?php echo 'aria-labelledby="heading'.$index.'"';$index++;?>>
+		      <div class="panel-body">
+		        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+		      </div>
+		    </div>
+		  </div>
+		 
 		</foreach>
-	</table>
+		 </div>
 	<div class="container-fluid" style="margin:40px 0;">
 	<div class="navbar-form">
 	   <nav class="navbar-right">
@@ -137,8 +133,12 @@
 	    </nav>
 	</div>
 	</div>
-	</div>
-<link rel="stylesheet" href="__PUBLIC__/Css/Tabletpl.css" />
-<script type="text/javascript" src='__PUBLIC__/Js/LiSt.js'></script>
+</div>
+<script>
+	var SearchUrl="{:U('Index/RecentNews','','')}";
+	</script>
+	<link rel="stylesheet" href="__PUBLIC__/CSS/Tabletpl.css" />
+	<script type="text/javascript" src='__PUBLIC__/JS/LiSt.js'></script>
+	<script type="text/javascript" src='__PUBLIC__/JS/News.js'></script>
 </body>
 </html>

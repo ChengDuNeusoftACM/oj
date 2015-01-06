@@ -151,28 +151,22 @@
               <li role="presentation" class=""><a href='<?php echo U("Index/Clarify","","");?>?cid=<?php echo ($contestinfo[0]["cid"]); ?>'>Clarify</a></li>
               <li role="presentation" class=""><a href='<?php echo U("Index/Problem","","");?>?pid=A&cid=<?php echo ($contestinfo[0]["cid"]); ?>'>Problems</a></li>
               <li role="presentation" class=""><a href='<?php echo U("Index/Status","","");?>?cid=<?php echo ($contestinfo[0]["cid"]); ?>'>Status</a></li>
-              <li role="presentation" class="active"><a href='#'>Rank</a></li>
-              <li role="presentation"><a href='<?php echo U("Index/Prin","","");?>?cid=<?php echo ($contestinfo[0]["cid"]); ?>'>Print</a></li>
+              <li role="presentation" class=""><a href='<?php echo U("Index/Rank","","");?>?cid=<?php echo ($contestinfo[0]["cid"]); ?>'>Rank</a></li>
+              <li role="presentation" class="active"><a href='#'>Print</a></li>
             </ul>
-            <div id="info">
-            </div>
-        </div>
-
-        <div style="position: fixed; bottom: 10%;right: 5%; ">
-            <a href="javascript:scroll(0,0)"><span style="font-size: x-large" class="glyphicon glyphicon-circle-arrow-up"></span></a> 
-        </div>
-        <script type="text/ecmascript">
+         </div>
+    <script type="text/ecmascript">
             var start_time = "<?php echo ($contestinfo[0]['startinunix']); ?>";
             var len = "<?php echo ($contestinfo[0]['len']); ?>";
-            var conid = '<?php echo ($contestinfo[0]["cid"]); ?>';
-            var rankdataUrl = '<?php echo U("Index/Rankdata","","");?>' + '?cid=<?php echo ($contestinfo[0]["cid"]); ?>';
+            var problemUrl = '<?php echo U("Index/Problem?cid=".$problems[0]["cid"]."&pid=".$problem[0]["newid"]);?>}';
             var countUrl ='<?php echo U("Contest/Index/Newscount", '', '');?>';
             var cid="<?php echo ($contestinfo[0]['cid']); ?>";
         </script>
         <script src="__PUBLIC__/Js/jquery-1.10.2.min.js"></script>
-        <script src="__PUBLIC__/Js/rank.js"></script>
+        <script src="__PUBLIC__/Js/loop.js"></script>
         <script src="__PUBLIC__/Js/jquery-ui.min.js"></script>
         <link href="__PUBLIC__/Css/bootstrap-theme.min.css" rel="stylesheet">
-        <link href="__PUBLIC__/Css/rank.css" rel="stylesheet">
+        <link href="__PUBLIC__/Css/problemlist.css" rel="stylesheet">
+    
     </body>
 </html>
