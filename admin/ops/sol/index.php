@@ -9,7 +9,6 @@
 	include ("../../db/DB.Class.php");
 	include ("../db/func.php"); 
     $db=new DB();
-    echo "Username:".$uname." ".$uid;
 ?>
 
 <!DOCTYPE html>
@@ -32,7 +31,7 @@
 						?>
 				</nav>
 			</div>
-			<div id="lists" class="row metro" style="with:100%;">
+			<div id="lists" class="row metro" style="with: 100%;">
 				<table class="table striped hovered dataTable" id="datatable">
 					<thead>
                           <tr>
@@ -64,6 +63,7 @@
                                     echo "<td>".$row['language']."</td>";
                                     echo "<td>".$row['length']."</td>";
                                     echo "<td>".$row['create_time']."</td>";
+                                    echo "</tr>";
                                 }
                             }
 						?> 
