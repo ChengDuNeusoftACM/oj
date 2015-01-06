@@ -59,7 +59,7 @@
                                     echo "<tr><td>".$row['username']."</td>";
                                     echo "<td>".$row['pid']."</td>";
                                     echo "<td>".$row['pname']."</td>";
-                                    echo "<td>".$result_state[$row['result']][0]."</td>";
+                                    echo "<td style='color:".$result_state[$row['result']][1]."'>".$result_state[$row['result']][0]."</td>";
                                     echo "<td>".$row['memory']."</td>";
                                     echo "<td>".$row['time']."</td>";
                                     echo "<td>".$language_state[$row['language']]."</td>";
