@@ -37,6 +37,7 @@
 				<table class="table striped hovered dataTable" id="datatable">
 					<thead>
                           <tr>
+                              <th>Sol_ID</th>
                               <th>用户名</th>
                               <th>题目编号</th>
                               <th>题目名称</th>
@@ -50,13 +51,15 @@
 					</thead>
 					<tbody>
 						<?php
-							$sql="select u.username,p.pid,p.pname,s.result,s.memory,s.time,s.language,s.length,s.create_time from user AS u,problem AS p,solution AS s where u.uid=s.uid AND p.pid=s.pid";
+							$sql="select s.soid,u.username,p.pid,p.pname,s.result,s.memory,s.time,s.language,s.length,s.create_time from user AS u,problem AS p,solution AS s where u.uid=s.uid AND p.pid=s.pid";
                             $res=$db->dql($sql);
                             if($res&&($res->num_rows>0))
                             {
                                 while($row=$res->fetch_assoc())
                                 {
-                                    echo "<tr><td>".$row['username']."</td>";
+                                    echo "<tr>";
+                                    echo "<td>".$row['soid']."</td>";          
+                                    echo "<td>".$row['username']."</td>";
                                     echo "<td>".$row['pid']."</td>";
                                     echo "<td>".$row['pname']."</td>";
                                     echo "<td style='color:".$result_state[$row['result']][1]."'>".$result_state[$row['result']][0]."</td>";
