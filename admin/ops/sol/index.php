@@ -51,7 +51,7 @@
 					</thead>
 					<tbody>
 						<?php
-							$sql="select s.soid,u.username,p.pid,p.pname,s.result,s.memory,s.time,s.language,s.length,s.create_time from user AS u,problem AS p,solution AS s where u.uid=s.uid AND p.pid=s.pid";
+							$sql="select s.soid,s.cid,s.process,u.username,p.pid,p.pname,s.result,s.memory,s.time,s.language,s.length,s.create_time from user AS u,problem AS p,solution AS s where u.uid=s.uid AND p.pid=s.pid";
                             $res=$db->dql($sql);
                             if($res&&($res->num_rows>0))
                             {
@@ -62,7 +62,14 @@
                                     echo "<td>".$row['username']."</td>";
                                     echo "<td>".$row['pid']."</td>";
                                     echo "<td>".$row['pname']."</td>";
-                                    echo "<td style='color:".$result_state[$row['result']][1]."'>".$result_state[$row['result']][0]."</td>";
+                                    if($row['cid']!=""&&$row['process']&&$row['result']!=4)
+                                    {
+                                        echo "<td style='color:".$result_state[$row['result']][1]."'>".$result_state[$row['result']][0]." on test ".$row['process']." </td>";
+                                    }
+                                    else 
+                                    {
+                                        echo "<td style='color:".$result_state[$row['result']][1]."'>".$result_state[$row['result']][0]."</td>";
+                                    }
                                     echo "<td>".$row['memory']."</td>";
                                     echo "<td>".$row['time']."</td>";
                                     echo "<td>".$language_state[$row['language']]."</td>";
