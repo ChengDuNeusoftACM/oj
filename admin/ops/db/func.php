@@ -60,27 +60,27 @@
     }
 
     function getStyle(){
-        $link = [
+        $link =array( 
             "<link rel='stylesheet' href='../../css/bootstrap.min.css' />",
             "<script src='../../js/jquery.min.js'></script>",
-            "<script src='../../js/bootstrap.min.js'></script>",
-            ];
+            "<script src='../../js/bootstrap.min.js'></script>"
+        );
         foreach ($link as $stylelink){
             echo $stylelink;
         }
     }
 
     function getDataTable(){
-        $link = [
+        $link =array( 
             "<script src='../../js/dataTables.min.js'></script>"
-        ];
+        );
         foreach ($link as $l){
             echo $l;
         }
     }
 
     function getAllStyle(){
-        $link = [
+        $link =array( 
             "<link rel='stylesheet' href='../../css/bootstrap.min.css' />",
             "<link rel='stylesheet' href='../../css/metro-bootstrap.min.css' />",
             "<script src='../../js/jquery.min.js'></script>",
@@ -88,24 +88,23 @@
             "<script src='../../js/metro.min.js'></script>",
             "<script src='../../js/bootstrap.min.js'></script>",
             "<script src='../../js/dataTables.min.js'></script>"
-        ];
+        );
         foreach ($link as $l){
             echo $l;
         }
     }
 
     function getMetroStyle(){
-        $link = [
+        $link =array(
             "<link rel='stylesheet' href='../../css/metro-bootstrap.min.css' />",
             "<script src='../../js/jquery.min.js'></script>",
             "<script src='../../js/jquery.ui.min.js'></script>",
             "<script src='../../js/metro.min.js'></script>"
-            ];
+        );
         foreach ($link as $stylelink){
             echo $stylelink;
         }
     }
-
     function addModel($arr,$id='addModel',$tip = "checkTips",$in = FALSE){
         echo sprintf('<div id="%s" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">',$id);
         echo '<div class="modal-dialog modal-lg">';

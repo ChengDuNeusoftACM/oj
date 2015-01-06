@@ -11,6 +11,7 @@
 		<?php getAllStyle(); ?>
 	</head>
 	<body>
+        <div> Hello World</div>
 		<div class="container-fluid">
 			<div id="toolbar" class="row">
 				<nav class="navbar navbar-default" role="navigation">
@@ -25,7 +26,7 @@
 			<div id="lists" class="row metro" style="with:100%;">
 				<table class="table striped hovered dataTable" id="datatable">
 					<thead>
-				
+
 					</thead>
 					<tbody>
 						<?php

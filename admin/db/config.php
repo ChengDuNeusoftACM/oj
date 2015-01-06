@@ -3,7 +3,7 @@
      * 数据库配置信息
      */
      
-     define('DB_HOST','127.0.0.1');            //服务器
+     define('DB_HOST','10.14.1.100');            //服务器
      define('DB_USER','oj');                 //数据库用户名
      define('DB_PASSWORD','acm');                 //数据库密码
      define('DB_NAME','oj');                //默认数据库

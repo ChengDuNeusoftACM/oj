@@ -15,10 +15,10 @@
     }
     getNormalAttr($isa,$isd,$ism,$lmark,$db);
 
-    $arr = [
+    $arr =array( 
         "name"=>"名称",
         "desci"=>"描述"
-    ];
+    );
 
     $adminGroup = array();
     $sql = "select * from admin_group";
@@ -76,13 +76,13 @@
          <?php
              delModel();
              tipModel();
-             $arr = [
+             $arr =array( 
                 'username'=>'用户名',
                 'psd'=>'密码',
                 'name'=>'真实姓名',
                 'email'=>'邮箱',
                 'phone'=>'联系电话'
-             ];
+            );
              echo '<div id="addModel" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">';
              echo '<div class="modal-dialog modal-lg">';
              echo '<div class="modal-content">';

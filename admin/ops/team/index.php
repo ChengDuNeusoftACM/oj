@@ -70,7 +70,7 @@
          <?php
              delModel();
              tipModel();
-             addModel(['name'=>'名称']);
+             addModel(array('name'=>'名称'));
          ?>
     </body>
 </html>
