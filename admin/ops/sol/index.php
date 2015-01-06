@@ -37,10 +37,10 @@
 				<table class="table striped hovered dataTable" id="datatable">
 					<thead>
                           <tr>
-                              <th>Sol_ID</th>
+                              <th>SolID</th>
                               <th>用户名</th>
-                              <th>题目编号</th>
-                              <th>题目名称</th>
+                              <th>编号</th>
+                              <th>名称</th>
                               <th>结果</th>
                               <th>内存</th>
                               <th>时间</th>
@@ -70,8 +70,15 @@
                                     {
                                         echo "<td style='color:".$result_state[$row['result']][1]."'>".$result_state[$row['result']][0]."</td>";
                                     }
-                                    echo "<td>".$row['memory']."</td>";
-                                    echo "<td>".$row['time']."</td>";
+                                    if($row['result']>=4&&$row['result']<=9)
+                                    {
+                                        echo "<td>".$row['memory']."</td>";
+                                        echo "<td>".$row['time']."</td>";
+                                    }
+                                    else
+                                    {
+                                        echo "<td>-</td> <td>-</td>";
+                                    }
                                     echo "<td>".$language_state[$row['language']]."</td>";
                                     echo "<td>".$row['length']."</td>";
                                     echo "<td>".$row['create_time']."</td>";
