@@ -14,11 +14,10 @@
     }
     getNormalAttr($isa,$isd,$ism,$lmark,$db);
 
-    $arr = [
+    $arr =array( 
         "name"=>"名称",
         "desci"=>"描述"
-    ];
-    
+    );
 ?>
 
 <!DOCTYPE html>
