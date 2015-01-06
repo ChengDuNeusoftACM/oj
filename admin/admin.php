@@ -7,7 +7,7 @@
     $uname = $_COOKIE['username'];
     include("db/DB.Class.php");
     include ("conf.php");
-	$icons = array('icon-flag','icon-user-3','icon-user','icon-file','icon-user-2','icon-layers','icon-star-2','icon-newspaper');
+	$icons = array('icon-flag','icon-user-3','icon-user','icon-file','icon-user-2','icon-layers','icon-star-2','icon-newspaper','icon-flag');
     $db = new DB();
     $sql = "select * from admin_user where uid = " . $uid;
     $res = $db->dql($sql);
@@ -42,9 +42,9 @@
                         OJ
                     </div>
                     <span class="element-divider"></span>
-                    <div data-hint="Sign Out" data-hint-position="left" class="element place-right">
-                        <i class="icon-switch"></i>
-                    </div>
+					<div data-hint="Sign Out" data-hint-position="left" class="element place-right">
+						<i class="icon-switch"></i>
+					</div>
                     <div class="element place-right">
                         <span><?php echo $uname ?></span>
                         [

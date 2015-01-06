@@ -6,14 +6,14 @@
 	if (isset($_GET['pid'])) $pid = $_GET['pid'];
 	if (isset($_POST['pid'])){
 		$pid = $_POST['pid'];
+		$title=$_POST['name'];
 		$in = $_POST['in'];
 		$out = $_POST['out'];
 		$path = DATA_PATH . '/' . $pid;
 		$scan = scandir($path);
-		$cnt = floor((count($scan)+1) / 2);
-		$i = $path . '/test' . $cnt . '.in';
+		$i = $path . '/' . $title . '.in';
 		file_put_contents($i, $in) or die("Error for Input file.") ;
-		$o = $path . '/test' . $cnt . '.out';
+		$o = $path . '/' . $title . '.out';
 		file_put_contents($o, $out) or die("Error for Output file.");
 		$msg = "Create success.";
 	}
@@ -31,8 +31,15 @@
 			<input type="hidden" name="pid" value="<?php echo $pid; ?>" />
 			<label><?php echo $msg; ?></label>
 			<div class="input-control textarea">
+				<label for="title">Title:</label>
+				<div class="input-control text span8">
+				<input type="text" name="name"></textarea>
+				</div>
+			</div>
+			<div class="input-control textarea error-state">
+<!--div error-state -->
 				<label for="in">Input Data:</label>
-				<textarea name="in"></textarea>
+				<textarea name="in" class="error-state"></textarea>
 			</div>
 			<div class="input-control textarea">
 				<label for="out">Output Data:</label>
@@ -40,6 +47,9 @@
 			</div>
 			<div class="place-right">
 				<button type="submit" class="primary">Submit</button>
+				<?php
+					echo "<a href='data.php?pid=$pid'><button type='button' class=''>Cancel</button></a>"
+				?>
 			</div>
 		</form>
 	</div>

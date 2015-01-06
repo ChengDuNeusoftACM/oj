@@ -14,7 +14,14 @@
     } else {
         $lmark = $_GET['lmark'];
     }
-    getNormalAttr($isa,$isd,$ism,$lmark,$db);
+	getNormalAttr($isa,$isd,$ism,$lmark,$db);
+
+	$arr = array(
+		0 => array(
+			'Pending','bg-red','aaa'
+		)	
+
+	);
 ?>
 
 <!DOCTYPE html>
