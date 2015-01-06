@@ -8,7 +8,8 @@
     $uname=$_COOKIE['username'];
 	include ("../../db/DB.Class.php");
 	include ("../db/func.php"); 
-    $result_state=include_once("../db/language.php");
+    $language_state=include_once("../db/language.php");
+    $result_state=include_once("../db/result_state.php");
     $db=new DB();
 ?>
 
@@ -32,9 +33,6 @@
 						?>
 				</nav>
 			</div> 
-            <?php 
-            echo "SSSSS".$result_state[0];
-            ?>
 			<div id="lists" class="row metro" style="with: 100%;">
 				<table class="table striped hovered dataTable" id="datatable">
 					<thead>
@@ -61,10 +59,10 @@
                                     echo "<tr><td>".$row['username']."</td>";
                                     echo "<td>".$row['pid']."</td>";
                                     echo "<td>".$row['pname']."</td>";
-                                    echo "<td>".$row['result']."</td>";
+                                    echo "<td>".$result_state[$row['result']][0]."</td>";
                                     echo "<td>".$row['memory']."</td>";
                                     echo "<td>".$row['time']."</td>";
-                                    echo "<td>".$result_state[$row['language']]."</td>";
+                                    echo "<td>".$language_state[$row['language']]."</td>";
                                     echo "<td>".$row['length']."</td>";
                                     echo "<td>".$row['create_time']."</td>";
                                     echo "</tr>";
