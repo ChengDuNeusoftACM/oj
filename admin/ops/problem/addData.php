@@ -23,23 +23,24 @@
 <head>
 	<meta charset="UTF-8">
 	<title></title>
+    <script src="../js/problem.js"></script>
 	<?php getMetroStyle(); ?>
 </head>
 <body class="metro">
 	<div>
-		<form action="addData.php" method="post">
+		<form action="addData.php" method="post" onsubmit="return addDataSubmitCheck() ">
 			<input type="hidden" name="pid" value="<?php echo $pid; ?>" />
 			<label><?php echo $msg; ?></label>
-			<div class="input-control textarea">
+			<div id="div_title" class="input-control textarea">
 				<label for="title">Title:</label>
 				<div class="input-control text span8">
-				<input type="text" name="name"></textarea>
+				<input type="text" id="txt_name" name="name"></textarea>
 				</div>
 			</div>
 			<div class="input-control textarea error-state">
 <!--div error-state -->
 				<label for="in">Input Data:</label>
-				<textarea name="in" class="error-state"></textarea>
+				<textarea name="in"></textarea>
 			</div>
 			<div class="input-control textarea">
 				<label for="out">Output Data:</label>

@@ -20,6 +20,8 @@
 		<title></title>
 		<?php getAllStyle(); ?>
         <script src="../js/sol.js"></script>
+        <script src="../js/codemirror.js"></script>
+        <script src="../js/clike.js"></script>
 	</head>
 	<body>
 		<div class="container-fluid">
@@ -89,13 +91,21 @@
 					</tbody>
 				</table>
 			</div>
-		</div>
-        <?php 
-         echo '<div id="showSourceModel" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">';
-        echo '<div class="modal-dialog modal-lg">';
-        echo '<div class="modal-content">';
-        echo '<input type="text" id="result"></input>';
-        echo '</div></div></div>';                          
-        ?>
+		</div> 
+        <div id="showSourceModel" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+       <div class="modal-dialog modal-lg">
+               <div class="modal-content">
+                      <textarea id="cpp_code"></textarea>
+             </div> </div></div>
+        <script type="text/javascript">
+             var myCodeMirror=CodeMirror.fromTextArea(document.getElementById("cpp_code"),
+                                    {
+                                        lineNumbers:true,
+                                        smartIndent:true,
+                                        electricChars:true,
+                                        theme:'default',
+                                        mode:'text/x-c++src'
+                                        });
+        </script>
 	</body>
 </html>

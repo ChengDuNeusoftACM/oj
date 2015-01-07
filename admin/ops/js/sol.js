@@ -1,51 +1,24 @@
+function showCode(id){
+    $("#showSourceModel").modal('show');
+    $("#scs").val("SSSS");
+    var url="db.php";
+    $.ajax({
+        url:"db.php",
+        type:"POST",
+        data:{soid:id},
+        error:function()
+        {
+           alert('Error loading XML document');
+        },
+        success:function(data,status)
+        {
+           $("#cpp_code").val(data);
+           alert(data);
+        }
+    });
+}
 $(function(){
     $("#datatable").dataTable({
        "bProcessing":true 
     });
 });
-var xmlHttp;
-function showCode(soid)
-{
-    if(soid<0)
-        return;
-    $("#showSourceModel").modal("show");
-    xmlHttp=GetXmlHttpObject();
-    if(xmlHttp==null)
-    {
-        alert("Browser does not support HTTP Request");
-        return;
-    }
-    var url="db.php";
-    url=url+"?soid="+soid;
-    xmlHttp.onreadystatechange=stateChanged;
-    xmlHttp.open("GET",url,true);
-    xmlHttp.send(null);
-    //$("#result").val('DIWJFIJIWI');
-}
-function stateChanged()
-{
-    if(xmlHttp.readyState==4||xmlHttp.readyState=="complete")
-    {
-        $("#result").val(xmlHttp.responseText);
-    }
-}
-function GetXmlHttpObject()
-{
-    var xmlHttp=null;
-    try{
-        xmlHttp=new XMLHttpRequest();
-    }
-    catch(e)
-    {
-        //Internet Explorer
-        try
-        {
-            xmlHttp=new ActiveXObject("Msxml2.XMLHTTP");
-        }
-        catch(e)
-        {
-            xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
-        }
-    }
-    return xmlHttp;
-}

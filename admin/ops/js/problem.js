@@ -1,4 +1,13 @@
 var OP, ID;
+function addDataSubmitCheck()
+{
+    if($("#txt_name").text()=="")
+    {
+       $("#div_title").addClass("error-state");
+       $("#txt_name").focus();
+       return false;
+    }
+}
 function selectAll(){
     $(".cbox").each(function () {
          $(this).prop("checked",!this.checked);
