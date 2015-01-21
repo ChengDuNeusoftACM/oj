@@ -1,6 +1,6 @@
-function showCode(id){
+function showCode(id,lang){
+    alert(id+"SSS"+lang);
     $("#showSourceModel").modal('show');
-    $("#scs").val("SSSS");
     var url="db.php";
     $.ajax({
         url:"db.php",
@@ -12,8 +12,14 @@ function showCode(id){
         },
         success:function(data,status)
         {
-           $("#cpp_code").val(data);
+           var str;
            alert(data);
+           if(lang<=1)
+               str="<pre class='brush: cpp;'>"+data+"</pre>";
+           else
+               str="<pre class='brush: java;'>"+data+"</pre>";
+           $("#cppcode").html(str);
+           SyntaxHighlighter.highlight();
         }
     });
 }
