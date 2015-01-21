@@ -1,5 +1,4 @@
 function showCode(id,lang){
-    alert(id+"SSS"+lang);
     $("#showSourceModel").modal('show');
     var url="db.php";
     $.ajax({
@@ -13,7 +12,6 @@ function showCode(id,lang){
         success:function(data,status)
         {
            var str;
-           alert(data);
            if(lang<=1)
                str="<pre class='brush: cpp;'>"+data+"</pre>";
            else
