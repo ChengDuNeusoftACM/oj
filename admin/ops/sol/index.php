@@ -19,9 +19,12 @@
 		<meta charset="utf-8"/>
 		<title></title>
 		<?php getAllStyle(); ?>
-        <script src="../js/sol.js"></script>
-        <script src="../js/codemirror.js"></script>
-        <script src="../js/clike.js"></script>
+    <script type="text/javascript" src="../../plug/syntaxhighlighter_3.0.83/scripts/shCore.js"></script>
+    <script type="text/javascript" src="../../plug/syntaxhighlighter_3.0.83/scripts/shBrushCpp.js"></script>
+    <script type="text/javascript" src="../../plug/syntaxhighlighter_3.0.83/scripts/shBrushJava.js"></script>
+    <link type="text/css" rel="stylesheet" href="../../plug/syntaxhighlighter_3.0.83/styles/shCoreDefault.css"/>
+   <link type="text/css" rel="stylesheet" href="../../plug/syntaxhighlighter_3.0.83/styles/shThemeDefault.css"/>
+        <script type="text/javascript" src="../js/sol.js?e"></script>
 	</head>
 	<body>
 		<div class="container-fluid">
@@ -82,7 +85,7 @@
                                         echo "<td>-</td> <td>-</td>";
                                     }
                                     echo "<td>".$language_state[$row['language']]."</td>";
-                                    echo "<td><a href='javascript:showCode(".$row['soid'].")'>".$row['length']."</a></td>";
+                                    echo "<td><a href='javascript:showCode(".$row['soid'].",".$row['language'].")'>".$row['length']."</a></td>";
                                     echo "<td>".$row['create_time']."</td>";
                                     echo "</tr>";
                                 }
@@ -93,19 +96,13 @@
 			</div>
 		</div> 
         <div id="showSourceModel" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-       <div class="modal-dialog modal-lg">
+            <div class="modal-dialog modal-lg">
                <div class="modal-content">
-                      <textarea id="cpp_code"></textarea>
-             </div> </div></div>
-        <script type="text/javascript">
-             var myCodeMirror=CodeMirror.fromTextArea(document.getElementById("cpp_code"),
-                                    {
-                                        lineNumbers:true,
-                                        smartIndent:true,
-                                        electricChars:true,
-                                        theme:'default',
-                                        mode:'text/x-c++src'
-                                        });
-        </script>
+                    <div id="cppcode">
+                    </div>
+              </div>
+           </div>
+        </div> 
+       </pre>
 	</body>
 </html>
