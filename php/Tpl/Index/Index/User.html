@@ -4,7 +4,7 @@
 		<img src="__PUBLIC__/Image/Home/head2.png" id="headimg">
 		<div id="userbar">
 		<div class="infouser"><span id="username"><?php echo $info[0]['username'];?></span><span>from:  chengdu</span><span>Registered on:  <?php echo $info[0]['create_time'];?></span></div>
-		<div class="infouser"><span>Name:  <?php echo $info[0]['name'];?></span><span>Rank:  1</span></div>
+		<div class="infouser"><span>Name:  <?php echo $info[0]['name'];?></span><span>Rank:  <?php echo $info[0]['rank'];?></span></div>
 		<div class="infouser"><span>Submitted:  <?php echo $info[0]['submit'];?></span><span>Solved:  <?php echo $info[0]['solved'];?></span><span>Accepted:  xxx</span></div>
 		<div class="infouser"><span>签名：  <?php echo $info[0]['note'];?></span></div>
 		</div>
@@ -16,10 +16,10 @@
   	<li role="presentation"><a href="#Team" role="tab" data-toggle="tab">Team</a></li>
   	<li role="presentation"><a href="#Messages" role="tab" data-toggle="tab">Messages</a></li>
 	<?php
-  			if($_SESSION['uid']==$info[0]['uid']&&isset($_SESSION['username'])==true){
-    		echo '<li role="presentation"><a href="#Modify" role="tab" data-toggle="tab">Modify</a></li>';
-    		}
- 	      ?>
+		if($_SESSION['uid']==$info[0]['uid']&&isset($_SESSION['username'])==true){
+		echo '<li role="presentation"><a href="#Modify" role="tab" data-toggle="tab">Modify</a></li>';
+		}
+     ?>
 	</ul>
 		<div class="tab-content">
  	    <div role="tabpanel" class="tab-pane active" id="Problems">
@@ -37,34 +37,93 @@
 		  }
 		  ?>
  	    </div>
+
   		<div role="tabpanel" class="tab-pane" id="Team">
-  			<div class="gname"><span class="glyphicon glyphicon-stop teamfont"></span> Group Name:  <span class="teamfont">大傻逼</span></div>
-  			<table id="teaminfo" class="table table-striped">
-  				<tr class="teamfont">
-  					<td>Display Name</td>
-  					<td>User Name</td>
-  					<td>Action</td>
-  				</tr>
-  				<tr>
-  					<td>xxx</td>
-  					<td>xxxxxxxxxxxxx</td>
-  					<td>xx</td>
-  				</tr>
-			</table>
+  			<?php if(empty($team)==false) {
+  			echo '<div class="gname"><span class="glyphicon glyphicon-stop teamfont"></span> Group Name:  <span class="teamfont">'.$team[0]['name'].'</span>';
+			if($_SESSION['uid']==$info[0]['uid']){
+			echo '<span id="leaveteam">Leave Team</span>';
+  			}
+  			echo '</div>
+  				<div style="border-bottom:1px solid #ccc; padding-bottom:40px;">
+  				<span>The Captain : <span class="teamfont">'.$captain.'</span>
+  				<table id="teaminfo" class="table table-bordered" style="margin-top:20px;">
+  				<tr class="teamfont active">
+  					<th>Display Name</th>
+  					<th>User Name</th>
+  					<th>Action</th>
+  				</tr>';
+  				for($i=0;$i<count($teaminfo);$i++){
+  					echo '<tr><td>'.$teaminfo[$i]['name'].'</td><td class="memberuser">'.$teaminfo[$i]['username'].'</td><td>';
+  					if($_SESSION['uid']==$team[0]['head_id']&&$_SESSION['uid']!=$teaminfo[$i]['uid']&&$info[0]['uid']==$_SESSION['uid']) 
+  						echo '<a href="#" class="removeteam">Remove</a>';
+  					echo '</td></tr>';
+  				}
+  			echo '</table></div>';
+
+				if($_SESSION['uid']==$team[0]['head_id']&&count($teaminfo)+$invite_count<3){
+					echo '<div style="margin-bottom:100px; cursor:pointer;" id="addmember"><a>+  Add Member</a></div>';
+				}
+				else{
+					echo '<div style="margin-bottom:100px;"></div>';
+				}
+				if($invite_count!=0){
+				echo '<span class="teamfont">Invited Team Member</span>
+  				<table class="table table-bordered" style="margin-top:20px;margin-bottom:100px;">
+  				<tr class="teamfont active">
+  					<th>Display Name</th>
+  					<th>User Name</th>
+  					<th>Action</th>
+  				</tr>';
+  				for($i=0;$i<count($invite_info);$i++){
+  					echo '<tr><td>'.$invite_info['name'].'</td><td class="invite_name">'.$invite_info[$i]['username'].'</td><td>';
+  						echo '<a href="#" class="cancel_invite">Cancel</a>';
+  					echo '</td></tr>';
+  				}
+
+  				echo '</table>';
+  				}
+  			}
+  			else{ 
+  				echo '<div style="padding-bottom:20px;border-bottom:1px solid #ccc;margin-bottom:20px;"><div class="gname">No team</div>';
+  				if($_SESSION['uid']==$info[0]['uid']){
+  				echo '<div class="input-group">
+			  	<span class="input-group-addon">Team Name：</span>
+			 	<input type="text" class="form-control" id="teamname" placeholder="Enter your team name">
+			  	</div>';
+				echo '<span id="createteam">Create Team</span></div>';
+				}
+				echo '<span class="teamfont">To Be Accepted</span>
+  				<table class="table table-bordered" style="margin-top:20px;margin-bottom:100px;">
+  				<tr class="teamfont active">
+  					<th>Team id</th>
+  					<th>Team Name</th>
+  					<th>Captain Name</th>
+  					<th>Action</th>
+  				</tr>';
+  				for($i=0;$i<count($Accept_info);$i++){
+  					echo '<tr><td class="tid">'.$Accept_info[$i]['tid'].'</td><td>'.$Accept_info[$i]['name'].'</td><td><a href="User?user='.$Accept_info[$i]['head_id'].'">'.$Accept_info[$i]['capname'].'</a></td><td style="cursor:pointer;">';
+  						echo '<a class="accept_invite">Accept</a>';
+  					echo '</td></tr>';
+  				}
+  				
+  				echo '</table>';
+			}
+  			?>
+
   		</div>
   		<div role="tabpanel" class="tab-pane" id="Messages">...</div>
-  		
   		 <?php
   			if($_SESSION['uid']==$info[0]['uid']&&isset($_SESSION['username'])==true){
-    		echo '<div role="tabpanel" class="tab-pane" id="Modify">
+    		echo '<div role="tabpanel" class="tab-pane" id="Modify" style="margin-bottom:100px;">
   		<div class="gname"><span class="glyphicon glyphicon-stop teamfont"></span><span class="motitle">Update Your Information</span></div>
 		  <div class="input-group">
 		  	<span class="input-group-addon userinput">Real Name：</span>
-		 	<input type="text" class="form-control" placeholder="Enter real name or not">
+		 	<input id="realname" type="text" class="form-control" placeholder="Enter real name or not" value="'.$info[0]['name'].'">
 		  </div>
 		  <div class="input-group">
 		  	<span class="input-group-addon userinput">Old password：</span>
-		 	<input type="password" class="form-control must" id="oldpwd" placeholder="Please enter Old Password">
+		 	<input type="password" class="form-control must" id="oldpwd" placeholder="Please enter Old Password"  id="oldpwd">
 		  </div>
 		  <div class="input-group">
 		  	<span class="input-group-addon userinput">New password：</span>
@@ -72,36 +131,73 @@
 		  </div>
 		  <div class="input-group">
 		  	<span class="input-group-addon userinput">Confirm password：</span>
-		 	<input type="password" class="form-control" id="cnpwd" placeholder="Confirm New Password">
+		 	<input type="password" class="form-control" placeholder="Confirm New Password"  id="repwd">
 		  </div>
 		  <div class="input-group">
 		  	<span class="input-group-addon userinput">Individuality Signature：</span>
-		 	<input type="text" class="form-control" placeholder="Enter Individuality Signature">
+		 	<input type="text" id="noteinfo" class="form-control" placeholder="Enter Individuality Signature" value="'.$info[0]['note'].'">
 		  </div>
 		   <div class="input-group">
 		   <span class="input-group-addon userinput">Sex：</span>
-			  <select style="font:16px Helvetica;">  
-			  	<option value ="1">male</option>  
-			  	<option value ="2">female</option>  
+			  <select style="font:16px Helvetica;" id="sexselect">
+			  	<option value ="1"';
+			  	if($info[0]['sex']==0)
+			  		echo ' selected="selected"';
+			  echo  '>male</option>  
+			  	<option value ="2"';
+				if($info[0]['sex']==1)
+			  		echo ' selected="selected"';
+			  	echo '>female</option>
+			  	}
 			  </select>  
 		  </div> 
 		  <div class="input-group">
 		  	<span class="input-group-addon userinput">Major：</span>
-		 	<input type="text" class="form-control" placeholder="Enter Major">
+		 	<input type="text" id="majorinfo" class="form-control" placeholder="Enter Major" value="'.$info[0]['major'].'">
 		  </div>
 		  <div class="input-group">
 		  	<span class="input-group-addon userinput">Grade：</span>
-		 	<input type="text" class="form-control" placeholder="Enter grade">
+		 	<input type="text" id="gradeinfo" class="form-control" placeholder="Enter grade" value="'.$info[0]['grade'].'">
 		  </div>
 		  <div class="input-group">
 		  	<span class="input-group-addon userinput">Class：</span>
-		 	<input type="text" class="form-control" placeholder="Enter Class">
+		 	<input type="text" id="classinfo" class="form-control" placeholder="Enter Class" value="'.$info[0]['class'].'">
 		  </div>
+		  <div class="input-group">
+		  	<span class="input-group-addon userinput">E-mail：</span>
+		 	<input type="text" id="emailinfo" class="form-control" placeholder="Enter your E-mail" value="'.$info[0]['email'].'">
+		  </div>
+		  <button class="btn btn-primary" id="submitmodify" style="position:absolute;float:right;right:20%;">Submit</button>
 		</div>';
     		}
  	      ?>
 		</div>
 	</div>
+	<div id="Invitebar" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-lg">
+	    <div class="modal-content Invitebar">
+	    	<div class="input-group" style="margin:20px;margin-left:40px;">
+		  	<span class="input-group-addon">Name：</span>
+		 	<input type="text" class="form-control" id="invitename" placeholder="Enter the username">
+		  	</div>
+		  	<button class="btn" id="AddMember" style="margin:10px;margin-left:40px;">Submit</button>
+		  	<button class="btn" id="CancelMember" style="margin:10px;margin-left:80px;">Cancel</button>
+	  </div>
+	</div>
 <link rel="stylesheet" href="__PUBLIC__/Css/User.css" />
+<script src="__PUBLIC__/Js/user.js"></script>
+<script>
+	<?php if(isset($info[0]['tid'])){
+		echo 'var teamid='.$info[0]['tid'].';';
+	}?>
+	var headid=<?php echo $_SESSION['uid'];?>;
+	var TeamUrl="{:U('Index/Index/CreateTeam','','')}";
+	var AcceptUrl="{:U('Index/Index/AcceptTeam','','')}";
+	var RemoveUrl="{:U('Index/Index/RemoveMember','','')}";
+	var AddUrl="{:U('Index/Index/AddMember','','')}";
+	var LeaveUrl="{:U('Index/Index/LeaveTeam','','')}";
+	var CancelUrl="{:U('Index/Index/CancelInvite','','')}";
+	var ModifyUrl="{:U('Index/Index/ModifyInfo','','')}";
+</script>
 </body>
 </html>

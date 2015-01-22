@@ -27,10 +27,12 @@ class IndexAction extends Action {
 	public function Register(){
 		
 		$data['username']=I('username','','');
+		$data['name']=I('username','','');
 		$data['password']=I('password','','md5');
 		$data['email']=I('email','','');
 		$user=M('user');
-		$user->add($data);
+		$id=$user->add($data);
+		session('uid',$id);
 		session('username',$data['username']);
 		$this->ajaxReturn(0,'json');
 	}
@@ -62,6 +64,7 @@ class IndexAction extends Action {
 		}
 	}
 	public function verify(){
+		 ob_clean();
 		import('ORG.Util.Image');
 		Image::buildImageVerify(6,5,'png',80,34);
 	}
@@ -123,14 +126,35 @@ class IndexAction extends Action {
 	public function User(){
 		$user=I('user');
 		if($user==NULL){
-			$this->error("");
+			$this->error("no data");
 		}
 		$model=new Model();
+		$sql='select uid from user order by solved desc';
+		$rankinfo=$model->query($sql);
+		
 		$sql='select count(*) from oj.problem';
 		$total=$model->query($sql);
 		$sql='select * from user where uid='.$user;
 		$info=$model->query($sql);
+		for($i=0;$i<count($rankinfo);$i++){
+			if((int)$rankinfo[$i]['uid']==$user){
+				$info[0]['rank']=$i+1;	
+				break;
+			}
+		}
 		$this->info=$info;
+		$sql='select * from user where tid=(select tid from user where uid='.$user.');';
+		$teaminfo=$model->query($sql);
+
+		$this->teaminfo=$teaminfo;
+		$sql='select * from team where tid=(select tid from user where uid='.$user.');';
+		$team=$model->query($sql);
+		$this->team=$team;
+		for($i=0;$i<count($teaminfo);$i++){
+			if($teaminfo[$i]['uid']==$team[0]['head_id']){
+				$captain=$teaminfo[$i]['username'];break;}
+		}
+		$this->captain=$captain;
 		$total=(int)$total[0]['count(*)'];
 		$this->total=$total;
 		for($i=1;$i<=$total;$i++){
@@ -146,7 +170,32 @@ class IndexAction extends Action {
 		for($i=0;$i<count($right);$i++){
 			$data[(int)$right[$i]['pid']]=2;
 		}
+
 		$this->data=$data;
+		if($user==$_SESSION['uid']&&$user==$team[0]['head_id']){
+			$sql='select * from team_invite where team_id='.$info[0]['tid'];
+
+			$inviteinfo=$model->query($sql);
+			$this->invite_count=count($inviteinfo);
+			for($i=0;$i<count($inviteinfo);$i++){
+				$sql='select * from user where uid='.$inviteinfo[$i]['user_id'];
+				$invite_info[$i]=$model->query($sql)[0];
+			}
+			$this->invite_info=$invite_info;
+		}
+		if(empty($team)==true){
+			$sql='select * from team_invite where user_id='.$user;
+
+			$invited_info=$model->query($sql);
+			for($i=0;$i<count($invited_info);$i++){
+				$sql='select * from team where tid='.$invited_info[$i]['team_id'];
+				$Accept_info[$i]=$model->query($sql)[0];
+				$sql='select * from user where uid='.$Accept_info[$i]['head_id'];
+				$Accept_info[$i]['capname']=$model->query($sql)[0]['username'];
+				$this->Accept_info=$Accept_info;
+			}
+			$this->invited_info=$invited_info;
+		}
 		$this->display();
 	}
 	public function Problem(){
@@ -236,5 +285,104 @@ class IndexAction extends Action {
 		$data=$model->query($sql);
 		$this->data=$data;
 		$this->display();
+	}
+	public function CreateTeam(){
+		$data['name']=I('teamname','','');
+		$data['head_id']=I('headid','','');
+		$team=M('team');
+		$user=M('user');
+		$info['tid']=$team->add($data);
+
+		$invite=M('team_invite');
+		$invite->where('user_id="'.$data['head_id'].'"')->delete();
+		$user->where('uid='.$data['head_id'])->save($info);
+		$this->ajaxReturn(0,'json');
+	}
+	public function AcceptTeam(){
+		$data['tid']=I('tid','','');
+		$user=M('user');
+		$user->where('uid='.I('uid','',''))->save($data);
+		$invite=M('team_invite');
+		$invite->where('user_id="'.$_SESSION['uid'].'"')->delete();
+		$this->ajaxReturn(0,'json');
+	}
+	public function RemoveMember(){
+		$user=M('user');
+		$data['tid']=null;
+		$user->where('username="'.I('user','','').'"')->save($data);
+		$this->ajaxReturn(0,'json');
+	}
+	public function AddMember(){
+		$model=new Model();
+		$invite=M('team_invite');
+		$data['user_id']=I('user','','');
+		$data['team_id']=I('tid','','');
+		$sql='select * from user where username="'.$data['user_id'].'"';
+		$users=$model->query($sql);
+		if(empty($users)==true){
+		$this->ajaxReturn(1,'json');
+		}
+		if($users[0]['tid']!=null){
+		$this->ajaxReturn(2,'json');
+		}
+		$data['user_id']=$users[0]['uid'];
+		$invite->add($data);
+		$this->ajaxReturn(0,'json');
+	}
+	public function LeaveTeam(){
+		$model=new Model();
+		$user=M('user');
+		$invite=M('team_invite');
+		$team=M('team');
+		$data['tid']=null;
+		$sql='select * from user where uid='.$_SESSION['uid'];
+		$userss=$model->query($sql);
+		$sql='select * from team where tid="'.$userss[0]['tid'].'"';
+		$teaminfo=$model->query($sql);
+		if($teaminfo[0]['head_id']==$_SESSION['uid']){
+			$sql='select * from user where tid="'.$userss[0]['tid'].'"';
+			$members=$model->query($sql);
+			for($i=0;$i<count($members);$i++){
+				$user->where('uid="'.$members[$i]['uid'].'"')->save($data);
+			}
+			$invite->where('team_id="'.$userss[0]['tid'].'"')->delete();
+			$team->where('tid="'.$userss[0]['tid'].'"')->delete();
+		}
+
+		$user->where('uid='.$_SESSION['uid'])->save($data);
+		
+		$this->ajaxReturn(0,'json');
+		}
+	public function CancelInvite(){
+
+		$model=new Model();
+		$invite=M('team_invite');
+		$sql='select * from user where username="'.I('user','','').'"';
+		$user=$model->query($sql);
+		$sql='select * from team_invite where team_id="'.I('tid','','').'"';
+		$team=$model->query($sql);
+		for($i=0;$i<count($team);$i++){
+			if($team[$i]['user_id']==$user[0]['uid']){
+				$inviteid=$team[$i]['id'];
+			}
+		}
+		$invite->where('id="'.$inviteid.'"')->delete();
+		$this->ajaxReturn(0,'json');
+	}
+
+	public function ModifyInfo(){	
+    	$user=m('user')->where(array('uid' => $_SESSION['uid']))->find();
+		if($user["password"]!=I('oldpwd','','md5'))
+			$this->ajaxreturn(1,'json');
+		$data['password']=I('newpwd','','md5');
+		$data['name']=I('name','','');
+		$data['note']=I('note','','');
+		$data['sex']=I('sex','','');
+		$data['major']=I('major','','');
+		$data['grade']=I('grade','','');
+		$data['class']=I('class','','');
+		$data['email']=I('email','','');
+		M('user')->where('uid="'.$_SESSION['uid'].'"')->save($data);
+		$this->ajaxreturn(0,'json');
 	}
 }

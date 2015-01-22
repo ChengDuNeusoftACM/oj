@@ -1,7 +1,7 @@
 var validate=new Array();
 var passwordVal;
 $(function () {
-    for (var i = 0; i < 7; i++) {
+    for (var i = 0; i < 20; i++) {
         validate[i] = 0;
     }
 
@@ -15,14 +15,15 @@ $(function () {
     $("#verify_code").click(function () {
         $("#verify_code").attr("src", verifyUrl + '/' + Math.random());
     });
-
+    $('#Registsuccess').on('hidden.bs.modal', function (e) {
+        window.location.reload();
+    })
     $("#loginBtn").click(function () {
         var flag = 0;
         for (var i = 0; i < 2; i++) {
             if (validate[i] == 0)
                 flag = 1;
         }
-        console.log(flag);
         if (flag == 0) {
             $.post(LoginUrl, {
                 "username": $("#loginuname").val(),
@@ -49,7 +50,6 @@ $(function () {
         $.post(Checkname, {
             "flag": "2"
         }, function () {
-            console.log("sss");
             location.reload();
         }, 'json');
     })
@@ -59,15 +59,17 @@ $(function () {
             if (validate[i] == 0)
                 flag = 1;
         }
+
         if (flag == 0) {
             $.post(RegistUrl, {
                 "username": $("#rgname").val(),
                 "password": $("#rgpwd").val(),
                 "email": $("#rgemail").val()
             }, function (data) {
+                if (data == 0) {
                 $("#Registbar").modal('hide');
-
                 $("#Registsuccess").modal('show');
+            }
             }, 'json');
         }
 
@@ -75,6 +77,9 @@ $(function () {
             if (index > 1)
                 $("#" + this.id).trigger("blur");
         })
+
+
+        return false;
     });
     if($('#contest_bar')[0]!=null)
     var heig = document.getElementById('contest_bar').offsetTop+document.getElementById('contest_bar').offsetHeight;
@@ -87,6 +92,7 @@ $(function () {
         $("#" + this.id).blur(function () {
             var must = $("#" + this.id);
             if (must.val().trim() == '') {
+                console.log("must.attr('id')");
                 must.parent().find($('.error')).remove().end().append("<span class='error'>*</span>");
                 validate[index] = 0;
                 return;
@@ -115,6 +121,7 @@ $(function () {
 
                         }
                         else {
+                            console.log($("#rgname").val());
                             $.post(Checkname, {
                                 "username": $("#rgname").val(),
                                 "flag": "0"

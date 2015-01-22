@@ -105,7 +105,7 @@ a:hover{
 .input-group{
 	margin-bottom:25px;
 }
-.input-group .error{
+.error{
 	color:red;
 	font:18px arial;
 	line-height:34px;

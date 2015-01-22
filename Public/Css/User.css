@@ -104,3 +104,24 @@
 #Modify input{
 	width:300px;
 }
+#leaveteam{
+	display: inline-block;
+	background: rgb(44,112,180);
+	padding: 5px 10px;
+	cursor: pointer;
+	color:#fff;
+	float: right;
+}
+#createteam{
+	display: inline-block;
+	background: rgb(44,112,180);
+	padding: 5px 10px;
+	cursor: pointer;
+	color:#fff;
+	margin-bottom: 20px;
+}
+.Invitebar{
+	width:360px;
+	left:50%;
+	margin-left:-180px;
+}

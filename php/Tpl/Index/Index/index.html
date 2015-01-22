@@ -1,0 +1,74 @@
+<include file="Top" title="welcome to Neusoft Online Judge"/>
+<div id="Topcarousel">
+<img src="__PUBLIC__/Image/Home/head1.png" style="position:absolute;left:138px;">
+<img src="__PUBLIC__/Image/Home/head2.png" style="position:absolute;left:570px;">
+<div id="carousel-example-generic" class="carousel slide  container" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="1" class=""></li>
+        <li data-target="#carousel-example-generic" data-slide-to="2" class=""></li>
+      </ol>
+      <div class="carousel-inner" role="listbox">
+        <div class="item active" >
+        <div style="color:white;padding:200px;">1..........</div>
+        </div>
+        <div class="item">
+        <div style="color:white;padding:200px;">2..........</div>
+        </div>
+        <div class="item">
+        <div style="color:white;padding:200px;">3..........</div>
+        </div>
+      </div>
+      <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+</div>
+<div id="Announcement" class="container">
+<span id="Palogo"><div style="margin:30px 0;font:24px arial;">Public<span class="glyphicon glyphicon-arrow-right" style="margin-left:20px;"></span></div>Announcement</span>
+<span id="PaContext">
+<div id="Patitle">Title</div>
+<div id="PaCon">xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</div>
+</span>
+</div>
+<div class="container">
+<div id="RecentsConba">Contests  ∨</div>
+
+<foreach name="data" item="p">
+<span class="RecentCon" style="border-top:8px solid rgb(168,80,0);">
+<div class="ContestFrom">RECENT SCHOOL CONTEST →</div>
+<div class="ContestTitle">{$p.name}</div>
+<div class="ContestDesci">{$p.desci}<a href="#" style="margin-left:10px;">Read More...</a></div>
+</span>
+</foreach>
+</div>
+<div id="download">
+<div id="downloadbar">
+<div id="Downlogo"><div style="margin:30px 0;font:24px arial;">Download</div>U can find anything</div>
+<div id="DownSearch"><div style="font:28px arial; color:rgb(41,65,99);">Please enter the focus word</div>
+or choose the type
+<div >
+<div class="input-group" style="padding:10px;" id="downsearchbar">
+      <input type="text" class="form-control" placeholder="enter a name or  word" style="width:320px;">
+        <button class="btn btn-primary" type="button" style="width:100px;">Search</button>
+    </div>
+</div>
+
+</div>
+<img src="__PUBLIC__/Image/Bottom/no2-line.png" style="height:100%;float:left;">
+<div id="downtypebar">
+<span class="typebar" ><a href="#" style="color:rgb(185,220,219);"><span class="glyphicon glyphicon-stop"></span>software</a></span>
+<span class="typebar" ><a href="#" style="color:rgb(77,143,182);"><span class="glyphicon glyphicon-stop"></span>movie</a></span>
+<span class="typebar" ><a href="#" style="color:rgb(237,118,66);"><span class="glyphicon glyphicon-stop"></span>word</a></span>
+<span class="typebar" ><a href="#" style="color:rgb(242,246,73);"><span class="glyphicon glyphicon-stop"></span>study</a></span>
+</div>
+</div>
+</div>
+<link rel="stylesheet" href="__PUBLIC__/Css/Index.css" />
+<script src="__PUBLIC__/Js/Index.js"></script>
+<include file="Bottom" />

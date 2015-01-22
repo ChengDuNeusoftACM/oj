@@ -31,7 +31,7 @@
     	echo '<button type="button" class="btn" id="signin">Sign In...</button>';
     	}
     	else{
-    		echo '<span id="welcome"><span id="signname"><a href="User?user='.$_SESSION[uid].'">'.$_SESSION['username'].'</a></span><a id="loginout" href="#" style="padding-left:30px;">Sign Out</a></span>';
+    		echo '<span id="welcome"><span id="signname"><a href="'.U('Index/Index/User','','').'?user='.$_SESSION['uid'].'">'.$_SESSION['username'].'</a></span><a id="loginout" href="#" style="padding-left:30px;">Sign Out</a></span>';
     	}
   	?>
   	</li>
@@ -85,7 +85,7 @@
 				<div class="input-group">
 				  <span class="input-group-addon">Verify:</span>
 				  <input type="text" class="form-control must" id="rgverify">
-				  <img src=verify id="verify_code"/>
+				  <img src=<?php echo '"'.U('Index/Index/verify','','').'"';?> id="verify_code"/>
 				</div>
 			</div>
 			
