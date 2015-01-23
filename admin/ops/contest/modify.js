@@ -20,12 +20,15 @@ function addUser(cid,type){
             else
                 txt="请输入队伍名，多个队伍名用换行分隔";
             var content = "<div><textarea type='text' rows='25' cols='30' style='resize:none' id='uid' name='uid' placeholder='"+txt+"' />"+
-                            "<div style='width:100%;height:25px;'><button class='info' style='margin-top:5px;margin-button:5px;float:right;' onclick='addUserClick()'>Submit</button></div></div>";
+                            "<div style='height:40px;'><button class='default' style='float:right;' value='Submit' onclick='addUserClick()'>Submit</button><button class='' style='float:right;' onclick='addUserCancel()'>Cancel</button></div></div>";
             $.Dialog.content(content);
         }
     });
 }
-
+function addUserCancel()
+{
+    $.Dialog.close();
+}
 function addUserClick(){
     var uid = $('#uid').val();
     if (uid.length < 1) return;
