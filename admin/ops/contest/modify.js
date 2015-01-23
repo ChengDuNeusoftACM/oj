@@ -9,8 +9,8 @@ function addUser(cid){
         content: '',
         padding: 10,
         onShow: function (_dialog) {
-            var content = "<div><input type='text' id='uid' name='uid' placeholder='输入编号，多个用\",\"分割' /></div>" +
-                            "<button class='info' onclick='addUserClick()'>Submit</button>";
+            var content = "<div><textarea type='text' rows='25' cols='30' style='resize:none' id='uid' name='uid' placeholder='输入用户帐号，多个用帐号换行分割' />"+
+                            "<div style='width:100%;height:25px;'><button class='info' style='margin-top:5px;margin-button:5px;float:right;' onclick='addUserClick()'>Submit</button></div></div>";
             $.Dialog.content(content);
         }
     });
