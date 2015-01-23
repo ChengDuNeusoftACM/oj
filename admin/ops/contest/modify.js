@@ -19,8 +19,8 @@ function addUser(cid,type){
                 txt="请输入用户帐号，多个帐号用换行分隔";
             else
                 txt="请输入队伍名，多个队伍名用换行分隔";
-            var content = "<div><textarea type='text' rows='25' cols='30' style='resize:none' id='uid' name='uid' placeholder='"+txt+"' />"+
-                            "<div style='height:40px;'><button class='default' style='float:right;' value='Submit' onclick='addUserClick()'>Submit</button><button class='' style='float:right;' onclick='addUserCancel()'>Cancel</button></div></div>";
+            var content = "<div><textarea type='text' rows='20' cols='30' style='resize:none' id='uid' name='uid' placeholder='"+txt+"' />"+
+                            "<div style='height:20px;'><button class='' style='float:right;' onclick='addUserCancel()'>Cancel</button><button class='default' style='float:right;' value='Submit' onclick='addUserClick()'>Submit</button></div></div>";
             $.Dialog.content(content);
         }
     });

@@ -54,7 +54,7 @@
                             <?php
                                 echo "<table class='table striped'>";
                                 if ($type == 'contest_user'){
-                                    echo "<thead><tr><td>用户名</td><td>姓名</td><td>邮箱</td><td>性别</td><td>年纪</td><td>专业</td><td>班级</td><td>队伍名</td><td>操作</td></tr></thead><tbody>";
+                                    echo "<thead><tr><td>用户名</td><td>姓名</td><td>邮箱</td><td>性别</td><td>年级</td><td>专业</td><td>班级</td><td>队伍名</td><td>操作</td></tr></thead><tbody>";
                                     $sql="select u.uid,u.username,u.name,u.email,u.sex,u.grade,u.major,u.class,c.ischeck,t.name AS tname from $type c,user u,team t where t.tid=u.tid and c.uid=u.uid and cid =$cid";
                                     $res=$db->dql($sql);
                                     if($res&&$res->num_rows>0)
@@ -106,15 +106,16 @@
                 <div class="row">
                     <table class="table striped">
                         <thead>
-                            <tr><td>编号</td><td>重定义编号</td><td>重定义名称</td><td>操作</td></tr>
+                            <tr><td>编号</td><td>名称</td><td>重定义编号</td><td>重定义名称</td><td>操作</td></tr>
                         </thead>
                         <tbody>
                             <?php
-                                $sql = "select * from contest_problem where cid = $cid";
+                                $sql = "select c.newid,c.newname,p.pname,p.pid from contest_problem c,problem p  where c.pid= p.pid and cid = $cid";
                                 $res = $db->dql($sql);
                                 if ($res && $res->num_rows > 0){
                                     while ($row = $res->fetch_assoc()){
                                             echo "<tr><td>" . $row['pid'] . "</td>";
+                                            echo "<td>".$row['pname']."</td>";
                                             echo "<td>" . $row['newid'] . "</td>";
                                             echo "<td>" . $row['newname'] . "</td>";
                                             echo "<td>";
