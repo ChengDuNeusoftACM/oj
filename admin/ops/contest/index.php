@@ -51,18 +51,20 @@
                     <tbody>
                     <?php
                         //$res = pagination('*','contest','1 = 1','cid',$pageIndex,$pageSize,'cid',$totalCount,$pageCount,$sumResult,$db);
-                        $res = $db->dql('select * from contest');
+                        $pristat=array("公开","私有");
+                        $teastat=array("个人","团队");
+                        $res = $db->dql('select c.cid,u.username,c.name,c.start_time,c.end_time,c.desci,c.private,c.type  from contest c,admin_user u where c.uid=u.uid');
                         if ($res && $res->num_rows > 0){
                                while ($row = $res->fetch_assoc()){
                                     echo "<tr><td><input type='checkbox' class='cbox' data-cid='" . $row['cid'] . "' /></td>";
                                     echo "<td>" . $row['cid'] . "</td>";
-                                    echo "<td>" . $row['uid'] . "</td>";
+                                    echo "<td>" . $row['username'] . "</td>";
                                     echo "<td>" . $row['name'] . "</td>";
                                     echo "<td>" . $row['start_time'] . "</td>";
                                     echo "<td>" . $row['end_time'] . "</td>";
                                     echo "<td>" . $row['desci'] . "</td>";
-                                    echo "<td>" . $row['private'] . "</td>";
-                                    echo "<td>" . $row['type'] . "</td>";
+                                    echo "<td>" . $pristat[$row['private']] . "</td>";
+                                    echo "<td>" . $teastat[$row['type']] . "</td>";
                                     echo "<td>";
                                     $id = $row['cid'];
                                     $type=$row['type'];

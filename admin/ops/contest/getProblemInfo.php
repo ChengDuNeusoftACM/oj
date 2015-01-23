@@ -13,13 +13,13 @@
    $pid=intval($pid);
    include ("../../db/DB.Class.php");
    $db=new DB();
-   $sql="select pname from problem where pid =$pid";
+   $sql="select pname,author from problem where pid =$pid";
    $res=$db->dql($sql);
    if($res&& $res->num_rows>0)
    {
        $row=$res->fetch_assoc();
-       echo "success,".$row['pname'];
+       echo "success,".$row['pname'].",".$row['author'];
    }
    else
-      echo "false,null";
+      echo "false,题目编号不存在";
 ?>

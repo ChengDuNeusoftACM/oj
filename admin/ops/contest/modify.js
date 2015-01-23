@@ -84,10 +84,22 @@ function checkUser(id,cid){
 }
 function saveProblem(cid)
 {
-   var i=$("#tab_2 table tbody tr").size();
-   var j=i-1;
-   alert(i);
-   alert("Save"); 
+   var cnt=$("#tab_2 table tbody tr").size();
+   var pros=new Array();
+   var problemOder=new Array('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z');
+   for(var i=0;i<cnt;i++)
+   {
+      pros[i]=new Array();
+      pros[i][0]=$("#tab_2 table tbody tr").eq(i).find("td").eq(0).html();
+      pros[i][1]=$("#tab_2 table tbody tr").eq(i).find("input").eq(0).val();
+      pros[i][2]=problemOder[i];
+      alert(pros[i][0]+"SSS "+pros[i][1]+" "+pros[i][2]);
+   }
+    pros=JSON.stringify(pros);
+    $.post('saveContestProblems.php',{cid:cid,prs:pros},function(data)
+    {
+       alert(data); 
+    });
 }
 function saveAddProblem()
 {

@@ -17,20 +17,42 @@
          
      } else if (isset($_POST['cid'])) {
              $langmask = strval($_POST['langc']=='on'?'1':'0') . strval($_POST['langcpp']=='on'?'1':'0') . strval($_POST['langjava']=='on'?'1':'0');
-             $sql = sprintf("update contest set name = '%s',start_time = '%s',end_time = '%s',password = '%s',desci = '%s',private = %d,langmask = '%s',type = %d",
-                            $_POST['name'],$_POST['start_time'],$_POST['end_time'],md5($_POST['password']),$_POST['desci'],$_POST['private']=='on'?1:0,$langmask,$_POST['type']=='on'?1:0);
-             
+             $p_name=$_POST['name'];
+             $p_stime=$_POST['start_time'];
+             $p_edtime=$_POST['end_time'];
+             $p_passwd=$_POST['password'];
+             $p_desc=$_POST['desci'];
+             $p_private=$_POST['private']=='on'?1:0;
+             $p_type=$_POST['type']=='on'?1:0;
+             if($p_private==0)
+                 $p_passwd="";
+             if($p_private==1&&$p_passwd!="")
+             {
+                 $p_passwd=md5($p_passwd);
+             }
+             $sql = sprintf("update contest set name='%s',start_time='%s',end_time='%s',password='%s',desci='%s', private=%d,langmask='%s',type=%d  where cid=%d",
+                                $p_name,$p_stime,$p_edtime,$p_passwd,$p_desc,$p_private,$langmask,$p_type,$_POST['cid']);
              $res = $db->dml($sql);
-             echo $res;
+             //echo $res;
          
      } else {
          if (isset($_POST['name'])){
              $langmask = strval($_POST['langc']=='on'?'1':'0') . strval($_POST['langcpp']=='on'?'1':'0') . strval($_POST['langjava']=='on'?'1':'0');
+             $p_name=$_POST['name'];
+             $p_stime=$_POST['start_time'];
+             $p_edtime=$_POST['end_time'];
+             $p_passwd=$_POST['password'];
+             $p_desc=$_POST['desci'];
+             $p_private=$_POST['private']=='on'?1:0;
+             $p_type=$_POST['type']=='on'?1:0;
+             if(!$p_private)
+                 $p_passwd="";
+             if($p_private&&$p_passwd!="")
+                 $p_passwd=md5($p_passwd);
              $sql = sprintf("insert into contest (uid,name,start_time,end_time,password,desci,private,langmask,type) values (%d,'%s','%s','%s','%s','%s',%d,'%s',%d)",$uid,
-                            $_POST['name'],$_POST['start_time'],$_POST['end_time'],md5($_POST['password']),$_POST['desci'],$_POST['private']=='on'?1:0,$langmask,$_POST['type']=='on'?1:0);
-            
+                                $p_name,$p_stime,$p_edtime,$p_passwd,$p_desc,$p_private,$langmask,$p_type);
              $res = $db->dml($sql);
-             echo $res;
+             //echo $res;
          }
      }
 ?>

@@ -62,7 +62,7 @@
         {
             $db=new DB();
             $sql="insert into contest_team (cid,tid,ischeck) values($cid,$tid,1)";
-            $db->dql($sql);
+            $db->dml($sql);
         }
     }
     function UpdateUserContest($uid,$cid)
@@ -71,7 +71,7 @@
         {
             $db=new DB();
             $sql="insert into contest_user (cid,uid,ischeck) values($cid,$uid,1)";
-            $db->dql($sql);
+            $db->dml($sql);
         }   
     }
     function IsExistContestTeam($tid,$cid)
@@ -82,7 +82,7 @@
         if($res->num_rows>0)
         {
             $sql="update contest_team set ischeck=1 where cid=$cid and tid=$tid";
-            $db->dql($sql);
+            $db->dml($sql);
             return true;
         }
         return false;
@@ -95,7 +95,7 @@
         if($res->num_rows>0)
         {
             $sql="update contest_user set ischeck=1 where cid=$cid and uid=$uid";
-            $db->dql($sql);
+            $db->dml($sql);
             return true;
         } 
         return false;
