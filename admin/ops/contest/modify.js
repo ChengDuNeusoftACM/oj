@@ -1,4 +1,4 @@
-var CID = -1;
+var CID = -1,IsaddState=false;
 function addUser(cid,type){
     CID = cid;
     var tit;
@@ -82,10 +82,69 @@ function checkUser(id,cid){
         location.reload();
     });
 }
+function saveProblem(cid)
+{
+   var i=$("#tab_2 table tbody tr").size();
+   var j=i-1;
+   alert(i);
+   alert("Save"); 
+}
+function saveAddProblem()
+{
+    var id=$("#newadpid").val();
+    if(IsExistAddProblem(id)==true)
+    {
+        $("#tipTxt").html("所加题目已经存在于本比赛中");
+        $("#tipModel").modal('show');
+        return;
+    }
+    $.post('getProblemInfo.php',{pid:id},function(data)
+    {
+           var ds=data.split(',');
+           if(ds[0]=="success")
+           {
+               $("#newaddproblem").remove();
+               var str="<tr><td>"+id+"</td><td>"+ds[1]+"</td><td><input type='text' value='"+ds[1]+"'/></td><td>"+ds[2]+"</td><td><button onclick='delProblem(this)'>删除</button></td></tr>";
+               $("#tab_2 table:last-child").append(str);
+               $("#tipTxt").html("保存成功");
+               $("#tipModel").modal('show');
+               IsaddState=false;
+           }
+           else
+           {
+               $("#tipTxt").html(ds[1]);
+               $("#tipModel").modal('show');
+           }
+    });
+}
+function IsExistAddProblem(pid)
+{
+    var cnt=$("#tab_2 table tbody tr").size();
+    for(var i=0;i<cnt-1;i++)
+    {
+        if($("#tab_2 table tbody tr").eq(i).find("td").eq(0).html()==pid)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+function cancelAddProblem()
+{
+    IsaddState=false;
+    $("#newaddproblem").remove();
 
+}
 function addProblem(cid){
     CID = cid;
-    $.Dialog({
+    if(IsaddState)
+    {
+        alert("请先保存");
+        return;
+    }
+    $("#tab_2 table:last-child").append("<tr id='newaddproblem'><td><input type='text' style='width:60px'  id='newadpid'/></td><td></td><td></td><td></td><td><button class='primary' onclick='saveAddProblem()'>保存</button><button style='margin-left:10px;' onclick='cancelAddProblem()'>取消</button></td></tr>");
+    IsaddState=true;
+    /*$.Dialog({
         title: '添加题目',
         overlay: true,
         shadow: true,
@@ -97,11 +156,12 @@ function addProblem(cid){
                             "<button class='info' onclick='addProblemClick()'>Submit</button>";
             $.Dialog.content(content);
         }
-    });
+    });*/
 }
 
 function addProblemClick(){
-    var pid = $('#pid').val();
+
+    /*var pid = $('#pid').val();
     if (pid.length < 1) return;
      var ds = pid.split(',');
     for (var i = 0;i < ds.length;i++){
@@ -120,10 +180,20 @@ function addProblemClick(){
             content: data,
             padding: 10
         });
-    });
+    });*/
 }
 
-function delProblem(id,cid){
+function delProblem(row)
+{
+    var isDelete=confirm("真的要删除吗?");
+    if(isDelete)
+    {
+        var tr=row.parentNode.parentNode;
+        var tbody=tr.parentNode;
+        tbody.removeChild(tr);
+    }
+}
+/*function delProblem(id,cid){
     $.post('delProblem.php', {c:cid, i: id }, function (data) {
         $.Dialog.close();
         $.Dialog({
@@ -135,7 +205,7 @@ function delProblem(id,cid){
             padding: 10
         });
     });
-}
+}*/
 
 $(function () {
     $("#tab_3_2 form").submit(function () {

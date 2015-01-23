@@ -65,8 +65,9 @@
                                     echo "<td>" . $row['type'] . "</td>";
                                     echo "<td>";
                                     $id = $row['cid'];
+                                    $type=$row['type'];
                                     if ($isd) echo "<button class='primary' onclick='btnClick(2,$id)'>删除</button>";
-                                    if ($ism) echo "<a class='button warning' href='add.php?cid=$id'>修改</a><a class='button success' href='modify.php?cid=$id'>配置比赛</a>";
+                                    if ($ism) echo "<a class='button warning' href='add.php?cid=$id'>修改</a><a class='button success' href='modify.php?cid=$id&type=$type'>配置比赛</a>";
                                     echo "</td></tr>";
                                }
                         }

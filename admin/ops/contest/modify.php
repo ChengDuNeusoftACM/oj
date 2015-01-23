@@ -100,26 +100,27 @@
                 <div class="row">
                    <?php
                        echo "<button onclick='addProblem($cid)'>添加</button>";
+                       echo "<button onclick='saveProblem($cid)' class='primary'>保存</button>";
                        showReload('info');
                    ?> 
                 </div>
                 <div class="row">
                     <table class="table striped">
                         <thead>
-                            <tr><td>编号</td><td>名称</td><td>重定义编号</td><td>重定义名称</td><td>操作</td></tr>
+                            <tr><td>编号</td><td>名称</td><td>重定义名称</td><td>作者</td><td>操作</td></tr>
                         </thead>
                         <tbody>
                             <?php
-                                $sql = "select c.newid,c.newname,p.pname,p.pid from contest_problem c,problem p  where c.pid= p.pid and cid = $cid";
+                                $sql = "select c.newid,c.newname,p.pname,p.pid,p.author from contest_problem c,problem p  where c.pid= p.pid and cid = $cid order by c.newid";
                                 $res = $db->dql($sql);
                                 if ($res && $res->num_rows > 0){
                                     while ($row = $res->fetch_assoc()){
                                             echo "<tr><td>" . $row['pid'] . "</td>";
                                             echo "<td>".$row['pname']."</td>";
-                                            echo "<td>" . $row['newid'] . "</td>";
-                                            echo "<td>" . $row['newname'] . "</td>";
+                                            echo "<td><input type='text' value='" . $row['newname'] . "'/></td>";
+                                            echo "<td>".$row['author']."</td>";
                                             echo "<td>";
-                                            echo sprintf("<button onclick='delProblem(%d,%d)'>删除</button>",$row['pid'],$cid);
+                                            echo "<button onclick='delProblem(this)'>删除</button>";
                                             echo "</td></tr>";
                                     }
                                 }
