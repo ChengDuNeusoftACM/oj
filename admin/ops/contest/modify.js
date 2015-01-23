@@ -87,18 +87,20 @@ function saveProblem(cid)
    var cnt=$("#tab_2 table tbody tr").size();
    var pros=new Array();
    var problemOder=new Array('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z');
+   if(IsaddState)
+       cnt--;
    for(var i=0;i<cnt;i++)
    {
       pros[i]=new Array();
       pros[i][0]=$("#tab_2 table tbody tr").eq(i).find("td").eq(0).html();
       pros[i][1]=$("#tab_2 table tbody tr").eq(i).find("input").eq(0).val();
       pros[i][2]=problemOder[i];
-      alert(pros[i][0]+"SSS "+pros[i][1]+" "+pros[i][2]);
    }
     pros=JSON.stringify(pros);
     $.post('saveContestProblems.php',{cid:cid,prs:pros},function(data)
     {
-       alert(data); 
+        $("#tipTxt").html("添加题目到比赛中成功");
+        $("#tipModel").modal('show');
     });
 }
 function saveAddProblem()
@@ -118,7 +120,7 @@ function saveAddProblem()
                $("#newaddproblem").remove();
                var str="<tr><td>"+id+"</td><td>"+ds[1]+"</td><td><input type='text' value='"+ds[1]+"'/></td><td>"+ds[2]+"</td><td><button onclick='delProblem(this)'>删除</button></td></tr>";
                $("#tab_2 table:last-child").append(str);
-               $("#tipTxt").html("保存成功");
+               $("#tipTxt").html("添加成功");
                $("#tipModel").modal('show');
                IsaddState=false;
            }
@@ -154,7 +156,7 @@ function addProblem(cid){
         alert("请先保存");
         return;
     }
-    $("#tab_2 table:last-child").append("<tr id='newaddproblem'><td><input type='text' style='width:60px'  id='newadpid'/></td><td></td><td></td><td></td><td><button class='primary' onclick='saveAddProblem()'>保存</button><button style='margin-left:10px;' onclick='cancelAddProblem()'>取消</button></td></tr>");
+    $("#tab_2 table:last-child").append("<tr id='newaddproblem'><td><input type='text' style='width:60px'  id='newadpid'/></td><td></td><td></td><td></td><td><button class='primary' onclick='saveAddProblem()'>添加</button><button style='margin-left:10px;' onclick='cancelAddProblem()'>取消</button></td></tr>");
     IsaddState=true;
     /*$.Dialog({
         title: '添加题目',
