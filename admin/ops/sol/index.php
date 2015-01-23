@@ -24,7 +24,7 @@
     <script type="text/javascript" src="../../plug/syntaxhighlighter_3.0.83/scripts/shBrushJava.js"></script>
     <link type="text/css" rel="stylesheet" href="../../plug/syntaxhighlighter_3.0.83/styles/shCoreDefault.css"/>
    <link type="text/css" rel="stylesheet" href="../../plug/syntaxhighlighter_3.0.83/styles/shThemeDefault.css"/>
-        <script type="text/javascript" src="../js/sol.js?e"></script>
+        <script type="text/javascript" src="../js/sol.js"></script>
 	</head>
 	<body>
 		<div class="container-fluid">
