@@ -1,15 +1,25 @@
 var CID = -1;
-function addUser(cid){
+function addUser(cid,type){
     CID = cid;
+    var tit;
+    if(type==0)
+        tit='添加参赛人员';
+    else
+        tit='添加参赛队伍';
     $.Dialog({
-        title: '添加参赛人员',
+        title: tit, 
         overlay: true,
         shadow: true,
         flat: true,
         content: '',
         padding: 10,
         onShow: function (_dialog) {
-            var content = "<div><textarea type='text' rows='25' cols='30' style='resize:none' id='uid' name='uid' placeholder='输入用户帐号，多个用帐号换行分割' />"+
+            var txt;
+            if(type==0)
+                txt="请输入用户帐号，多个帐号用换行分隔";
+            else
+                txt="请输入队伍名，多个队伍名用换行分隔";
+            var content = "<div><textarea type='text' rows='25' cols='30' style='resize:none' id='uid' name='uid' placeholder='"+txt+"' />"+
                             "<div style='width:100%;height:25px;'><button class='info' style='margin-top:5px;margin-button:5px;float:right;' onclick='addUserClick()'>Submit</button></div></div>";
             $.Dialog.content(content);
         }
@@ -19,14 +29,11 @@ function addUser(cid){
 function addUserClick(){
     var uid = $('#uid').val();
     if (uid.length < 1) return;
-     var ds = uid.split(',');
-    for (var i = 0;i < ds.length;i++){
-        if (isNaN(parseInt(ds[i]))){
-            alert("输入不合法");
-            return;
-        }
-    }
-    $.post('addUser.php', { c: CID, u: uid }, function (data) {
+    var ds = uid.split('\n');
+    /*for (var i = 0;i < ds.length;i++){
+        alert(ds[i]);
+    }*/
+    $.post('addUser.php', { c: CID, u: ds }, function (data) {
         $.Dialog.close();
         $.Dialog({
             title: '',
