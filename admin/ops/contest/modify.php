@@ -16,6 +16,7 @@
     }
     $row = $res->fetch_assoc();
     $type = intval($row['type']) == 0 ? 'contest_user' : 'contest_team';
+    $ispri=intval($row['private']);
     $sex_state=include_once("../db/sex.php");
 ?>
 <!DOCTYPE html>
@@ -23,15 +24,22 @@
 <head>
     <meta charset="utf-8" />
     <title></title>
-    <?php getMetroStyle(); ?>
+    <?php getAllStyle(); ?>
     <script src="modify.js?www"></script>
 </head>
 <body class="metro">
     <div style="width: 100%;" class="grid">
         <div class="tab-control" data-role="tab-control">
             <ul class="tabs">
-                <li class="active"><a href="#tab_1">参赛人员</a></li>
-                <li><a href="#tab_2">比赛题目</a></li>
+                <?php
+                  if($ispri)
+                  {
+                      echo "<li class='active'><a href='#tab_1'>参赛人员</a></li>";
+                      echo "<li><a href='#tab_2'>比赛题目</a></li>";
+                  }
+                  else
+                      echo "<li class='active'><a href='#tab_2'>比赛题目</a></li>";
+                ?>
                 <li><a href="#tab_3">比赛新闻</a></li>
             </ul>
             <div class="frames">
@@ -178,6 +186,10 @@
                 </div>
             </div>
         </div>
+    <?php
+        delModel();
+        tipModel();
+    ?>
     </div>
 </body>
 </html>
