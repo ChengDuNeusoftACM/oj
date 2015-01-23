@@ -4,6 +4,7 @@
         exit;
     }
     $cid = $_GET['cid'];
+    $ty=$_GET['type'];
     include ("../../db/DB.Class.php");
     include ("../db/func.php");
     
@@ -23,7 +24,7 @@
     <meta charset="utf-8" />
     <title></title>
     <?php getMetroStyle(); ?>
-    <script src="modify.js"></script>
+    <script src="modify.js?www"></script>
 </head>
 <body class="metro">
     <div style="width: 100%;" class="grid">
@@ -37,31 +38,42 @@
                 <div class="frame" id="tab_1">
                 <div class="row">
                     <?php 
-                        echo "<button onclick='addUser($cid)'>添加</button>";
+                        echo "<button onclick='addUser($cid,$ty)'>添加</button>";
                         showReload('info');
                     ?>
                 </div>
                 <div class="row">
-                    <table class="table striped">
-                        <thead>
-                            <tr><td>编号</td><td>操作</td></tr>
-                        </thead>
-                        <tbody>
                             <?php
-                                $sql = "select * from $type where cid = $cid";
-                                $res = $db->dql($sql);
-                                if ($res && $res->num_rows > 0){
-                                    if ($type == 'contest_user'){
+                                echo "<table class='table striped'>";
+                                if ($type == 'contest_user'){
+                                    echo "<thead><tr><td>用户名</td><td>姓名</td><td>邮箱</td><td>性别</td><td>年纪</td><td>专业</td><td>班级</td><td>队伍名</td><td>操作</td></tr></thead><tbody>";
+                                    $sql="select u.uid,u.username,u.name,u.email,u.sex,u.grade,u.major,u.class,c.ischeck,t.name AS tname from $type c,user u,team t where t.tid=u.tid and c.uid=u.uid and cid =$cid";
+                                    $res=$db->dql($sql);
+                                    if($res&&$res->num_rows>0)
+                                    {
                                         while ($row = $res->fetch_assoc()){
-                                            echo "<tr><td>" . $row['uid'] . "</td>";
+                                            echo "<tr><td>" . $row['username'] . "</td>";
+                                            echo "<td>".$row['name']."</td>";
+                                            echo "<td>".$row['email']."</td>";
+                                            echo "<td>".$row['sex']."</td>";
+                                            echo "<td>".$row['grade']."</td>";
+                                            echo "<td>".$row['major']."</td>";
+                                            echo "<td>".$row['class']."</td>";
+                                            echo "<td>".$row['tname']."</td>";
                                             echo "<td>";
                                             echo sprintf("<button onclick='delUser(%d,%d)'>删除</button>",$row['uid'],$cid);
                                             if (intval($row['ischeck']) == 0) echo sprintf("<button class='success' onclick='checkUser(%d,%d)'>审核</button>",$row['uid'],$cid);
                                             echo "</td></tr>";
                                         }
-                                    } else {
+                                    }
+                                } else {
+                                    echo "<thead><tr><td>队伍名</td><td>操作</td></tr></thead><tbody>";
+                                    $sql="select t.tid,t.name,c.ischeck from $type c,team t where c.tid=t.tid and cid=$cid";
+                                    $res=$db->dql($sql);
+                                    if($res&&$res->num_rows>0)
+                                    {
                                         while ($row = $res->fetch_assoc()){
-                                            echo "<tr><td>" . $row['tid'] . "</td>";
+                                            echo "<tr><td>" . $row['name'] . "</td>";
                                             echo "<td>";
                                             echo sprintf("<button onclick='delUser(%d,%d)'>删除</button>",$row['tid'],$cid);
                                             if (intval($row['ischeck']) == 0) echo sprintf("<button class='success' onclick='checkUser(%d,%d)'>审核</button>",$row['tid'],$cid);
@@ -69,9 +81,8 @@
                                         }
                                     }
                                 }
+                                echo " </tbody></table>";
                             ?>
-                        </tbody>
-                    </table>
                 </div>
                 </div>
                 <div class="frame" id="tab_2">
