@@ -6,8 +6,7 @@
     $cid = $_GET['cid'];
     $ty=$_GET['type'];
     include ("../../db/DB.Class.php");
-    include ("../db/func.php");
-    
+    include ("../db/func.php"); 
     $db = new DB();
     $sql = "select * from contest where cid = $cid";
     $res = $db->dql($sql);
@@ -17,6 +16,7 @@
     }
     $row = $res->fetch_assoc();
     $type = intval($row['type']) == 0 ? 'contest_user' : 'contest_team';
+    $sex_state=include_once("../db/sex.php");
 ?>
 <!DOCTYPE html>
 <html>
@@ -55,7 +55,7 @@
                                             echo "<tr><td>" . $row['username'] . "</td>";
                                             echo "<td>".$row['name']."</td>";
                                             echo "<td>".$row['email']."</td>";
-                                            echo "<td>".$row['sex']."</td>";
+                                            echo "<td>".$sex_state[$row['sex']]."</td>";
                                             echo "<td>".$row['grade']."</td>";
                                             echo "<td>".$row['major']."</td>";
                                             echo "<td>".$row['class']."</td>";
@@ -67,13 +67,16 @@
                                         }
                                     }
                                 } else {
-                                    echo "<thead><tr><td>队伍名</td><td>操作</td></tr></thead><tbody>";
-                                    $sql="select t.tid,t.name,c.ischeck from $type c,team t where c.tid=t.tid and cid=$cid";
+                                    echo "<thead><tr><td>队伍名</td><td>队长用户名</td><td>队长姓名</td><td>创建时间</td><td>操作</td></tr></thead><tbody>";
+                                    $sql="select t.tid,t.name AS tname,u.username,u.name,t.create_time,c.ischeck from $type c,team t,user u where c.tid=t.tid and cid=$cid and t.head_id=u.uid";
                                     $res=$db->dql($sql);
                                     if($res&&$res->num_rows>0)
                                     {
                                         while ($row = $res->fetch_assoc()){
-                                            echo "<tr><td>" . $row['name'] . "</td>";
+                                            echo "<tr><td>" . $row['tname'] . "</td>";
+                                            echo "<td>".$row['username']."</td>";
+                                            echo "<td>".$row['name']."</td>";
+                                            echo "<td>".$row['create_time']."</td>";
                                             echo "<td>";
                                             echo sprintf("<button onclick='delUser(%d,%d)'>删除</button>",$row['tid'],$cid);
                                             if (intval($row['ischeck']) == 0) echo sprintf("<button class='success' onclick='checkUser(%d,%d)'>审核</button>",$row['tid'],$cid);
