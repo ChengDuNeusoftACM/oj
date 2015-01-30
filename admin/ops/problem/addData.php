@@ -23,8 +23,8 @@
 <head>
 	<meta charset="UTF-8">
 	<title></title>
-    <script src="../js/problem.js"></script>
 	<?php getMetroStyle(); ?>
+    <script src="../js/addData.js"></script>
 </head>
 <body class="metro">
 	<div>
@@ -37,14 +37,14 @@
 				<input type="text" id="txt_name" name="name"></textarea>
 				</div>
 			</div>
-			<div class="input-control textarea error-state">
+			<div id="div_in" class="input-control textarea">
 <!--div error-state -->
 				<label for="in">Input Data:</label>
-				<textarea name="in"></textarea>
+				<textarea name="in" id="txt_in"></textarea>
 			</div>
-			<div class="input-control textarea">
+			<div id="div_out" class="input-control textarea">
 				<label for="out">Output Data:</label>
-				<textarea name="out"></textarea>
+				<textarea name="out" id="txt_out"></textarea>
 			</div>
 			<div class="place-right">
 				<button type="submit" class="primary">Submit</button>
