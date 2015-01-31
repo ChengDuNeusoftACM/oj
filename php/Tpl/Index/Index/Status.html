@@ -1,3 +1,19 @@
+<?php
+      $result_state=array(
+      0=>array(0=>"Pending",1=>"#0066CC"),
+      1=>array(0=>"Pending Rejudge",1=>"#0066CC"),
+      2=>array(0=>"Compiling",1=>"#0066CC"),
+      3=>array(0=>"Running",1=>"#0066CC"),    
+      4=>array(0=>"Accepted",1=>"#468847"),
+      5=>array(0=>"Presentation Error",1=>"#b94a48"),
+      6=>array(0=>"Wrong Answer",1=>"#b94a48"),               
+      7=>array(0=>"Time Limit Exceeded",1=>"#b94a48"),
+      8=>array(0=>"Memory Limit Exceeded",1=>"#b94a48"),
+      9=>array(0=>"Output Limit Exceeded",1=>"#b94a48"), 
+      10=>array(0=>"Runtime Error",1=>"#2a6496"),
+      11=>array(0=>"Compile Error",1=>"#2a6496")
+      );
+?>
 <include file="Top" title="Status"/>
 	<div id="mainlist" class="container">
 	<div class="container-fluid" style="background-color:#787676;">
@@ -69,13 +85,30 @@
 		<foreach name="data" item="p">
 		<tr>
 			<td id="pi">{$p.soid}</td>
-			<td>{$p.username}</td>
-			<td>{$p.pid}</td>
-			<td>{$p.result}</td>
-			<td>{$p.memory}</td>
-			<td>{$p.time}</td>
+            <td><a href="/oj/index.php/Index/Index/User?user={$p.uid}">{$p.username}</a></td>
+            <td><a href="/oj/index.php/Index/Index/Problem?problemid={$p.pid}">{$p.pid}</a></td>
+            <?php
+                if($p[cid]!=""&&$p[process]!=0 && $p[result]!=4)
+                {
+                echo "<td style='color:".$result_state[$p[result]][1]."'>".$result_state[$p[result]][0]." on test ".$p[process]."</td>";
+                }
+                else
+                {
+                echo "<td style='color:".$result_state[$p[result]][1]."'>".$result_state[$p[result]][0]."</td>";
+                }
+                if($p[result]>=4&&$p[result]<=9)
+                {
+                   echo "<td>".$p[memory]."</td>";
+                   echo "<td>".$p[time]."</td>";
+                }
+                else
+                {
+                   echo "<td>-</td><td>-</td>";
+                }
+            ?>
 			<td>
 			<?php
+
 			if($p['language']=="0")
 			echo "C";
 			else if($p['language']=="1")
@@ -84,7 +117,7 @@
 			echo "Java";
 			?>
 			</td>
-			<td>{$p.length}</td>
+			<td>{$p.length}B</td>
 			<td>{$p.create_time}</td>
 		</tr>
 		</foreach>

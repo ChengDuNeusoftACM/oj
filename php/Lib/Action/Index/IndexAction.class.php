@@ -222,6 +222,7 @@ class IndexAction extends Action {
 		$data['language']=I('language','','');
 		$data['result']=0;
 		$data['code']=I('code','','');
+        $data['length']=strlen(I('code','',''));
 
 		$problem=$pro->where('pid='.$data['pid'])->find();
 		$problem['submit']+=1;
@@ -235,7 +236,7 @@ class IndexAction extends Action {
 		$num=10; //每页显示数目
 		$model=new Model();
 		if($info==NULL){
-			$sql="select s.soid,s.pid,s.result,s.create_time,s.memory,s.time,s.language,u.username from solution s,user u where s.uid=u.uid  order by soid desc;";
+			$sql="select s.soid,s.cid,s.process,s.pid,s.result,s.create_time,s.memory,s.time,s.language,s.length,u.username,u.uid from solution s,user u where s.uid=u.uid  order by soid desc;";
 		}
 		else{
 			$sql="";
@@ -247,7 +248,7 @@ class IndexAction extends Action {
 		$this->info=$info;
 		$offset=($page-1)*$num;
 		if($info==NULL){
-			$sql="select s.soid,s.pid,s.result,s.create_time,s.memory,s.time,s.language,u.username from solution s,user u where s.uid=u.uid  order by soid desc limit $offset,$num;";
+			$sql="select s.soid,s.cid,s.process,s.pid,s.result,s.create_time,s.memory,s.time,s.language,s.length,u.username,u.uid from solution s,user u where s.uid=u.uid  order by soid desc limit $offset,$num;";
 		}
 		else{
 			$sql="";
