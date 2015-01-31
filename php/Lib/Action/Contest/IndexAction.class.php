@@ -84,7 +84,7 @@
                 //验证输入密码
                 else
                 {
-                    if($res[0]['password']==$conpas)
+                    if($res[0]['password']==md5($conpas))
                     {
                         //private的比赛判定
                         if($_SESSION['item']==NULL)
