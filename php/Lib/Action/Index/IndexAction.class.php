@@ -386,4 +386,13 @@ class IndexAction extends Action {
 		M('user')->where('uid="'.$_SESSION['uid'].'"')->save($data);
 		$this->ajaxreturn(0,'json');
 	}
+    public function DisplayCode()
+    {
+        $solid=I('soid','','');
+        $model=new Model();
+        $sql='select code from solution where soid="'.$solid.'"';
+        $data=$model->query($sql);
+        $code=$data[0]['code'];
+        $this->ajaxReturn($code,'json');       
+    }
 }
