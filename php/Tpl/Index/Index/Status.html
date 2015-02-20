@@ -13,8 +13,15 @@
       10=>array(0=>"Runtime Error",1=>"#2a6496"),
       11=>array(0=>"Compile Error",1=>"#2a6496")
       );
+      include ("__PUBLIC__/Db/DB.Class.php");
+      //include ("__PUBLIC__/Db/")
 ?>
 <include file="Top" title="Status"/>
+        <script type="text/javascript" src="__PUBLIC__/Plug/syntaxhighlighter_3.0.83/scripts/shCore.js"></script>
+            <script type="text/javascript" src="__PUBLIC__/Plug/syntaxhighlighter_3.0.83/scripts/shBrushCpp.js"></script>
+                <script type="text/javascript" src="__PUBLIC__/Plug/syntaxhighlighter_3.0.83/scripts/shBrushJava.js"></script>
+                    <link type="text/css" rel="stylesheet" href="__PUBLIC__/Plug/syntaxhighlighter_3.0.83/styles/shCoreDefault.css"/>
+                       <link type="text/css" rel="stylesheet" href="__PUBLIC__/Plug/syntaxhighlighter_3.0.83/styles/shThemeDefault.css"/>
 	<div id="mainlist" class="container">
 	<div class="container-fluid" style="background-color:#787676;">
 	<div class="navbar-form">
@@ -108,7 +115,6 @@
             ?>
 			<td>
 			<?php
-
 			if($p['language']=="0")
 			echo "C";
 			else if($p['language']=="1")
@@ -117,7 +123,13 @@
 			echo "Java";
 			?>
 			</td>
-			<td>{$p.length}B</td>
+            <?php
+            $name=$_SESSION['username'];
+            if($name==$p[username])
+            echo "<td><a href='javascript:showCode(".$p[soid].",".$p[language].")'>".$p[length]."B</a></td>";
+            else
+                echo "<td>".$p[length]."B</td>";
+            ?>
 			<td>{$p.create_time}</td>
 		</tr>
 		</foreach>
@@ -171,7 +183,18 @@
 	</div>
 	</div>
 	</div>
+    <div id="showSourceModel" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div id="cppcode"></div>
+            </div>
+        </div>
+    </div>
 <link rel="stylesheet" href="__PUBLIC__/Css/Tabletpl.css" />
+<script>
+    var showCodeUrl="{:U('Index/Index/DisplayCode','','')}";
+</script>
 <script type="text/javascript" src='__PUBLIC__/Js/LiSt.js'></script>
+<script type="text/javascript" src='__PUBLIC__/Js/showCode.js?1'></script>
 </body>
 </html>
