@@ -393,6 +393,7 @@ class IndexAction extends Action {
         $sql='select code from solution where soid="'.$solid.'"';
         $data=$model->query($sql);
         $code=$data[0]['code'];
+        $code=htmlspecialchars($code);
         $this->ajaxReturn($code,'json');       
     }
 }
