@@ -56,7 +56,7 @@
 					</thead>
 					<tbody>
 						<?php
-							$sql="select s.soid,s.cid,s.process,u.username,p.pid,p.pname,s.result,s.memory,s.time,s.language,s.length,s.create_time from user AS u,problem AS p,solution AS s where u.uid=s.uid AND p.pid=s.pid";
+							$sql="select s.soid,s.cid,s.process,u.username,p.pid,p.pname,s.result,s.memory,s.time,s.language,s.length,s.create_time from user AS u,problem AS p,solution AS s where u.uid=s.uid AND p.pid=s.pid order by s.soid desc";
                             $res=$db->dql($sql);
                             if($res&&($res->num_rows>0))
                             {
