@@ -273,9 +273,10 @@
                 $code= str_replace("&quot;", CHR(34),$code);
                 $code = str_replace("", CHR(13),$code);
                 $code = str_replace("<br/>", CHR(10),$code);
-                 $code = str_replace("&amp;","&",$code);
+                $code = str_replace("&amp;","&",$code);
                 $Dao->code=$code;
                 $Dao->language=$language;
+                $Dao->length=strlen($code);
 
                 $Model=new Model();
                 $sql='select type from contest where cid ='.$cid;
@@ -411,7 +412,7 @@
             $this->info=$info;
             $now=($nowpage-1)*$totalnum;
             
-            $sql='select * from solution where cid='.$conid.' order by create_time desc limit '.$now.','.$totalnum.';';
+            $sql='select s.soid,s.cid,s.result,s.create_time,s.memory,s.time,s.language,s.length,u.username,u.uid,cp.newid from solution s,user u,contest_problem cp  where s.pid=cp.pid and s.uid=u.uid and cp.cid='.$conid.' and s.cid='.$conid.' order by create_time desc limit '.$now.','.$totalnum.';';
             $res=$Model->query($sql);
             //dump($res);
             $this->solution=$res;
@@ -712,6 +713,16 @@
             $res= $Model->query($sql);
             $count=count($res);
             $this->ajaxReturn(array('status'=>$count),'json');
+        }
+        public function DisplayCode()
+        {
+            $solid=I('soid','','');
+            $model=new Model();
+            $sql='select code from solution where soid="'.$solid.'"';
+            $data=$model->query($sql);
+            $code=$data[0]['code'];
+            $code=htmlspecialchars($code);
+            $this->ajaxReturn($code,'json');
         }
         
     }

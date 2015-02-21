@@ -1,4 +1,31 @@
+<?php
+      $result_state=array(
+            0=>array(0=>"Pending",1=>"#0066CC"),
+            1=>array(0=>"Pending Rejudge",1=>"#0066CC"),
+            2=>array(0=>"Compiling",1=>"#0066CC"),
+            3=>array(0=>"Running",1=>"#0066CC"),    
+            4=>array(0=>"Accepted",1=>"#468847"),
+            5=>array(0=>"Presentation Error",1=>"#b94a48"),
+            6=>array(0=>"Wrong Answer",1=>"#b94a48"),               
+            7=>array(0=>"Time Limit Exceeded",1=>"#b94a48"),
+            8=>array(0=>"Memory Limit Exceeded",1=>"#b94a48"),
+            9=>array(0=>"Output Limit Exceeded",1=>"#b94a48"), 
+            10=>array(0=>"Runtime Error",1=>"#2a6496"),
+            11=>array(0=>"Compile Error",1=>"#2a6496")
+            );
+        $language_state=array(
+            0=>"C",
+            1=>"C++",
+            2=>"Java"
+            );
+                                                                            ?>
 <include file="../../Index/Index/Top" title="Contest"/>
+        <script type="text/javascript" src="__PUBLIC__/Plug/syntaxhighlighter_3.0.83/scripts/shCore.js"></script>
+        <script type="text/javascript" src="__PUBLIC__/Plug/syntaxhighlighter_3.0.83/scripts/shBrushCpp.js"></script>
+        <script type="text/javascript" src="__PUBLIC__/Plug/syntaxhighlighter_3.0.83/scripts/shBrushJava.js"></script>
+        <link type="text/css" rel="stylesheet" href="__PUBLIC__/Plug/syntaxhighlighter_3.0.83/styles/shCoreDefault.css"/>
+        <link type="text/css" rel="stylesheet" href="__PUBLIC__/Plug/syntaxhighlighter_3.0.83/styles/shThemeDefault.css"/>
+
         <div id="contest_bar" style="width: 100%;margin: 0 auto;height: 200px;background: #434343;padding-top: 20px;">
             <div id="title-info">
                 <div id="contest-name" style="">
@@ -83,41 +110,61 @@
             <tr>
                 <th >ID</th>
                 <th >User</th>
+                <th >ProID</th>
                 <th >Result</th>
                 <th >Memory</th>
                 <th >Time</th>
+                <th >Language</th>
                 <th >Length</th>
                 <th >Submit Time</th>
             </tr>
             <foreach name="solution" item="v">
                 <tr>
                     <td>{$v.soid}</td>
+                    <td><a href="/oj/index.php/Index/Index/User?user={$v.uid}">{$v.username}</a></td>
                     <?php
                         if($youruid==$v['uid']||$isend==1)
-                        echo'<td>'.
-                        $v["uid"].'</td><td>'.
-                        $v["result"].'</td><td>'.
-                        $v["memory"].'</td><td>'.
-                        $v["time"].'</td><td>'.
-                        $v["length"].'</td>';
-                        else echo'<td>---</td><td>---</td><td>---</td><td>---</td><td>---</td>';
+                        {
+
+                        echo '<td><a href="/oj/index.php/Contest/Index/Problem?pid='.$v["newid"].'&cid='.$contestinfo[0]["cid"].'">'.$v["newid"].'</a></td>';
+                        echo '<td style="color:'.$result_state[$v["result"]][1].'">'.$result_state[$v["result"]][0].'</td>';
+                        if($v["result"]>=4&&$v["result"]<=9)
+                        {
+                           echo "<td>".$v["memory"]."</td>";
+                           echo "<td>".$v["time"]."</td>";
+                        }
+                        else
+                           echo "<td>-</td><td>-</td>";
+                        echo '<td>'.$language_state[$v['language']].'</td>';                      
+                        echo'<td><a href="javascript:showCode('.$v['soid'].','.$v['language'].')">'.$v["length"].'B</a></td>';
+                        }
+                        else echo'<td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td>';
                      ?>
                     <td>{$v.create_time}</td>
 
                 </tr>    
             </foreach>
         </table>
-    <script type="text/ecmascript">
+        <div id="showSourceModel" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div id="cppcode"></div>
+                </div>
+            </div>
+        </div>
+        <script type="text/ecmascript">
             var start_time = "{$contestinfo[0]['startinunix']}";
             var len = "{$contestinfo[0]['len']}";
             var problemUrl = '{:U("Index/Problem?cid=".$problems[0]["cid"]."&pid=".$problem[0]["newid"])}}';
             var countUrl ='{:U("Contest/Index/Newscount", '', '')}';
             var cid="{$contestinfo[0]['cid']}";
+            var showCodeUrl="{:U('Contest/Index/DisplayCode','','')}";
         </script>
-        <script src="__PUBLIC__/Js/jquery-1.10.2.min.js"></script>
+        <script type="text/javascript" src='__PUBLIC__/Js/LiSt.js'></script>
+        <script type="text/javascript" src='__PUBLIC__/Js/showCode.js?1'></script>
         <script src="__PUBLIC__/Js/loop.js"></script>
         <script src="__PUBLIC__/Js/jquery-ui.min.js"></script>
         <link href="__PUBLIC__/Css/bootstrap-theme.min.css" rel="stylesheet">
-        <link href="__PUBLIC__/Css/problemlist.css" rel="stylesheet">
+        <link href="__PUBLIC__/Css/problemlist.css" rel="stylesheet" />
     </body>
 </html>
