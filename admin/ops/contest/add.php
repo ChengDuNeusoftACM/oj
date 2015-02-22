@@ -23,8 +23,7 @@
              $p_passwd=$_POST['password'];
              $p_desc=$_POST['desci'];
              $p_private=$_POST['private']=='on'?1:0;
-             $p_type=$_POST['sel_patype']=='on'?1:0;
-             $p_type=1;
+             $p_type=$_POST['patype']=='on'?1:0;
              if($p_private==0)
                  $p_passwd="";
              if($p_private==1&&$p_passwd!="")
@@ -45,7 +44,7 @@
              $p_passwd=$_POST['password'];
              $p_desc=$_POST['desci'];
              $p_private=$_POST['private']=='on'?1:0;
-             $p_type=$_POST['sel_patype']=='on'?1:0;
+             $p_type=$_POST['patype']=='on'?1:0;
              if(!$p_private)
                  $p_passwd="";
              if($p_private&&$p_passwd!="")
@@ -120,7 +119,7 @@
                         <div class="span1">个人比赛</div>
                         <div class="input-control switch span1">
                             <label>
-                                <input type="checkbox" <?php if($Marks && intval($row['type']) == 1) echo 'checked';  ?> name="sel_patype" />
+                                <input type="checkbox" <?php if($Marks && intval($row['type']) == 1) echo 'checked';  ?> name="patype" />
                                 <span class="check"></span>
                             </label>
                         </div>
