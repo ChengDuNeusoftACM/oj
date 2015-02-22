@@ -14,8 +14,14 @@
              $res = $db->dql($sql);
              $row = $res->fetch_assoc();
      } else if (isset($_POST['uid'])) {
+             $sql='select password from user where uid='.$_POST['uid'].';';
+             $res=$db->dql($sql);
+             $row=$res->fetch_assoc();
+             $passwd=$row['password'];
+             if($passwd!=$_POST['password'])
+                 $passwd=md5($_POST['password']);
              $sql = sprintf("update user set tid = %d,username = '%s',email = '%s',password = '%s',grade = %d,class = %d,major = '%s',name = '%s',sex = %d where uid = %d",
-                            intval($_POST['tid']),$_POST['username'],$_POST['email'],md5($_POST['password']),intval($_POST['grade']),intval($_POST['class']),$_POST['major'],$_POST['name'],$_POST['sex']=='on'?1:0,intval($_POST['uid']));
+                            intval($_POST['tid']),$_POST['username'],$_POST['email'],$passwd,intval($_POST['grade']),intval($_POST['class']),$_POST['major'],$_POST['name'],$_POST['sex']=='on'?1:0,intval($_POST['uid']));
              
              $res = $db->dml($sql);
              echo $res;

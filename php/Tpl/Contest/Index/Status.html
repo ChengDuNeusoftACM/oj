@@ -123,8 +123,6 @@
                     <td>{$v.soid}</td>
                     <td><a href="/oj/index.php/Index/Index/User?user={$v.uid}">{$v.username}</a></td>
                     <?php
-                        if($youruid==$v['uid']||$isend==1)
-                        {
 
                         echo '<td><a href="/oj/index.php/Contest/Index/Problem?pid='.$v["newid"].'&cid='.$contestinfo[0]["cid"].'">'.$v["newid"].'</a></td>';
                         echo '<td style="color:'.$result_state[$v["result"]][1].'">'.$result_state[$v["result"]][0].'</td>';
@@ -137,8 +135,6 @@
                            echo "<td>-</td><td>-</td>";
                         echo '<td>'.$language_state[$v['language']].'</td>';                      
                         echo'<td><a href="javascript:showCode('.$v['soid'].','.$v['language'].')">'.$v["length"].'B</a></td>';
-                        }
-                        else echo'<td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td></td>';
                      ?>
                     <td>{$v.create_time}</td>
 

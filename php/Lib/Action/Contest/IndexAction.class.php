@@ -412,7 +412,17 @@
             $this->info=$info;
             $now=($nowpage-1)*$totalnum;
             
-            $sql='select s.soid,s.cid,s.result,s.create_time,s.memory,s.time,s.language,s.length,u.username,u.uid,cp.newid from solution s,user u,contest_problem cp  where s.pid=cp.pid and s.uid=u.uid and cp.cid='.$conid.' and s.cid='.$conid.' order by create_time desc limit '.$now.','.$totalnum.';';
+            if($res[0]['type']==0)
+            {
+                $sql='select s.soid,s.cid,s.result,s.create_time,s.memory,s.time,s.language,s.length,u.username,u.uid,cp.newid from solution s,user u,contest_problem cp  where s.pid=cp.pid and s.uid=u.uid and s.uid='.$_SESSION['uid'].' and cp.cid='.$conid.' and s.cid='.$conid.' order by create_time desc limit '.$now.','.$totalnum.';';
+            }
+            else
+            {
+                $sql='select tid from user where uid='.$_SESSION['uid'].';';
+                $res=$Model->query($sql);
+                $tid=$res[0]['tid'];
+                $sql='select s.soid,s.cid,s.result,s.create_time,s.memory,s.time,s.language,s.length,u.username,u.uid,cp.newid from solution s,user u,contest_problem cp  where s.pid=cp.pid and s.uid=u.uid and u.tid='.$tid.' and cp.cid='.$conid.' and s.cid='.$conid.' order by create_time desc limit '.$now.','.$totalnum.';';         
+            }
             $res=$Model->query($sql);
             //dump($res);
             $this->solution=$res;
