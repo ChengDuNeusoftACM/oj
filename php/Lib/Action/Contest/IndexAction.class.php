@@ -319,7 +319,6 @@
                 }
                 if(isset($_SESSION['uid'])){
                     $userid=$_SESSION['uid'];
-                    $username=$_SESSION['name'];
                 }
                 $query = I('query',0);
                 $arr=array();
@@ -327,9 +326,9 @@
                 $sql='select name from contest where cid='.$contestid;
                 $res = $Model->query($sql);
                 $this->contestname=$arr['contestname']=$res[0]['name'];
-                if($query==1&&$username!=NULL)
+                if($query==1&&$userid!=NULL)
                 {
-                    $arr['username']=$username;
+                    $arr['username']=$_SESSION['username'];
                     $sql='select * from contest_user where cid='.$contestid.' and uid='.$userid;
                     $res = $Model->query($sql);
                     if($res==NULL)
@@ -350,7 +349,7 @@
                     
                     $this->data=$arr;
                 }
-                $sql='select username,ischeck from user,(select *from contest_user where contest_user.cid='.$contestid.') p where user.uid=p.uid;';
+                $sql='select username,ischeck from user,(select *from contest_user where contest_user.cid='.$contestid.') p where user.uid=p.uid and user.uid!='.$userid.';';
                 $res = $Model->query($sql);
                 $this->otherdata=$res;
                 
@@ -687,12 +686,12 @@
             {
                 if($private==0)//公开赛
                 {
-                    $sql='select distinct user.uid as pa_id,user.username as pa_name from solution,user where solution.uid=user.uid and cid='.$conid.' order by pa_id';
+                    $sql='select distinct user.uid as pa_id,user.username as pa_name from solution,user where solution.uid=user.uid and cid='.$conid.' order by pa_id asc;';
                     $users = $Model->query($sql);
                 }
                 //需要报名
                 else{
-                    $sql='select distinct user.uid as pa_id,user.username as pa_name from contest_user,user where contest_user.uid=user.uid and contest_user.ischeck!=0 and cid=6 order by pa_id';
+                    $sql='select distinct user.uid as pa_id,user.username as pa_name from contest_user,user where contest_user.uid=user.uid and contest_user.ischeck!=0 and cid='.$conid.'asc;';
                     $users = $Model->query($sql);
                 }
             }

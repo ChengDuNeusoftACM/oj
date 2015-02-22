@@ -12,7 +12,7 @@
                 <th class="name">Contest</th>
                 <th class="time">Result</th>
             </tr>
-            <?php if(isset($data['flag'])){
+            <?php if(isset($data['flag'])&&$data['flag']!=3){
             echo'<tr style="background-color:#fc9f9f ">';
             echo'<td style="background-color:#f87373 ">'.$data["username"].'</td>';
             echo'<td>'.$data["contestname"].'</td>';
@@ -24,7 +24,18 @@
             <tr>
                 <td class="id">{$v.username}</td>
                 <td class="name">{$contestname}</td>
-                <td class="time"><?php if($v.result==0)echo'Pending'; else if($v.result==1)echo'Accept'; else echo'Refuse'?></td>
+                <td class="time">
+                    <?php
+                    if($v['ischeck']==0)
+                    {
+                    echo'Pending';
+                    }
+                    else if($v['ischeck']==1)
+                          echo'Accept';
+                    else 
+                          echo'Refuse';
+                    ?>
+            </td>
             </tr>
             </foreach>
         </table>

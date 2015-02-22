@@ -72,8 +72,8 @@
                 <td>{$v.start_time}</td>
                 <td>{$v.length}</td>
                 <td>
-                    <span <?php if($v['private']=='0')echo' class="public" ';else if($v['password']=='')echo'class="register" onclick="register('.$v["cid"].')" class="register"';else echo'class="private"'; ?> >
-                        <?php if($v['private']=='0')echo'Public';else if($v['password']=='')echo'<a href="javascript:void(0)">Register</a>';else echo'Private'; ?>
+                    <span <?php if($v['private']=='0')echo' class="public" ';else if($v['password']=='')echo 'class="register"';else echo'class="private"'; ?> >
+                        <?php if($v['private']=='0')echo'Public';else if($v['password']=='')echo'<a href="javascript:register('.$v['cid'].')">Register</a>';else echo'Private'; ?>
                     </span>
                     <?php if($v['private']==1&&$v['password']=='') echo' <a href="'.U("Contest/Index/Register", '', '').'?cid='.$v['cid'].'"><span class="glyphicon glyphicon-search"></span></a>'; ?>
                 </td>
