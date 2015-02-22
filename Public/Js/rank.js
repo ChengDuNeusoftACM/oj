@@ -27,6 +27,7 @@ function loop() {
     $("#currenttime")[0].innerHTML = s;
     $('#processbar').css('width', parseInt((now - start_time) / len * 100) + '%');
     if (count % 3 == 0)
+    {
         $.post(rankdataUrl,
     {
         cid: conid
@@ -35,6 +36,7 @@ function loop() {
         callback(data);
     },
     'json');
+    }
     count++;
     $.post(countUrl,
     {

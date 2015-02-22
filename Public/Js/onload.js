@@ -18,10 +18,14 @@ function register(id)
     },
     function (data) {
         console.log(data['id']);
-        if (data['status'] == 0) {
+        if (data['status']!=0) {
             $('#passwordbar').css('display', 'none');
             $('#passwordsend').css('display', 'none');
-            $('#modalmessage').text('You should login first');
+            if(data['status']==1)
+                $('#modalmessage').text('You should login first');
+            else if(data['status']==2)
+                $('#modalmessage').text('You should have a team first');
+
             $('#myModal').modal({
                 keyboard: false
             });

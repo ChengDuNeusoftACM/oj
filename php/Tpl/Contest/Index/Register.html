@@ -7,37 +7,63 @@
             
         ?>
         <table style="width: 100%" class="altrowstable" id="alternatecolor">
-            <tr>
-                <th class="id">Username</th>
-                <th class="name">Contest</th>
-                <th class="time">Result</th>
-            </tr>
-            <?php if(isset($data['flag'])&&$data['flag']!=3){
-            echo'<tr style="background-color:#fc9f9f ">';
-            echo'<td style="background-color:#f87373 ">'.$data["username"].'</td>';
-            echo'<td>'.$data["contestname"].'</td>';
-            echo'<td>';if($data["result"]==0)echo'Pending'; else if($data['result']==1)echo'Accept'; else echo'Refuse';echo'</td>';
-            echo'</tr>';
-            }
+            <?php
+            if($data['type']==0)
+            {
+               echo '<tr>';
+               echo '<th class="id">Username</th>';
+               echo '<th class=="name">Contest</th>';
+               echo '<th class="time">Result</th>';
+               echo '</tr>';
+              foreach($otherdata as $item)
+              {
+                  if(isset($data['sid'])&&$item['uid']==$data['sid'])
+                  {
+                      echo'<tr style="background-color:#fc9f9f ">';
+                      echo'<td style="background-color:#f87373 ">'.$item["username"].'</td>';
+                      echo'<td>'.$contestname.'</td>';
+                      if($item['ischeck']==0)
+                      {
+                          echo '<td class="time">'.Pending.'</td';
+                      }
+                      else if($item['ischeck']==1)
+                      {
+                          echo '<td class="time">'.Accept.'</td';
+                      }
+                      else
+                      {
+                           echo '<td class="time">'.Refuse.'</td';
+                      }
+                      
+                      echo'</tr>';
+
+                  }
+                  else
+                  {
+                      echo '<tr>';
+                      echo '<td class="id">'.$item['username'].'</td>';
+                      echo '<td class="id">'.$contestname.'</td>';
+                      if($item['ischeck']==0)
+                      {
+                          echo '<td class="time">'.Pending.'</td';
+                      }
+                      else if($item['ischeck']==1)
+                      {
+                          echo '<td class="time">'.Accept.'</td';
+                      }
+                      else
+                      {
+                           echo '<td class="time">'.Refuse.'</td';
+                      }
+                      echo '</tr>';
+                  }
+               }
+              }
+              else
+              {
+              
+              }
             ?>
-            <foreach name="otherdata" item="v">
-            <tr>
-                <td class="id">{$v.username}</td>
-                <td class="name">{$contestname}</td>
-                <td class="time">
-                    <?php
-                    if($v['ischeck']==0)
-                    {
-                    echo'Pending';
-                    }
-                    else if($v['ischeck']==1)
-                          echo'Accept';
-                    else 
-                          echo'Refuse';
-                    ?>
-            </td>
-            </tr>
-            </foreach>
         </table>
         </div>
             <script type="text/ecmascript">

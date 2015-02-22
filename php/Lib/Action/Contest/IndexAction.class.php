@@ -101,24 +101,56 @@
             else if($res[0]['private']==1){
                 if($_SESSION['uid'])
                 {
-                    $uid = $_SESSION['uid'];
-                    $res = M('contest_user');
-                    $con = array(
-                        'uid'=>$uid,
-                        'cid'=>$conid
-                    );
-                    $result = $res->where($con)->select();
-                    if($result&&$result[0]['ischeck']==1)
+                    if($res[0]['type']==0)
                     {
-                        if($_SESSION['item']==NULL)
-                        $_SESSION['item']="";
-                        $_SESSION['item']=$_SESSION['item'].'|'.$conid;
-                        $this->ajaxReturn(array('status'=>0),'json');     
+                        $uid = $_SESSION['uid'];
+                        $res = M('contest_user');
+                        $con = array(
+                            'uid'=>$uid,
+                            'cid'=>$conid
+                        );
+                        $result = $res->where($con)->select();
+                        if($result&&$result[0]['ischeck']==1)
+                        {
+                            if($_SESSION['item']==NULL)
+                            $_SESSION['item']="";
+                            $_SESSION['item']=$_SESSION['item'].'|'.$conid;
+                            $this->ajaxReturn(array('status'=>0),'json');     
+                        }
+                        else
+                        {
+                            $this->ajaxReturn(array('status'=>3),'json');
+                        }
                     }
                     else
                     {
-                        $this->ajaxReturn(array('status'=>3),'json');
-                    }
+                        $Model=new Model();
+                        $sql='select tid from user where uid='.$_SESSION['uid'].';';
+                        $res=$Model->query($sql);
+                        if(res==NULL)
+                        {
+                            $this->ajaxReturn(array('status'=>3),'json');
+                        }
+                        else
+                        {
+                            $tid=$res[0]['tid'];
+                            $sql='select ischeck from contest_team where tid='.$tid.' and cid='.$conid.';';
+                            $res=$Model->query($sql);
+                            if(res==NULL)
+                            {
+                                $this->ajaxReturn(array('status'=>3),'json');
+                            }
+                            else if($res[0]['ischeck']==0)
+                            {
+                                $this->ajaxReturn(array('status'=>3),'json');
+                            }
+                            else
+                            {
+                                $this->ajaxReturn(array('status'=>0),'json');
+                            }
+                        }
+                        
+                    }   
                 }
                 else
                 {
@@ -304,10 +336,16 @@
                 //echo $newcid."<br />";
                 if($newcid==0)$this->redirect('index');
                 if(isset($_SESSION['uid'])){
-                    $this->ajaxReturn(array('status'=>1,id=>$newcid),'json');
+                    $Model=new Model();
+                    $sql='select tid from user where uid='.$_SESSION['uid'].';';
+                    $res=$Model->query($sql);
+                    if($res==NULL||$res[0]['tid']==0)
+                        $this->ajaxReturn(array('status'=>2,id=>$newcid),'json');
+                    else 
+                        $this->ajaxReturn(array('status'=>0,id=>$newcid),'json');
                 }
                 else{
-                    $this->ajaxReturn(array('status'=>0,id=>$newcid),'json');
+                    $this->ajaxReturn(array('status'=>1,id=>$newcid),'json');
                 }
             }
             else{
@@ -317,41 +355,65 @@
                 if($contestid==0){
                     $this->redirect('index');
                 }
-                if(isset($_SESSION['uid'])){
-                    $userid=$_SESSION['uid'];
-                }
+                $userid=$_SESSION['uid'];
                 $query = I('query',0);
                 $arr=array();
                 $Model = new Model('contest_user');
-                $sql='select name from contest where cid='.$contestid;
+                $sql='select name,type from contest where cid='.$contestid;
                 $res = $Model->query($sql);
                 $this->contestname=$arr['contestname']=$res[0]['name'];
-                if($query==1&&$userid!=NULL)
+                $arr['type']=$res[0]['type'];
+                if($arr['type']==0)
                 {
-                    $arr['username']=$_SESSION['username'];
-                    $sql='select * from contest_user where cid='.$contestid.' and uid='.$userid;
-                    $res = $Model->query($sql);
-                    if($res==NULL)
+                    $arr['sid']=$userid;
+                    if($query==1&&$userid!=NULL)
                     {
-                        $data["uid"] = $userid;
-                        $data['cid'] =$contestid;
-                        if($lastInsId = $Model->add($data)){
-                            $arr['flag']=1;$arr['result']=NULL;//注册成功
-                        } else {
-                            echo $Model->getdberror();
-                            $arr['flag']=3;//注册失败
+                        $arr['username']=$_SESSION['username'];
+                        $sql='select ischeck from contest_user where cid='.$contestid.' and uid='.$userid;
+                        $res = $Model->query($sql);
+                        if($res==NULL)
+                        {
+                            $data['uid'] = $userid;
+                            $data['cid'] =$contestid;
+                            $data['ischeck']=0;
+                            if($lastInsId = $Model->add($data)){
+                                $arr['flag']=1;$arr['result']=0;//注册成功
+                            } else {
+                                echo $Model->getdberror();
+                                $arr['flag']=3;//注册失败
+                            }
+                        }
+                        else {
+                            $arr['flag']=2;//已经注册
+                            $arr['result']=$res[0]['ischeck'];
                         }
                     }
-                    else {
-                        $arr['flag']=2;//已经注册
-                        $arr['result']=$res[0]['ischeck'];
+                    $this->data=$arr;
+                    $sql='select u.uid, u.username,ischeck from user u,(select *from contest_user where contest_user.cid='.$contestid.') p where u.uid=p.uid;' ;
+                    $res = $Model->query($sql);
+                    $this->otherdata=$res;
+                }
+                else
+                {
+                    if($query==1&&$userid!=NULL)
+                    {
+                        $sql='select tid from user where uid='.$_SESSION['uid'].';';
+                        $res=$Model->query($sql);
+                        $tid=$res[0]['tid'];
+                        $sql='select ischeck from contest_team where tid='.$tid.';';
+                        $res=$Model->query($sql);
+                        if($res==NULL)
+                        {
+                            
+                        }
+                        else
+                        {
+
+                        }
+
                     }
                     
-                    $this->data=$arr;
                 }
-                $sql='select username,ischeck from user,(select *from contest_user where contest_user.cid='.$contestid.') p where user.uid=p.uid and user.uid!='.$userid.';';
-                $res = $Model->query($sql);
-                $this->otherdata=$res;
                 
                 $this->display();
             }
@@ -671,8 +733,6 @@
         public function Rankdata(){
             $conid=I('cid',0);
             $Model = new Model();
-            $sql='select uid as pa_id,pid,result,create_time from solution where cid='.$conid.' order by pa_id,pid,create_time;';
-            $arr=$Model->query($sql);
 
             $sql='select create_time,type,private from contest where cid='.$conid;
             $start_time = $Model->query($sql);
@@ -681,7 +741,15 @@
             $start_time=$start_time[0]['create_time'];
             $sql='select pid from contest_problem where cid='.$conid.' order by newid;';
             $pro=$Model->query($sql);
-            //echo 'idaaaaa='.$conid;
+            if($type==0)//个人赛
+            {
+                $sql='select uid as pa_id,pid,result,create_time from solution where cid='.$conid.' order by pa_id,pid,create_time asc;';
+            }
+            else//团队赛
+            {
+                $sql='select t.tid as pa_id,s.pid,s.result,s.create_time from solution s,team t,user u where cid='.$conid.' and u.uid=s.uid and t.tid=u.tid order by pa_id,s.pid,s.create_time asc;';
+            }
+            $arr=$Model->query($sql);
             if($type==0)//个人赛
             {
                 if($private==0)//公开赛
@@ -691,7 +759,7 @@
                 }
                 //需要报名
                 else{
-                    $sql='select distinct user.uid as pa_id,user.username as pa_name from contest_user,user where contest_user.uid=user.uid and contest_user.ischeck!=0 and cid='.$conid.'asc;';
+                    $sql='select distinct user.uid as pa_id,user.username as pa_name from contest_user,user where contest_user.uid=user.uid and contest_user.ischeck!=0 and cid='.$conid.'order by pa_id asc;';
                     $users = $Model->query($sql);
                 }
             }
@@ -699,18 +767,19 @@
             {
                 if($private==0)//公开赛
                 {
-                    $sql='select distinct tid from contest_team where cid=6';
+                    $sql='select distinct t.tid as pa_id,t.name as pa_name  from solution s,team t,user u where s.uid=u.uid and u.tid=t.tid and s.cid='.$conid.' order by pa_id asc;';
                     $users = $Model->query($sql);
                 }//需要报名
                 else{
-                    
+                    $sql='select distinct t.tid as pa_id,t.name as pa_name from contest_team ct,team t where t.tid=ct.tid and ct.cid='.$conid.'order by pa_id asc;';
+                   $users=$Model->query($sql); 
                 }
             }
             //dump($arr);
             //dump($pro);
             //echo $start_time;
+            //dump($arr);
             //dump($users);
-            //die();
             $res = dealRankData($arr,$start_time,$pro,$users);
             //p($res);
             $this->ajaxReturn($res,'json');
