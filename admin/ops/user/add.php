@@ -20,16 +20,27 @@
              $passwd=$row['password'];
              if($passwd!=$_POST['password'])
                  $passwd=md5($_POST['password']);
-             $sql = sprintf("update user set tid = %d,username = '%s',email = '%s',password = '%s',grade = %d,class = %d,major = '%s',name = '%s',sex = %d where uid = %d",
-                            intval($_POST['tid']),$_POST['username'],$_POST['email'],$passwd,intval($_POST['grade']),intval($_POST['class']),$_POST['major'],$_POST['name'],$_POST['sex']=='on'?1:0,intval($_POST['uid']));
-             
+             if($_POST['tid']==NULL)
+             {
+                $sql = sprintf("update user set username = '%s',email = '%s',password = '%s',grade = %d,class = %d,major = '%s',name = '%s',sex = %d where uid = %d",$_POST['username'],$_POST['email'],$passwd,intval($_POST['grade']),intval($_POST['class']),$_POST['major'],$_POST['name'],$_POST['sex']=='on'?1:0,intval($_POST['uid']));
+             }
+             else
+             {
+                 $sql = sprintf("update user set tid = %d,username = '%s',email = '%s',password = '%s',grade = %d,class = %d,major = '%s',name = '%s',sex = %d where uid = %d",intval($_POST['tid']),$_POST['username'],$_POST['email'],$passwd,intval($_POST['grade']),intval($_POST['class']),$_POST['major'],$_POST['name'],$_POST['sex']=='on'?1:0,intval($_POST['uid']));
+             }
              $res = $db->dml($sql);
              echo $res;
          
      } else {
          if (isset($_POST['username'])){
-             $sql = sprintf("insert into user (tid,username,email,password,grade,class,major,name,sex) values (%d,'%s','%s','%s',%d,%d,'%s','%s',%d)",
-                            intval($_POST['tid']),$_POST['username'],$_POST['email'],md5($_POST['password']),intval($_POST['grade']),intval($_POST['class']),$_POST['major'],$_POST['name'],$_POST['sex']=='on'?1:0);
+             if($_POST['tid']==NULL)
+             {
+                  $sql = sprintf("insert into user (username,email,password,grade,class,major,name,sex) values ('%s','%s','%s',%d,%d,'%s','%s',%d)",$_POST['username'],$_POST['email'],md5($_POST['password']),intval($_POST['grade']),intval($_POST['class']),$_POST['major'],$_POST['name'],$_POST['sex']=='on'?1:0);   
+             }
+             else
+             {
+                 $sql = sprintf("insert into user (tid,username,email,password,grade,class,major,name,sex) values (%d,'%s','%s','%s',%d,%d,'%s','%s',%d)",intval($_POST['tid']),$_POST['username'],$_POST['email'],md5($_POST['password']),intval($_POST['grade']),intval($_POST['class']),$_POST['major'],$_POST['name'],$_POST['sex']=='on'?1:0);
+             }
              $res = $db->dml($sql);
              echo $res;
          }
@@ -105,12 +116,14 @@
                     </div>
                     <div class="row">
                         <label class="span2 offset1">性别：</label>
+                        <div class="span1">男</div>
                         <div class="input-control switch span1">
                             <label>
                                 <input type="checkbox" <?php if($Marks && intval($row['sex']) == 1) echo 'checked';  ?> name="sex" />
                                 <span class="check"></span>
                             </label>
                         </div>
+                        <div class="span1">女</span>
                     </div>
                     <?php if(isset($_GET['id'])) echo sprintf("<input type='hidden' name='uid' value='%s' />",$_GET['id']); ?>
                     <div class="row">
