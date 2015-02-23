@@ -395,26 +395,38 @@
                 }
                 else
                 {
+                    $sql='select tid from user where uid='.$_SESSION['uid'].';';
+                    $res=$Model->query($sql);
+                    $tid=$res[0]['tid'];
+                    $arr['sid']=$tid;
                     if($query==1&&$userid!=NULL)
                     {
-                        $sql='select tid from user where uid='.$_SESSION['uid'].';';
-                        $res=$Model->query($sql);
-                        $tid=$res[0]['tid'];
-                        $sql='select ischeck from contest_team where tid='.$tid.';';
+                        $sql='select ischeck from contest_team where tid='.$tid.' and cid='.$contestid.';';
                         $res=$Model->query($sql);
                         if($res==NULL)
                         {
-                            
+                            $data['tid']=$tid;
+                            $data['cid']=$contestid;
+                            $data['ischeck']=0;
+                            $Model=new Model('contest_team');
+                            if($lastInsId = $Model->add($data)){
+                                $arr['flag']=1;$arr['result']=0;//注册成功
+                            } else {
+                                echo $Model->getdberror();
+                                $arr['flag']=3;//注册失败
+                            }
                         }
                         else
                         {
-
+                            $arr['flag']=2;//已经注册
+                            $arr['result']=$res[0]['ischeck'];
                         }
-
                     }
-                    
+                    $this->data=$arr;
+                    $sql='select t.tid,t.name,p.ischeck from team t,(select *from contest_team where contest_team.cid='.$contestid.') p where t.tid=p.tid;' ;
+                    $res = $Model->query($sql);
+                    $this->otherdata=$res;
                 }
-                
                 $this->display();
             }
             

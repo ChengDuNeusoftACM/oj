@@ -24,15 +24,15 @@
                       echo'<td>'.$contestname.'</td>';
                       if($item['ischeck']==0)
                       {
-                          echo '<td class="time">'.Pending.'</td';
+                          echo '<td class="time" style="color:#3A5FCD">'.Pending.'</td';
                       }
                       else if($item['ischeck']==1)
                       {
-                          echo '<td class="time">'.Accept.'</td';
+                          echo '<td class="time" style="color:#00CD00">'.Accept.'</td';
                       }
                       else
                       {
-                           echo '<td class="time">'.Refuse.'</td';
+                           echo '<td class="time" style="color:#FF0000">'.Refuse.'</td';
                       }
                       
                       echo'</tr>';
@@ -45,15 +45,15 @@
                       echo '<td class="id">'.$contestname.'</td>';
                       if($item['ischeck']==0)
                       {
-                          echo '<td class="time">'.Pending.'</td';
+                      echo '<td class="time" style="color:#3A5FCD">'.Pending.'</td';
                       }
                       else if($item['ischeck']==1)
                       {
-                          echo '<td class="time">'.Accept.'</td';
+                          echo '<td class="time" style="color:#00CD00">'.Accept.'</td';
                       }
                       else
                       {
-                           echo '<td class="time">'.Refuse.'</td';
+                           echo '<td class="time" style="color:#FF0000">'.Refuse.'</td';
                       }
                       echo '</tr>';
                   }
@@ -61,7 +61,54 @@
               }
               else
               {
-              
+                   echo '<tr>';
+                   echo '<th class="id">Teamname</th>';
+                   echo '<th class=="name">Contest</th>';
+                   echo '<th class="time">Result</th>';
+                   echo '</tr>';
+                  foreach($otherdata as $item)
+                  {
+                      if(isset($data['sid'])&&$item['tid']==$data['sid'])
+                      {
+                          echo'<tr style="background-color:#fc9f9f ">';
+                          echo'<td style="background-color:#f87373 ">'.$item["name"].'</td>';
+                          echo'<td>'.$contestname.'</td>';
+                          if($item['ischeck']==0)
+                          {
+                              echo '<td class="time" style="color:#3A5FCD">'.Pending.'</td';
+                          }
+                          else if($item['ischeck']==1)
+                          {
+                              echo '<td class="time" style="color:#00CD00">'.Accept.'</td';
+                          }
+                          else
+                          {
+                               echo '<td class="time" style="color:#FF0000">'.Refuse.'</td';
+                          }
+                          
+                          echo'</tr>';
+
+                      }
+                      else
+                      {
+                          echo '<tr>';
+                          echo '<td class="id">'.$item['name'].'</td>';
+                          echo '<td class="id">'.$contestname.'</td>';
+                          if($item['ischeck']==0)
+                          {
+                              echo '<td class="time" style="color:#3A5FCD">'.Pending.'</td';
+                          }
+                          else if($item['ischeck']==1)
+                          {
+                              echo '<td class="time" style="color:#00CD00">'.Accept.'</td';
+                          }
+                          else
+                          {
+                               echo '<td class="time" style="color:#FF0000">'.Refuse.'</td';
+                          }
+                          echo '</tr>';
+                      }
+                   }
               }
             ?>
         </table>
