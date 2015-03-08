@@ -67,7 +67,7 @@
                                     echo "<td>".$row['username']."</td>";
                                     echo "<td>".$row['pid']."</td>";
                                     echo "<td>".$row['pname']."</td>";
-                                    if($row['cid']!=""&&$row['process']!=0&&$row['result']!=4)
+                                    if($row['cid']==""&&$row['process']!=0&&$row['result']!=4)
                                     {
                                         echo "<td style='color:".$result_state[$row['result']][1]."'>".$result_state[$row['result']][0]." on test ".$row['process']." </td>";
                                     }
