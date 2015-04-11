@@ -2,20 +2,20 @@ function A(id) { return document.getElementById(id) }
 var ising = false,isP = false;
 
 function user_input() {
-    var name = A("id").value;
-    var password = A("password").value;
+    var sname = A("id").value;
+    var passwd = A("password").value;
 
     var str = "";
-    if (name.length < 4) {
+    if (sname.length < 4) {
         str += "用户名长度必须大于6个字符。";
     }
-            if (password.length < 4) {
+            if (passwd.length < 4) {
                 str += "\n密码长度必须大于8个字符。"
             }
             if (str.length > 5) {
                 alert(str);
             } else {
-            $.post('lasttime.php', { uname: name, psd: password }, function (data) {
+            $.post('lasttime.php', { uname: sname, psd: passwd }, function (data) {
                 $('.ILast').html(data);
                 $('.last').css('display', 'block');
                 $(".last").animate({ opacity: 1 }, 500, function () {

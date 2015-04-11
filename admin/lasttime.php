@@ -3,7 +3,7 @@
 	include "db/DB.Class.php";
 	if (isset($_POST['uname'])){
 	    $uname = $_POST['uname'];
-        	$psd = $_POST['psd'];
+        $psd = $_POST['psd'];
     } else if (isset($_GET['uname'])){
         $uname = $_GET['uname'];
         $psd = $_GET['psd'];

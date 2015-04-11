@@ -57,27 +57,28 @@
             //2密码错误
             //3不被邀请
             //4需要登陆
+            $flag =0;
+            if($_SESSION['item'])
+            {
+                $item = $_SESSION['item'];
+                $arr = explode('|',$item);
+                //p($arr);
+                foreach($arr as $i)
+                {
+                    if($i==$res[0]['cid'])
+                        $flag=1;
+                }
+            }
+            //之前验证过
+            if($flag==1)
+            {
+                $this->ajaxReturn(array('status'=>0),'json');
+            }
+            //现在验证
             if($res[0]['password']!='')
             {
-                $flag =0;
-                if($_SESSION['item'])
-                {
-                    $item = $_SESSION['item'];
-                    $arr = explode('|',$item);
-                    //p($arr);
-                    foreach($arr as $i)
-                    {
-                        if($i==$res[0]['cid'])
-                        $flag=1;
-                    }
-                }
-                //之前验证过
-                if($flag==1)
-                {
-                    $this->ajaxReturn(array('status'=>0),'json');
-                }
                 //提示输入密码
-                else if($conpas=="")
+                if($conpas=="")
                 {
                     $this->ajaxReturn(array('status'=>1),'json');
                 }
@@ -88,9 +89,8 @@
                     {
                         //private的比赛判定
                         if($_SESSION['item']==NULL)
-                        $_SESSION['item']="";
+                            $_SESSION['item']="";
                         $_SESSION['item']=$_SESSION['item'].'|'.$res[0]['cid'];
-
                         $this->ajaxReturn(array('status'=>0),'json');
                     }
                     else{
@@ -113,7 +113,7 @@
                         if($result&&$result[0]['ischeck']==1)
                         {
                             if($_SESSION['item']==NULL)
-                            $_SESSION['item']="";
+                                $_SESSION['item']="";
                             $_SESSION['item']=$_SESSION['item'].'|'.$conid;
                             $this->ajaxReturn(array('status'=>0),'json');     
                         }
@@ -146,6 +146,9 @@
                             }
                             else
                             {
+                                if($_SESSION['item']==NULL)
+                                    $_SESSION['item']="";
+                                $_SESSION['item']=$_SESSION['item'].'|'.$conid;
                                 $this->ajaxReturn(array('status'=>0),'json');
                             }
                         }
@@ -167,10 +170,12 @@
         {
             header("content-type:text/html;charset=utf-8");
             $id= I('cid','0');
-            if($id==0)$this->redirect('index');
+            if($id==0)
+            {
+                $this->redirect('index');
+            }
             $flag = 0;
             $start_time=0;
-
             $conditon['cid']=$id;
             $Model=new Model();
             $sql='select * from contest where cid='.$id;
@@ -183,13 +188,17 @@
                 $arr[$row]['len']=$time1-$time2;
                 $arr[$row]['startinunix']=$time2;
                 $nowtime=time();
-                if($nowtime>$time1)$arr[$row]['sta']='Ended';
-                else if($nowtime<$time2)$arr[$row]['sta']='Pending';
-                else $arr[$row]['sta']='Running';
+                if($nowtime>$time1)
+                    $arr[$row]['sta']='Ended';
+                else if($nowtime<$time2)
+                    $arr[$row]['sta']='Pending';
+                else 
+                    $arr[$row]['sta']='Running';
             }
             $this->contestinfo=$arr;
             $start_time=$res[0]['start_time'];
-            if($res[0]['password']==NULL&&$res[0]['private']==0)$flag=1;
+            if($res[0]['password']==NULL&&$res[0]['private']==0)
+                $flag=1;
             //else $this->redirect('index');
             if($_SESSION['item']&&$flag==0)
             {
@@ -198,7 +207,7 @@
                foreach($arr as $i)
                {
                    if($i==$id)
-                   $flag=1;
+                       $flag=1;
                }
             }
             if($flag==0)
