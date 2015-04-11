@@ -13,7 +13,7 @@ return array(
 
     //数据库连接参数
     'DB_TYPE'=> 'mysql',
-    'DB_HOST'=>'192.168.1.114',
+    'DB_HOST'=>'127.0.0.1',
     'DB_USER'=>'oj',
     'DB_PWD'=>'acm',
     'DB_NAME'=>'oj', 

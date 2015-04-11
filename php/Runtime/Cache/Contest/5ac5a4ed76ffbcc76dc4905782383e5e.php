@@ -13,7 +13,7 @@
 	var LoginUrl="<?php echo U('Index/Index/Login','','');?>";
 	var Checkname="<?php echo U('Index/Index/Checkvalue','','');?>";
 </script>
-<title>Problemlist</title>
+<title>Contest</title>
 </head>
 <body>
 	<div id="topba" class="container">
@@ -125,61 +125,82 @@
 	</div>
 	
 
-	<div id="mainlist" class="container">
+    <div id="mainlist" class="container">
 	<div class="container-fluid" style="background-color:#787676;">
 	<div class="navbar-form">
-		<div class="input-group navbar-left searchbar">
+		<div class="input-group navbar-left searchbar" style="margin-bottom: 10px;">
           <input type="text" id="searchinfo" class="form-control" placeholder="enter any words">
          <span class="input-group-addon" id="submitinfo">Search</span>
          </div>
 	   <nav class="navbar-right">
 	      <ul class="pagination" style="margin: 0">
-	       <?php  $SearchUrl=U('Index/Index/Problemlist','',''); $rear=$nowpage-1; $str=''; if($info!=null)$str='&info='.$info; if($nowpage==1) echo'<li class="disabled"><a href="#">&laquo;</a></li>'; else echo'<li><a href="'.$SearchUrl.'?page='.$rear.$str.'">&laquo;</a></li>'; ?>
-	       <?php
- $str=''; if($info!=null)$str='&info='.$info; if($pages<=5){ for($i=1;$i<=$pages;$i++){ if($i==$nowpage)echo'<li class="active"><a href="#">'.$i.'</a></li>'; else echo'<li><a href="'.$SearchUrl.'?page='.$i.$str.'">'.$i.'</a></li>'; } } else{ if($nowpage<=3) for($i=1;$i<=5;$i++){ if($i==$nowpage)echo'<li class="active"><a href="#">'.$i.'</a></li>'; else echo'<li><a href="'.$SearchUrl.'?page='.$i.$str.'">'.$i.'</a></li>'; } else if($pages-$nowpage<=2) for($i=$pages-4;$i<=$pages;$i++){ if($i==$nowpage)echo'<li class="active"><a href="#">'.$i.'</a></li>'; else echo'<li><a href="'.$SearchUrl.'?page='.$i.$str.'">'.$i.'</a></li>'; } else for($i=$nowpage-2;$i<=$nowpage+2;$i++){ if($i==$nowpage)echo'<li class="active"><a href="#">'.$i.'</a></li>'; else echo'<li><a href="'.$SearchUrl.'?page='.$i.$str.'">'.$i.'</a></li>'; } } ?>
-	       <?php  $front=$nowpage+1; $str=''; if($info!=null)$str='&info='.$info; if($nowpage==$pages) echo'<li class="disabled"><a href="#">&raquo;</a></li>'; else echo'<li><a href="'.$SearchUrl.'?page='.$front.$str.'">&raquo;</a></li>' ?>
+	       <?php $rear=$nowpage-1; $str=''; if($info!=null)$str='&info='.$info; if($nowpage==1) echo'<li class="disabled"><a href="#">&laquo;</a></li>'; else echo'<li><a href="'.U('Index/Index','','').'?p='.$rear.$str.'">&laquo;</a></li>' ?>
+            <?php
+ $str=''; if($info!=null)$str='&info='.$info; if($pages<=5) { for($i=1;$i<=$pages;$i++) { if($i==$nowpage)echo'<li class="active"><a href="#">'.$i.'</a></li>'; else echo'<li><a href="'.U('Index/Index','','').'?p='.$i.$str.'">'.$i.'</a></li>'; } } else { if($nowpage<=3) for($i=1;$i<=5;$i++) { if($i==$nowpage)echo'<li class="active"><a href="#">'.$i.'</a></li>'; else echo'<li><a href="'.U('Index/Index','','').'?p='.$i.$str.'">'.$i.'</a></li>'; } else if($pages-$nowpage<=2) for($i=$pages-4;$i<=$pages;$i++) { if($i==$nowpage)echo'<li class="active"><a href="#">'.$i.'</a></li>'; else echo'<li><a href="'.U('Index/Index','','').'?p='.$i.$str.'">'.$i.'</a></li>'; } else for($i=$nowpage-2;$i<=$nowpage+2;$i++) { if($i==$nowpage)echo'<li class="active"><a href="#">'.$i.'</a></li>'; else echo'<li><a href="'.U('Index/Index','','').'?p='.$i.$str.'">'.$i.'</a></li>'; } } ?>
+            <?php $front=$nowpage+1; $str=''; if($info!=null)$str='&info='.$info; if($nowpage==$pages) echo'<li class="disabled"><a href="#">&raquo;</a></li>'; else echo'<li><a href="'.U('Index/Index','','').'?p='.$front.$str.'">&raquo;</a></li>' ?>
 	      </ul>
 	    </nav>
 	</div>
 	</div>
-	<table id="list"  class="list">
-		<tr>
-			<th width="150px">Problem ID</th>
-			<th>Title</th>
-			<th>Source</th>
-			<th>AC</th>
-			<th>Submit</th>
-		</tr>
-		<?php if(is_array($data)): foreach($data as $key=>$p): ?><tr>
-			<td id="pi"><?php echo ($p["pid"]); ?></td>
-			<td><a href="<?php echo "Problem?problemid=".$p['pid']?>" id="pn"><?php echo ($p["pname"]); ?></a></td>
-			<td><?php echo ($p["source"]); ?></td>
-			<td><?php echo ($p["accepted"]); ?></td>
-			<td><?php echo ($p["submit"]); ?></td>
-		</tr><?php endforeach; endif; ?>
-	</table>
+        <table class="altrowstable" id="alternatecolor">
+            <tr>
+                <th class="id">CID</th>
+                <th class="name">Name</th>
+                <th class="time">Time</th>
+                <th class="length">Length</th>
+                <th class="type">Type</th>
+                <th class="status">Status</th>
+            </tr>
+            <?php if(is_array($data)): foreach($data as $key=>$v): ?><tr <?php if($v['level']=='2') echo' style="background-color:#fc9f9f " '; else if($v['level']=='1') echo' class="secondrow" style="background-color:#ffcfa4" '; ?> >
+                <td <?php if($v['level']=='2') echo' style="background-color:#f87373 " '; else if($v['level']=='1') echo' class="secondrow" style="background-color:#f9be69" '; ?> ><?php echo ($v["cid"]); ?></td>
+                <td class="contest" onclick="fun(<?php echo ($v["cid"]); ?>)"><a href="javascript:void(0)"><?php echo ($v["name"]); ?></a></td>
+                <td><?php echo ($v["start_time"]); ?></td>
+                <td><?php echo ($v["length"]); ?></td>
+                <td>
+                    <span <?php if($v['private']=='0')echo' class="public" ';else if($v['password']=='')echo 'class="register"';else echo'class="private"'; ?> >
+                        <?php if($v['private']=='0')echo'Public';else if($v['password']=='')echo'<a href="javascript:register('.$v['cid'].')">Register</a>';else echo'Private'; ?>
+                    </span>
+                    <?php if($v['private']==1&&$v['password']=='') echo' <a href="'.U("Contest/Index/Register", '', '').'?cid='.$v['cid'].'"><span class="glyphicon glyphicon-search"></span></a>'; ?>
+                </td>
+                <td><?php echo ($v["sta"]); ?></td>
+            </tr><?php endforeach; endif; ?>
+        </table>
+        </div>
+       <div class="modal fade bs-example-modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-describedby="Inform" aria-hidden="false">
+        <div class="modal-dialog modal-sm">
+        <div class="modal-content" id="modalcontext">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">
+                <span aria-hidden="true">×</span>
+                <span class="sr-only">Close</span>
+            </button>
+            <h4 class="modal-title" id="myLargeModalLabel">Message</h4>
+        </div>
+        <h4 class="modal-body" id="modalmessage">
+        ....
+        </h4>
+        <div class="modal-body" id="passwordbar" style="display: none">
+            <input type="password" class="form-control" id="passwordvalue" placeholder="Password">
+        </div>
+        <div class="modal-body" id="passwordsend" style="display: none">
+            <button type="button" class="btn btn-primary" id="passwordbtn">Submit</button>
+        </div>
+        </div>
+      </div>
+    </div>
+         <script type="text/ecmascript">
+            var formUrl = '<?php echo U("Contest/Index/Form", '', '');?>';
+            var handleUrl = '<?php echo U("Contest/Index/Problemlist", '', '');?>';
+            var registerUrl='<?php echo U("Contest/Index/Register", '', '');?>';
+            var indexUrl='<?php echo U("Contest/Index/Index", '', '');?>';
+            var countUrl ='<?php echo U("Contest/Index/Newscount", '', '');?>';
+            var cid="<?php echo ($contestinfo[0]['cid']); ?>";
+        </script>
+        <script src="__PUBLIC__/Js/onload.js"></script>
+        <script src="__PUBLIC__/Js/jquery-ui.min.js"></script>
+        <link href="__PUBLIC__/Css/contest.css" rel="stylesheet">
 
-	<div class="container-fluid" style="margin:40px 0;">
-	<div class="navbar-form">
-	   <nav class="navbar-right">
-	      <ul class="pagination" style="margin: 0">
-	       <?php  $rear=$nowpage-1; $str=''; if($info!=null)$str='&info='.$info; if($nowpage==1) echo'<li class="disabled"><a href="#">&laquo;</a></li>'; else echo'<li><a href="'.$SearchUrl.'?page='.$rear.$str.'">&laquo;</a></li>'; ?>
-	       <?php
- $str=''; if($info!=null)$str='&info='.$info; if($pages<=5){ for($i=1;$i<=$pages;$i++){ if($i==$nowpage)echo'<li class="active"><a href="#">'.$i.'</a></li>'; else echo'<li><a href="'.$SearchUrl.'?page='.$i.$str.'">'.$i.'</a></li>'; } } else{ if($nowpage<=3) for($i=1;$i<=5;$i++){ if($i==$nowpage)echo'<li class="active"><a href="#">'.$i.'</a></li>'; else echo'<li><a href="'.$SearchUrl.'?page='.$i.$str.'">'.$i.'</a></li>'; } else if($pages-$nowpage<=2) for($i=$pages-4;$i<=$pages;$i++){ if($i==$nowpage)echo'<li class="active"><a href="#">'.$i.'</a></li>'; else echo'<li><a href="'.$SearchUrl.'?page='.$i.$str.'">'.$i.'</a></li>'; } else for($i=$nowpage-2;$i<=$nowpage+2;$i++){ if($i==$nowpage)echo'<li class="active"><a href="#">'.$i.'</a></li>'; else echo'<li><a href="'.$SearchUrl.'?page='.$i.$str.'">'.$i.'</a></li>'; } } ?>
-	       <?php  $front=$nowpage+1; $str=''; if($info!=null)$str='&info='.$info; if($nowpage==$pages) echo'<li class="disabled"><a href="#">&raquo;</a></li>'; else echo'<li><a href="'.$SearchUrl.'?page='.$front.$str.'">&raquo;</a></li>' ?>
-	      </ul>
-	    </nav>
-	</div>
-	</div>
-</div>
-
-	<link rel="stylesheet" href="__PUBLIC__/Css/Tabletpl.css" />
-	<script type="text/javascript" src='__PUBLIC__/Js/LiSt.js'></script>
-	<script>
-	var ProblemUrl="<?php echo U('Index/Index/Problem','','');?>";
-	var SearchUrl="<?php echo U('Index/Index/Problemlist','','');?>";
-	</script>
-	<div id="BottombarI">
+<div id="BottombarI">
 	<div class="container">
 	<div id="BottombaI" >
 	<div>CDOJ</div>

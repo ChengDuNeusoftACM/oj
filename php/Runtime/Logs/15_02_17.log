@@ -1,0 +1,138 @@
+[ 2015-02-17T00:08:38+08:00 ] 192.168.1.103 /oj/index.php/Index/Index/db.php
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000537s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000615s ]
+ERR: 非法操作:db.php
+
+[ 2015-02-17T00:08:50+08:00 ] 192.168.1.103 /oj/index.php/Index/Index/db.php
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000720s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000884s ]
+ERR: 非法操作:db.php
+
+[ 2015-02-17T00:08:57+08:00 ] 192.168.1.103 /oj/index.php/Index/Index/db.php
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000483s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000562s ]
+ERR: 非法操作:db.php
+
+[ 2015-02-17T00:43:55+08:00 ] 192.168.1.103 /oj/index.php/Index/Db/db.php
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.001231s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001462s ]
+ERR: 无法加载模块:Db
+
+[ 2015-02-17T00:46:56+08:00 ] 192.168.1.103 /oj/index.php/Index/Db/db.php
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000819s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000898s ]
+ERR: 无法加载模块:Db
+
+[ 2015-02-17T00:47:29+08:00 ] 192.168.1.103 /oj/index.php/Index/Db/db.php
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000929s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001083s ]
+ERR: 无法加载模块:Db
+
+[ 2015-02-17T00:47:41+08:00 ] 192.168.1.103 /oj/index.php/Index/Db/db.php
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.001317s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001422s ]
+ERR: 无法加载模块:Db
+
+[ 2015-02-17T00:47:45+08:00 ] 192.168.1.103 /oj/index.php/Index/Db/db.php
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.001273s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001370s ]
+ERR: 无法加载模块:Db
+
+[ 2015-02-17T00:49:04+08:00 ] 192.168.1.103 /oj/index.php/Index/Db/db.php
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000680s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000876s ]
+ERR: 无法加载模块:Db
+
+[ 2015-02-17T00:49:13+08:00 ] 192.168.1.103 /oj/index.php/Index/Db/db.php
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000327s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000385s ]
+ERR: 无法加载模块:Db
+
+[ 2015-02-17T00:50:34+08:00 ] 192.168.1.103 /oj/index.php/Index/Db/db.php
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000399s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000461s ]
+ERR: 无法加载模块:Db
+
+[ 2015-02-17T00:51:06+08:00 ] 192.168.1.103 /oj/index.php/Index/Db/db.php
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000608s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000696s ]
+ERR: 无法加载模块:Db
+
+[ 2015-02-17T00:51:31+08:00 ] 192.168.1.103 /oj/index.php/Index/Db/db.php
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000409s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000467s ]
+ERR: 无法加载模块:Db
+
+[ 2015-02-17T01:09:08+08:00 ] 192.168.1.103 /oj/index.php/Index/Db/db.php
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000598s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000726s ]
+ERR: 无法加载模块:Db
+
+[ 2015-02-17T01:10:01+08:00 ] 192.168.1.103 /oj/index.php/Index/Db/db.php
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000387s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000429s ]
+ERR: 无法加载模块:Db
+
+[ 2015-02-17T01:10:06+08:00 ] 192.168.1.103 /oj/index.php/Index/Db/db.php
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.001050s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001382s ]
+ERR: 无法加载模块:Db
+
+[ 2015-02-17T01:10:21+08:00 ] 192.168.1.103 /oj/index.php/Index/Db/db.php
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000634s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000763s ]
+ERR: 无法加载模块:Db
+
+[ 2015-02-17T01:10:38+08:00 ] 192.168.1.103 /oj/index.php/Index/Db/db.php
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000517s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000598s ]
+ERR: 无法加载模块:Db
+
+[ 2015-02-17T01:11:39+08:00 ] 192.168.1.103 /oj/index.php/Index/Db/db.php
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000497s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000571s ]
+ERR: 无法加载模块:Db
+
+[ 2015-02-17T01:14:00+08:00 ] 192.168.1.103 /oj/index.php/Index/Index/__PUBLIC__/Db/db.php
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000371s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000420s ]
+ERR: 非法操作:__PUBLIC__
+
+[ 2015-02-17T01:15:46+08:00 ] 192.168.1.103 /oj/index.php/Index/Index/__PUBLIC__/Db/db.php
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000592s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000685s ]
+ERR: 非法操作:__PUBLIC__
+
+[ 2015-02-17T01:18:01+08:00 ] 192.168.1.103 /oj/index.php/Index/Index/db.php
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000707s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000793s ]
+ERR: 非法操作:db.php
+
+[ 2015-02-17T01:19:00+08:00 ] 192.168.1.103 /oj/index.php/Index/Index/db.php
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000500s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000609s ]
+ERR: 非法操作:db.php
+

@@ -16,10 +16,10 @@
 ?>
 <include file="Top" title="Status"/>
         <script type="text/javascript" src="__PUBLIC__/Plug/syntaxhighlighter_3.0.83/scripts/shCore.js"></script>
-            <script type="text/javascript" src="__PUBLIC__/Plug/syntaxhighlighter_3.0.83/scripts/shBrushCpp.js"></script>
-                <script type="text/javascript" src="__PUBLIC__/Plug/syntaxhighlighter_3.0.83/scripts/shBrushJava.js"></script>
-                    <link type="text/css" rel="stylesheet" href="__PUBLIC__/Plug/syntaxhighlighter_3.0.83/styles/shCoreDefault.css"/>
-                       <link type="text/css" rel="stylesheet" href="__PUBLIC__/Plug/syntaxhighlighter_3.0.83/styles/shThemeDefault.css"/>
+        <script type="text/javascript" src="__PUBLIC__/Plug/syntaxhighlighter_3.0.83/scripts/shBrushCpp.js"></script>
+        <script type="text/javascript" src="__PUBLIC__/Plug/syntaxhighlighter_3.0.83/scripts/shBrushJava.js"></script>
+        <link type="text/css" rel="stylesheet" href="__PUBLIC__/Plug/syntaxhighlighter_3.0.83/styles/shCoreDefault.css"/>
+        <link type="text/css" rel="stylesheet" href="__PUBLIC__/Plug/syntaxhighlighter_3.0.83/styles/shThemeDefault.css"/>
 	<div id="mainlist" class="container">
 	<div class="container-fluid" style="background-color:#787676;">
 	<div class="navbar-form">
@@ -93,7 +93,7 @@
             <td><a href="/oj/index.php/Index/Index/User?user={$p.uid}">{$p.username}</a></td>
             <td><a href="/oj/index.php/Index/Index/Problem?problemid={$p.pid}">{$p.pid}</a></td>
             <?php
-                if($p[cid]!=""&&$p[process]!=0 && $p[result]!=4)
+                if($p[cid]==""&&$p[process]!=0 && $p[result]!=4)
                 {
                 echo "<td style='color:".$result_state[$p[result]][1]."'>".$result_state[$p[result]][0]." on test ".$p[process]."</td>";
                 }
@@ -193,6 +193,6 @@
     var showCodeUrl="{:U('Index/Index/DisplayCode','','')}";
 </script>
 <script type="text/javascript" src='__PUBLIC__/Js/LiSt.js'></script>
-<script type="text/javascript" src='__PUBLIC__/Js/showCode.js?1'></script>
+<script type="text/javascript" src='__PUBLIC__/Js/showCode.js'></script>
 </body>
 </html>

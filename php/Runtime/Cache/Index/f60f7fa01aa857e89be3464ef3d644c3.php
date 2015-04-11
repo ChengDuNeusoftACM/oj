@@ -101,20 +101,20 @@
 	</div>
 	</div>
 	<div class="container">
-	<a id="Brand" href="<?php echo U('Index/Index','','');?>">
+	<a id="Brand" href="<?php echo U('Index/Index/index','','');?>">
 		<div id="cdoj">CDOJ</div>
 		<div id="neu">Neusoft University</div>
 	</a>
 		<div id="navi">
 		<ul class="nav nav-pills">
-		    <li role="presentation"><a href="<?php echo U('Index/Index','','');?>">Home</a></li>
+		    <li role="presentation"><a href="<?php echo U('Index/Index/index','','');?>">Home</a></li>
 		    <li role="presentation"><a href="<?php echo U('Index/Index/ProblemList','','');?>">Problems</a></li>
 		    <li role="presentation" class="dropdown">
 		    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
 		    Contests<span class="caret"></span>
 		    </a>
 		    <ul class="dropdown-menu" role="menu">
-		    	 <li role="presentation"><a href="<?php echo U('Contest/Index','','');?>">School Contests</a></li>
+		    	 <li role="presentation"><a href="<?php echo U('Contest/Index/index','','');?>">School Contests</a></li>
 		    	 <li role="presentation"><a href="#">Virtual Contests</a></li>
 		    	 <li role="presentation"><a href="#">Recent Contests</a></li>
 		    </ul>

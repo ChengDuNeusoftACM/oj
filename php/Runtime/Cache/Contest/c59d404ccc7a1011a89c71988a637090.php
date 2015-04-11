@@ -13,7 +13,7 @@
 	var LoginUrl="<?php echo U('Index/Index/Login','','');?>";
 	var Checkname="<?php echo U('Index/Index/Checkvalue','','');?>";
 </script>
-<title>Problemlist</title>
+<title>Contest</title>
 </head>
 <body>
 	<div id="topba" class="container">
@@ -125,81 +125,26 @@
 	</div>
 	
 
-	<div id="mainlist" class="container">
-	<div class="container-fluid" style="background-color:#787676;">
-	<div class="navbar-form">
-		<div class="input-group navbar-left searchbar">
-          <input type="text" id="searchinfo" class="form-control" placeholder="enter any words">
-         <span class="input-group-addon" id="submitinfo">Search</span>
-         </div>
-	   <nav class="navbar-right">
-	      <ul class="pagination" style="margin: 0">
-	       <?php  $SearchUrl=U('Index/Index/Problemlist','',''); $rear=$nowpage-1; $str=''; if($info!=null)$str='&info='.$info; if($nowpage==1) echo'<li class="disabled"><a href="#">&laquo;</a></li>'; else echo'<li><a href="'.$SearchUrl.'?page='.$rear.$str.'">&laquo;</a></li>'; ?>
-	       <?php
- $str=''; if($info!=null)$str='&info='.$info; if($pages<=5){ for($i=1;$i<=$pages;$i++){ if($i==$nowpage)echo'<li class="active"><a href="#">'.$i.'</a></li>'; else echo'<li><a href="'.$SearchUrl.'?page='.$i.$str.'">'.$i.'</a></li>'; } } else{ if($nowpage<=3) for($i=1;$i<=5;$i++){ if($i==$nowpage)echo'<li class="active"><a href="#">'.$i.'</a></li>'; else echo'<li><a href="'.$SearchUrl.'?page='.$i.$str.'">'.$i.'</a></li>'; } else if($pages-$nowpage<=2) for($i=$pages-4;$i<=$pages;$i++){ if($i==$nowpage)echo'<li class="active"><a href="#">'.$i.'</a></li>'; else echo'<li><a href="'.$SearchUrl.'?page='.$i.$str.'">'.$i.'</a></li>'; } else for($i=$nowpage-2;$i<=$nowpage+2;$i++){ if($i==$nowpage)echo'<li class="active"><a href="#">'.$i.'</a></li>'; else echo'<li><a href="'.$SearchUrl.'?page='.$i.$str.'">'.$i.'</a></li>'; } } ?>
-	       <?php  $front=$nowpage+1; $str=''; if($info!=null)$str='&info='.$info; if($nowpage==$pages) echo'<li class="disabled"><a href="#">&raquo;</a></li>'; else echo'<li><a href="'.$SearchUrl.'?page='.$front.$str.'">&raquo;</a></li>' ?>
-	      </ul>
-	    </nav>
-	</div>
-	</div>
-	<table id="list"  class="list">
-		<tr>
-			<th width="150px">Problem ID</th>
-			<th>Title</th>
-			<th>Source</th>
-			<th>AC</th>
-			<th>Submit</th>
-		</tr>
-		<?php if(is_array($data)): foreach($data as $key=>$p): ?><tr>
-			<td id="pi"><?php echo ($p["pid"]); ?></td>
-			<td><a href="<?php echo "Problem?problemid=".$p['pid']?>" id="pn"><?php echo ($p["pname"]); ?></a></td>
-			<td><?php echo ($p["source"]); ?></td>
-			<td><?php echo ($p["accepted"]); ?></td>
-			<td><?php echo ($p["submit"]); ?></td>
-		</tr><?php endforeach; endif; ?>
-	</table>
+        <div style="width: 80%; height: auto; margin: 0 auto;">
+        <?php
+ if($data['flag']==1) echo '<h2><span class="label label-success">Registration Successful</span></h2>'; else if($data['flag']==2) echo'<h2><span class="label label-info">You have already registered</span></h2>' ; else if($data['flag']==3) echo'<h2><span class="label label-warning">Error please try again</span></h2>'; ?>
+        <table style="width: 100%" class="altrowstable" id="alternatecolor">
+            <?php
+ if($data['type']==0) { echo '<tr>'; echo '<th class="id">Username</th>'; echo '<th class=="name">Contest</th>'; echo '<th class="time">Result</th>'; echo '</tr>'; foreach($otherdata as $item) { if(isset($data['sid'])&&$item['uid']==$data['sid']) { echo'<tr style="background-color:#fc9f9f ">'; echo'<td style="background-color:#f87373 ">'.$item["username"].'</td>'; echo'<td>'.$contestname.'</td>'; if($item['ischeck']==0) { echo '<td class="time" style="color:#3A5FCD">'.Pending.'</td'; } else if($item['ischeck']==1) { echo '<td class="time" style="color:#00CD00">'.Accept.'</td'; } else { echo '<td class="time" style="color:#FF0000">'.Refuse.'</td'; } echo'</tr>'; } else { echo '<tr>'; echo '<td class="id">'.$item['username'].'</td>'; echo '<td class="id">'.$contestname.'</td>'; if($item['ischeck']==0) { echo '<td class="time" style="color:#3A5FCD">'.Pending.'</td'; } else if($item['ischeck']==1) { echo '<td class="time" style="color:#00CD00">'.Accept.'</td'; } else { echo '<td class="time" style="color:#FF0000">'.Refuse.'</td'; } echo '</tr>'; } } } else { echo '<tr>'; echo '<th class="id">Teamname</th>'; echo '<th class=="name">Contest</th>'; echo '<th class="time">Result</th>'; echo '</tr>'; foreach($otherdata as $item) { if(isset($data['sid'])&&$item['tid']==$data['sid']) { echo'<tr style="background-color:#fc9f9f ">'; echo'<td style="background-color:#f87373 ">'.$item["name"].'</td>'; echo'<td>'.$contestname.'</td>'; if($item['ischeck']==0) { echo '<td class="time" style="color:#3A5FCD">'.Pending.'</td'; } else if($item['ischeck']==1) { echo '<td class="time" style="color:#00CD00">'.Accept.'</td'; } else { echo '<td class="time" style="color:#FF0000">'.Refuse.'</td'; } echo'</tr>'; } else { echo '<tr>'; echo '<td class="id">'.$item['name'].'</td>'; echo '<td class="id">'.$contestname.'</td>'; if($item['ischeck']==0) { echo '<td class="time" style="color:#3A5FCD">'.Pending.'</td'; } else if($item['ischeck']==1) { echo '<td class="time" style="color:#00CD00">'.Accept.'</td'; } else { echo '<td class="time" style="color:#FF0000">'.Refuse.'</td'; } echo '</tr>'; } } } ?>
+        </table>
+        </div>
+            <script type="text/ecmascript">
+            var registerUrl = '<?php echo U("Contest/Index/Register", '', '');?>';
+            var formUrl = '<?php echo U("Contest/Index/Form", '', '');?>';
+            var handleUrl = '<?php echo U("Contest/Index/Problemlist", '', '');?>';
+            var countUrl ='<?php echo U("Contest/Index/Newscount", '', '');?>';
+            var cid="<?php echo ($contestinfo[0]['cid']); ?>";
+        </script>
+        <script src="__PUBLIC__/Js/jquery-1.10.2.min.js"></script>
+        <script src="__PUBLIC__/Js/onload.js"></script>
+        <script src="__PUBLIC__/Js/jquery-ui.min.js"></script>
+        <link href="__PUBLIC__/Css/bootstrap-theme.min.css" rel="stylesheet">
+        <link href="__PUBLIC__/Css/contest.css" rel="stylesheet">
+    </body>
 
-	<div class="container-fluid" style="margin:40px 0;">
-	<div class="navbar-form">
-	   <nav class="navbar-right">
-	      <ul class="pagination" style="margin: 0">
-	       <?php  $rear=$nowpage-1; $str=''; if($info!=null)$str='&info='.$info; if($nowpage==1) echo'<li class="disabled"><a href="#">&laquo;</a></li>'; else echo'<li><a href="'.$SearchUrl.'?page='.$rear.$str.'">&laquo;</a></li>'; ?>
-	       <?php
- $str=''; if($info!=null)$str='&info='.$info; if($pages<=5){ for($i=1;$i<=$pages;$i++){ if($i==$nowpage)echo'<li class="active"><a href="#">'.$i.'</a></li>'; else echo'<li><a href="'.$SearchUrl.'?page='.$i.$str.'">'.$i.'</a></li>'; } } else{ if($nowpage<=3) for($i=1;$i<=5;$i++){ if($i==$nowpage)echo'<li class="active"><a href="#">'.$i.'</a></li>'; else echo'<li><a href="'.$SearchUrl.'?page='.$i.$str.'">'.$i.'</a></li>'; } else if($pages-$nowpage<=2) for($i=$pages-4;$i<=$pages;$i++){ if($i==$nowpage)echo'<li class="active"><a href="#">'.$i.'</a></li>'; else echo'<li><a href="'.$SearchUrl.'?page='.$i.$str.'">'.$i.'</a></li>'; } else for($i=$nowpage-2;$i<=$nowpage+2;$i++){ if($i==$nowpage)echo'<li class="active"><a href="#">'.$i.'</a></li>'; else echo'<li><a href="'.$SearchUrl.'?page='.$i.$str.'">'.$i.'</a></li>'; } } ?>
-	       <?php  $front=$nowpage+1; $str=''; if($info!=null)$str='&info='.$info; if($nowpage==$pages) echo'<li class="disabled"><a href="#">&raquo;</a></li>'; else echo'<li><a href="'.$SearchUrl.'?page='.$front.$str.'">&raquo;</a></li>' ?>
-	      </ul>
-	    </nav>
-	</div>
-	</div>
-</div>
-
-	<link rel="stylesheet" href="__PUBLIC__/Css/Tabletpl.css" />
-	<script type="text/javascript" src='__PUBLIC__/Js/LiSt.js'></script>
-	<script>
-	var ProblemUrl="<?php echo U('Index/Index/Problem','','');?>";
-	var SearchUrl="<?php echo U('Index/Index/Problemlist','','');?>";
-	</script>
-	<div id="BottombarI">
-	<div class="container">
-	<div id="BottombaI" >
-	<div>CDOJ</div>
-	<div style="color:#1f4368;">for ACM</div>
-	</div>
-	<div id="BottombaII">
-	<div>UESTC Online Judge</div>
-	<div>Any Problem,Please Report</div>
-	<div>xxx xx xxx xx</div>
-	</div>
-	<div id="BottombaIII">
-	<div>Neusoft</div>
-	<div>Any Problem,Please Report</div>
-	<div>xxx xx xxx xx</div>
-	</div>
-	</div>
-	</div>
-	<div id="BottombarII">
-	
-	</div>
-	<link rel="stylesheet" href="__PUBLIC__/Css/Bottom.css" />
-</body>
 </html>

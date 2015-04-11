@@ -1,0 +1,9 @@
+[ 2015-03-05T22:58:10+08:00 ] 192.168.1.104 /oj/index.php/Index/Index/Login
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000649s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000746s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /var/www/html/oj/ThinkPHP/Lib/Driver/Db/DbMysql.class.php 第 55 行.
+SQL: SHOW COLUMNS FROM `user` [ RunTime:0.002289s ]
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead /var/www/html/oj/ThinkPHP/Lib/Core/Db.class.php 第 604 行.
+SQL: SELECT * FROM `user` WHERE ( `username` = 'z309241990' ) LIMIT 1   [ RunTime:0.000737s ]
+

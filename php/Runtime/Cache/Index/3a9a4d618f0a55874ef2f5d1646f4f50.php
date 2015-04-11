@@ -13,7 +13,7 @@
 	var LoginUrl="<?php echo U('Index/Index/Login','','');?>";
 	var Checkname="<?php echo U('Index/Index/Checkvalue','','');?>";
 </script>
-<title>Problemlist</title>
+<title><?php echo ($data["pname"]); ?></title>
 </head>
 <body>
 	<div id="topba" class="container">
@@ -125,81 +125,113 @@
 	</div>
 	
 
-	<div id="mainlist" class="container">
-	<div class="container-fluid" style="background-color:#787676;">
-	<div class="navbar-form">
-		<div class="input-group navbar-left searchbar">
-          <input type="text" id="searchinfo" class="form-control" placeholder="enter any words">
-         <span class="input-group-addon" id="submitinfo">Search</span>
-         </div>
-	   <nav class="navbar-right">
-	      <ul class="pagination" style="margin: 0">
-	       <?php  $SearchUrl=U('Index/Index/Problemlist','',''); $rear=$nowpage-1; $str=''; if($info!=null)$str='&info='.$info; if($nowpage==1) echo'<li class="disabled"><a href="#">&laquo;</a></li>'; else echo'<li><a href="'.$SearchUrl.'?page='.$rear.$str.'">&laquo;</a></li>'; ?>
-	       <?php
- $str=''; if($info!=null)$str='&info='.$info; if($pages<=5){ for($i=1;$i<=$pages;$i++){ if($i==$nowpage)echo'<li class="active"><a href="#">'.$i.'</a></li>'; else echo'<li><a href="'.$SearchUrl.'?page='.$i.$str.'">'.$i.'</a></li>'; } } else{ if($nowpage<=3) for($i=1;$i<=5;$i++){ if($i==$nowpage)echo'<li class="active"><a href="#">'.$i.'</a></li>'; else echo'<li><a href="'.$SearchUrl.'?page='.$i.$str.'">'.$i.'</a></li>'; } else if($pages-$nowpage<=2) for($i=$pages-4;$i<=$pages;$i++){ if($i==$nowpage)echo'<li class="active"><a href="#">'.$i.'</a></li>'; else echo'<li><a href="'.$SearchUrl.'?page='.$i.$str.'">'.$i.'</a></li>'; } else for($i=$nowpage-2;$i<=$nowpage+2;$i++){ if($i==$nowpage)echo'<li class="active"><a href="#">'.$i.'</a></li>'; else echo'<li><a href="'.$SearchUrl.'?page='.$i.$str.'">'.$i.'</a></li>'; } } ?>
-	       <?php  $front=$nowpage+1; $str=''; if($info!=null)$str='&info='.$info; if($nowpage==$pages) echo'<li class="disabled"><a href="#">&raquo;</a></li>'; else echo'<li><a href="'.$SearchUrl.'?page='.$front.$str.'">&raquo;</a></li>' ?>
-	      </ul>
-	    </nav>
-	</div>
-	</div>
-	<table id="list"  class="list">
-		<tr>
-			<th width="150px">Problem ID</th>
-			<th>Title</th>
-			<th>Source</th>
-			<th>AC</th>
-			<th>Submit</th>
-		</tr>
-		<?php if(is_array($data)): foreach($data as $key=>$p): ?><tr>
-			<td id="pi"><?php echo ($p["pid"]); ?></td>
-			<td><a href="<?php echo "Problem?problemid=".$p['pid']?>" id="pn"><?php echo ($p["pname"]); ?></a></td>
-			<td><?php echo ($p["source"]); ?></td>
-			<td><?php echo ($p["accepted"]); ?></td>
-			<td><?php echo ($p["submit"]); ?></td>
-		</tr><?php endforeach; endif; ?>
-	</table>
 
-	<div class="container-fluid" style="margin:40px 0;">
-	<div class="navbar-form">
-	   <nav class="navbar-right">
-	      <ul class="pagination" style="margin: 0">
-	       <?php  $rear=$nowpage-1; $str=''; if($info!=null)$str='&info='.$info; if($nowpage==1) echo'<li class="disabled"><a href="#">&laquo;</a></li>'; else echo'<li><a href="'.$SearchUrl.'?page='.$rear.$str.'">&laquo;</a></li>'; ?>
-	       <?php
- $str=''; if($info!=null)$str='&info='.$info; if($pages<=5){ for($i=1;$i<=$pages;$i++){ if($i==$nowpage)echo'<li class="active"><a href="#">'.$i.'</a></li>'; else echo'<li><a href="'.$SearchUrl.'?page='.$i.$str.'">'.$i.'</a></li>'; } } else{ if($nowpage<=3) for($i=1;$i<=5;$i++){ if($i==$nowpage)echo'<li class="active"><a href="#">'.$i.'</a></li>'; else echo'<li><a href="'.$SearchUrl.'?page='.$i.$str.'">'.$i.'</a></li>'; } else if($pages-$nowpage<=2) for($i=$pages-4;$i<=$pages;$i++){ if($i==$nowpage)echo'<li class="active"><a href="#">'.$i.'</a></li>'; else echo'<li><a href="'.$SearchUrl.'?page='.$i.$str.'">'.$i.'</a></li>'; } else for($i=$nowpage-2;$i<=$nowpage+2;$i++){ if($i==$nowpage)echo'<li class="active"><a href="#">'.$i.'</a></li>'; else echo'<li><a href="'.$SearchUrl.'?page='.$i.$str.'">'.$i.'</a></li>'; } } ?>
-	       <?php  $front=$nowpage+1; $str=''; if($info!=null)$str='&info='.$info; if($nowpage==$pages) echo'<li class="disabled"><a href="#">&raquo;</a></li>'; else echo'<li><a href="'.$SearchUrl.'?page='.$front.$str.'">&raquo;</a></li>' ?>
-	      </ul>
-	    </nav>
+<div id="pno">Problem<span style="font-weight:bold;color:rgb(170,170,170);margin:0 10px">></span><span class="pnoid">PID: <?php echo ($data["pid"]); ?></span></div>
+<div id="topline"></div>
+<div id="back">
+	<div id="pname"><?php echo ($data["pname"]); ?></div>
+	<div id="limit">
+	<span>Time Limit: </span><span class="limitdata"><?php echo ($data["time"]); ?> Sec</span> 
+	<span>Memory Limit: </span><span class="limitdata"><?php echo ($data["memory"]); ?> MB</span>
+	<span>Submit: </span><span class="limitdata"><?php echo ($data["submit"]); ?></span> 
+	<span>Solve: </span><span class="limitdata"><?php echo ($data["solved"]); ?></span>
 	</div>
+	<div class="btns">
+		<button type="button" class="Pre btn">Previous</button>
+	<?php
+ if(isset($_SESSION['username'])==false){ echo '<button type="button" class="Submit btn submitbtn" onclick="loginFalse()">Submit</button>'; } else{ echo '<button type="button" class="Submit btn submitbtn" onclick="loginTrue()">Submit</button>'; } ?>
+		<button type="button" class="Status btn">Status</button>
+		<button type="button" class="Next btn">Next</button>
 	</div>
 </div>
+	<div id="back1">
+	<div class="problemTag">
+	--&nbsp;<span style="font:32px arial;">D</span>escription&nbsp;--
+	</div>
+	<div class="problemTagtext">
+	<?php echo ($data["desci"]); ?>
+	</div>
+	<div class="problemTag">
+	--&nbsp;<span style="font:32px arial;">I</span>nput&nbsp;--
+	</div>
+	<div class="problemTagtext">
+	<?php echo ($data["input"]); ?>
+	</div>
+	<div class="problemTag">
+	--&nbsp;<span style="font:32px arial;">O</span>utput&nbsp;--
+	</div>
+	<div class="problemTagtext">
+	<?php echo ($data["output"]); ?>
+	</div>
+	<div class="problemTag">
+	--&nbsp;<span style="font:32px arial;">S</span>imple&nbsp;&nbsp;Input&nbsp;&&nbsp;Output&nbsp;--
+	</div>
+	<div class="problemTagtext">
+	<table id="inoutable">
+	<tr>
+		<th>Simple Input</th>
+		<th>Simple Output</th>
+	</tr>
+	<tr>
+		<td><?php echo ($data["indata"]); ?></td>
+		<td><?php echo ($data["outdata"]); ?></td>
+	</tr>
+	</table>
+	</div>
+	<div class="problemTag">
+	--&nbsp;<span style="font:32px arial;">S</span>ource&nbsp;--
+	</div>
+	<div class="problemTagtext">
+	<?php echo ($data["source"]); ?>
+	</div>
+</div>
+<div class="btns" id="bottombtn">
+		<button type="button" class="Pre btn">Previous</button>
+		<?php
+ if(isset($_SESSION['username'])==false){ echo '<button type="button" class="Submit btn submitbtn" onclick="loginFalse()">Submit</button>'; } else{ echo '<button type="button" class="Submit btn submitbtn" onclick="loginTrue()">Submit</button>'; } ?>
+		<button type="button" class="Status btn">Status</button>
+		<button type="button" class="Next btn">Next</button>
+</div>
 
-	<link rel="stylesheet" href="__PUBLIC__/Css/Tabletpl.css" />
-	<script type="text/javascript" src='__PUBLIC__/Js/LiSt.js'></script>
-	<script>
+<div id="submitbar" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content" id="SubmitContent">
+    <div id="submitba">Submit</div>
+      <textarea id="cpp-code"></textarea>
+      <div class="btn-group" id="btnsgroup">
+  		<button type="button" class="btn btn-default" id="0Btn">C</button>
+  		<button type="button" class="btn btn-default active" id="1Btn">C++</button>
+ 	    <button type="button" class="btn btn-default" id="2Btn">Java</button>
+	  </div>
+	  <div id="submitbarBtnbar">
+	  	<button type="button" id="SubmitBtn" class="SubmitbarBtn btn btn-primary">Submit</button>
+		<button type="button" id="CancelBtn" class="SubmitbarBtn btn btn-primary">Cancel</button>
+	  </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript" src='__PUBLIC__/Js/problem.js'></script>
+<script type="text/javascript" src='__PUBLIC__/Js/codemirror.js'></script>
+<script type="text/javascript" src='__PUBLIC__/Js/clike.js'></script>
+<link rel="stylesheet" href="__PUBLIC__/Css/codemirror.css" />
+<link rel="stylesheet" href="__PUBLIC__/Css/Problem.css" />
+<script>
 	var ProblemUrl="<?php echo U('Index/Index/Problem','','');?>";
-	var SearchUrl="<?php echo U('Index/Index/Problemlist','','');?>";
-	</script>
-	<div id="BottombarI">
-	<div class="container">
-	<div id="BottombaI" >
-	<div>CDOJ</div>
-	<div style="color:#1f4368;">for ACM</div>
-	</div>
-	<div id="BottombaII">
-	<div>UESTC Online Judge</div>
-	<div>Any Problem,Please Report</div>
-	<div>xxx xx xxx xx</div>
-	</div>
-	<div id="BottombaIII">
-	<div>Neusoft</div>
-	<div>Any Problem,Please Report</div>
-	<div>xxx xx xxx xx</div>
-	</div>
-	</div>
-	</div>
-	<div id="BottombarII">
-	
-	</div>
-	<link rel="stylesheet" href="__PUBLIC__/Css/Bottom.css" />
+	var SubmitUrl="<?php echo U('Index/Index/Submit','','');?>";
+
+	var MaxId=<?php echo ($data["maxid"]); ?>;
+</script>
+<script type="text/javascript">
+
+var myCodeMirror = CodeMirror.fromTextArea(document.getElementById('cpp-code'), {
+    lineNumbers: true,
+    smartIndent: true,
+    electricChars:true,
+    theme: 'default',
+    mode: 'text/x-c++src'
+}); 
+
+</script>
 </body>
 </html>

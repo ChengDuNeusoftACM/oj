@@ -1,0 +1,18 @@
+[ 2015-02-16T23:21:18+08:00 ] 192.168.1.103 /oj/index.php/Index/Index/Login
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000392s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000459s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /var/www/html/oj/ThinkPHP/Lib/Driver/Db/DbMysql.class.php 第 55 行.
+SQL: SHOW COLUMNS FROM `user` [ RunTime:0.048957s ]
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead /var/www/html/oj/ThinkPHP/Lib/Core/Db.class.php 第 604 行.
+SQL: SELECT * FROM `user` WHERE ( `username` = 'z309241990' ) LIMIT 1   [ RunTime:0.000575s ]
+
+[ 2015-02-16T23:41:00+08:00 ] 192.168.1.103 /oj/index.php/Index/Index/Login
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000554s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000620s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /var/www/html/oj/ThinkPHP/Lib/Driver/Db/DbMysql.class.php 第 55 行.
+SQL: SHOW COLUMNS FROM `user` [ RunTime:0.001140s ]
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead /var/www/html/oj/ThinkPHP/Lib/Core/Db.class.php 第 604 行.
+SQL: SELECT * FROM `user` WHERE ( `username` = 'z309241990' ) LIMIT 1   [ RunTime:0.000544s ]
+

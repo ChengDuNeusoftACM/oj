@@ -1,4 +1,5 @@
-<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<?php if (!defined('THINK_PATH')) exit(); $result_state=array( 0=>array(0=>"Pending",1=>"#0066CC"), 1=>array(0=>"Pending Rejudge",1=>"#0066CC"), 2=>array(0=>"Compiling",1=>"#0066CC"), 3=>array(0=>"Running",1=>"#0066CC"), 4=>array(0=>"Accepted",1=>"#468847"), 5=>array(0=>"Presentation Error",1=>"#b94a48"), 6=>array(0=>"Wrong Answer",1=>"#b94a48"), 7=>array(0=>"Time Limit Exceeded",1=>"#b94a48"), 8=>array(0=>"Memory Limit Exceeded",1=>"#b94a48"), 9=>array(0=>"Output Limit Exceeded",1=>"#b94a48"), 10=>array(0=>"Runtime Error",1=>"#2a6496"), 11=>array(0=>"Compile Error",1=>"#2a6496") ); ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -13,7 +14,7 @@
 	var LoginUrl="<?php echo U('Index/Index/Login','','');?>";
 	var Checkname="<?php echo U('Index/Index/Checkvalue','','');?>";
 </script>
-<title>Problemlist</title>
+<title>Status</title>
 </head>
 <body>
 	<div id="topba" class="container">
@@ -125,6 +126,11 @@
 	</div>
 	
 
+        <script type="text/javascript" src="__PUBLIC__/Plug/syntaxhighlighter_3.0.83/scripts/shCore.js"></script>
+        <script type="text/javascript" src="__PUBLIC__/Plug/syntaxhighlighter_3.0.83/scripts/shBrushCpp.js"></script>
+        <script type="text/javascript" src="__PUBLIC__/Plug/syntaxhighlighter_3.0.83/scripts/shBrushJava.js"></script>
+        <link type="text/css" rel="stylesheet" href="__PUBLIC__/Plug/syntaxhighlighter_3.0.83/styles/shCoreDefault.css"/>
+        <link type="text/css" rel="stylesheet" href="__PUBLIC__/Plug/syntaxhighlighter_3.0.83/styles/shThemeDefault.css"/>
 	<div id="mainlist" class="container">
 	<div class="container-fluid" style="background-color:#787676;">
 	<div class="navbar-form">
@@ -134,31 +140,42 @@
          </div>
 	   <nav class="navbar-right">
 	      <ul class="pagination" style="margin: 0">
-	       <?php  $SearchUrl=U('Index/Index/Problemlist','',''); $rear=$nowpage-1; $str=''; if($info!=null)$str='&info='.$info; if($nowpage==1) echo'<li class="disabled"><a href="#">&laquo;</a></li>'; else echo'<li><a href="'.$SearchUrl.'?page='.$rear.$str.'">&laquo;</a></li>'; ?>
+	       <?php  $SearchUrl=U('Index/Index/Status','',''); $rear=$nowpage-1; $str=''; if($info!=null)$str='&info='.$info; if($nowpage==1) echo'<li class="disabled"><a href="#">&laquo;</a></li>'; else echo'<li><a href="'.$SearchUrl.'?page='.$rear.$str.'">&laquo;</a></li>'; ?>
 	       <?php
  $str=''; if($info!=null)$str='&info='.$info; if($pages<=5){ for($i=1;$i<=$pages;$i++){ if($i==$nowpage)echo'<li class="active"><a href="#">'.$i.'</a></li>'; else echo'<li><a href="'.$SearchUrl.'?page='.$i.$str.'">'.$i.'</a></li>'; } } else{ if($nowpage<=3) for($i=1;$i<=5;$i++){ if($i==$nowpage)echo'<li class="active"><a href="#">'.$i.'</a></li>'; else echo'<li><a href="'.$SearchUrl.'?page='.$i.$str.'">'.$i.'</a></li>'; } else if($pages-$nowpage<=2) for($i=$pages-4;$i<=$pages;$i++){ if($i==$nowpage)echo'<li class="active"><a href="#">'.$i.'</a></li>'; else echo'<li><a href="'.$SearchUrl.'?page='.$i.$str.'">'.$i.'</a></li>'; } else for($i=$nowpage-2;$i<=$nowpage+2;$i++){ if($i==$nowpage)echo'<li class="active"><a href="#">'.$i.'</a></li>'; else echo'<li><a href="'.$SearchUrl.'?page='.$i.$str.'">'.$i.'</a></li>'; } } ?>
-	       <?php  $front=$nowpage+1; $str=''; if($info!=null)$str='&info='.$info; if($nowpage==$pages) echo'<li class="disabled"><a href="#">&raquo;</a></li>'; else echo'<li><a href="'.$SearchUrl.'?page='.$front.$str.'">&raquo;</a></li>' ?>
+	       <?php  $front=$nowpage+1; $str=''; if($info!=null)$str='&info='.$info; if($nowpage>=$pages) echo'<li class="disabled"><a href="#">&raquo;</a></li>'; else echo'<li><a href="'.$SearchUrl.'?page='.$front.$str.'">&raquo;</a></li>' ?>
 	      </ul>
 	    </nav>
 	</div>
 	</div>
-	<table id="list"  class="list">
+	<div id="mainlist">
+	<table id="list" class="list">
 		<tr>
-			<th width="150px">Problem ID</th>
-			<th>Title</th>
-			<th>Source</th>
-			<th>AC</th>
-			<th>Submit</th>
+			<th>Run ID</th>
+			<th>User</th>
+			<th>Problem</th>
+			<th>Result</th>
+			<th>Memory</th>
+			<th>Time</th>
+			<th>Language</th>
+			<th>Length</th>
+			<th>Submit Time</th>
 		</tr>
 		<?php if(is_array($data)): foreach($data as $key=>$p): ?><tr>
-			<td id="pi"><?php echo ($p["pid"]); ?></td>
-			<td><a href="<?php echo "Problem?problemid=".$p['pid']?>" id="pn"><?php echo ($p["pname"]); ?></a></td>
-			<td><?php echo ($p["source"]); ?></td>
-			<td><?php echo ($p["accepted"]); ?></td>
-			<td><?php echo ($p["submit"]); ?></td>
+			<td id="pi"><?php echo ($p["soid"]); ?></td>
+            <td><a href="/oj/index.php/Index/Index/User?user=<?php echo ($p["uid"]); ?>"><?php echo ($p["username"]); ?></a></td>
+            <td><a href="/oj/index.php/Index/Index/Problem?problemid=<?php echo ($p["pid"]); ?>"><?php echo ($p["pid"]); ?></a></td>
+            <?php
+ if($p[cid]==""&&$p[process]!=0 && $p[result]!=4) { echo "<td style='color:".$result_state[$p[result]][1]."'>".$result_state[$p[result]][0]." on test ".$p[process]."</td>"; } else { echo "<td style='color:".$result_state[$p[result]][1]."'>".$result_state[$p[result]][0]."</td>"; } if($p[result]>=4&&$p[result]<=9) { echo "<td>".$p[memory]."</td>"; echo "<td>".$p[time]."</td>"; } else { echo "<td>-</td><td>-</td>"; } ?>
+			<td>
+			<?php
+ if($p['language']=="0") echo "C"; else if($p['language']=="1") echo "C++"; else echo "Java"; ?>
+			</td>
+            <?php
+ $name=$_SESSION['username']; if($name==$p[username]) echo "<td><a href='javascript:showCode(".$p[soid].",".$p[language].")'>".$p[length]."B</a></td>"; else echo "<td>".$p[length]."B</td>"; ?>
+			<td><?php echo ($p["create_time"]); ?></td>
 		</tr><?php endforeach; endif; ?>
 	</table>
-
 	<div class="container-fluid" style="margin:40px 0;">
 	<div class="navbar-form">
 	   <nav class="navbar-right">
@@ -171,35 +188,19 @@
 	    </nav>
 	</div>
 	</div>
-</div>
-
-	<link rel="stylesheet" href="__PUBLIC__/Css/Tabletpl.css" />
-	<script type="text/javascript" src='__PUBLIC__/Js/LiSt.js'></script>
-	<script>
-	var ProblemUrl="<?php echo U('Index/Index/Problem','','');?>";
-	var SearchUrl="<?php echo U('Index/Index/Problemlist','','');?>";
-	</script>
-	<div id="BottombarI">
-	<div class="container">
-	<div id="BottombaI" >
-	<div>CDOJ</div>
-	<div style="color:#1f4368;">for ACM</div>
 	</div>
-	<div id="BottombaII">
-	<div>UESTC Online Judge</div>
-	<div>Any Problem,Please Report</div>
-	<div>xxx xx xxx xx</div>
-	</div>
-	<div id="BottombaIII">
-	<div>Neusoft</div>
-	<div>Any Problem,Please Report</div>
-	<div>xxx xx xxx xx</div>
-	</div>
-	</div>
-	</div>
-	<div id="BottombarII">
-	
-	</div>
-	<link rel="stylesheet" href="__PUBLIC__/Css/Bottom.css" />
+    <div id="showSourceModel" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div id="cppcode"></div>
+            </div>
+        </div>
+    </div>
+<link rel="stylesheet" href="__PUBLIC__/Css/Tabletpl.css" />
+<script>
+    var showCodeUrl="<?php echo U('Index/Index/DisplayCode','','');?>";
+</script>
+<script type="text/javascript" src='__PUBLIC__/Js/LiSt.js'></script>
+<script type="text/javascript" src='__PUBLIC__/Js/showCode.js'></script>
 </body>
 </html>

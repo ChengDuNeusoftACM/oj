@@ -1,0 +1,362 @@
+[ 2015-01-31T14:38:54+08:00 ] 192.168.1.103 /oj/index.php/Index/Index/Login
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000424s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000497s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /var/www/html/oj/ThinkPHP/Lib/Driver/Db/DbMysql.class.php 第 55 行.
+SQL: SHOW COLUMNS FROM `user` [ RunTime:0.059655s ]
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead /var/www/html/oj/ThinkPHP/Lib/Core/Db.class.php 第 604 行.
+SQL: SELECT * FROM `user` WHERE ( `username` = 'z309241990' ) LIMIT 1   [ RunTime:0.048343s ]
+
+[ 2015-01-31T15:08:19+08:00 ] 192.168.1.103 /oj/index.php/Index/Index/Login
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000541s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000618s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /var/www/html/oj/ThinkPHP/Lib/Driver/Db/DbMysql.class.php 第 55 行.
+SQL: SHOW COLUMNS FROM `user` [ RunTime:0.019120s ]
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead /var/www/html/oj/ThinkPHP/Lib/Core/Db.class.php 第 604 行.
+SQL: SELECT * FROM `user` WHERE ( `username` = 'z309241990' ) LIMIT 1   [ RunTime:0.026641s ]
+
+[ 2015-01-31T15:37:07+08:00 ] 192.168.1.103 /oj/index.php/Index/Index/Submit
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000477s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000533s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /var/www/html/oj/ThinkPHP/Lib/Driver/Db/DbMysql.class.php 第 55 行.
+SQL: SHOW COLUMNS FROM `solution` [ RunTime:0.033246s ]
+SQL: SHOW COLUMNS FROM `problem` [ RunTime:0.000841s ]
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead /var/www/html/oj/ThinkPHP/Lib/Core/Db.class.php 第 604 行.
+SQL: SELECT * FROM `problem` WHERE ( pid=1 ) LIMIT 1   [ RunTime:0.000412s ]
+SQL: UPDATE `problem` SET `pid`=1,`uid`=1,`pname`='A + B Problem',`desci`='Calculate a+b',`input`='Two integer a,b',`output`='Output a+b',`indata`='1 2',`outdata`='3',`hint`='Sample problem',`source`='local',`author`='admin',`create_time`='2014-12-26 21:55:38',`contest_num`=0,`level`=0,`memory`=64,`time`=500,`special`=0,`accepted`=0,`submit`=6,`solved`=1,`visibily`=1 WHERE ( pid=1 ) [ RunTime:0.004045s ]
+SQL: INSERT INTO `solution` (`uid`,`pid`,`language`,`result`,`code`,`length`) VALUES (12,1,1,0,'fewfwef\n  \n  \n  \n  ',19) [ RunTime:0.003704s ]
+
+[ 2015-01-31T15:46:42+08:00 ] 192.168.1.103 /oj/index.php/Index/Index/Submit
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000323s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000373s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /var/www/html/oj/ThinkPHP/Lib/Driver/Db/DbMysql.class.php 第 55 行.
+SQL: SHOW COLUMNS FROM `solution` [ RunTime:0.000608s ]
+SQL: SHOW COLUMNS FROM `problem` [ RunTime:0.000773s ]
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead /var/www/html/oj/ThinkPHP/Lib/Core/Db.class.php 第 604 行.
+SQL: SELECT * FROM `problem` WHERE ( pid=1 ) LIMIT 1   [ RunTime:0.000394s ]
+SQL: UPDATE `problem` SET `pid`=1,`uid`=1,`pname`='A + B Problem',`desci`='Calculate a+b',`input`='Two integer a,b',`output`='Output a+b',`indata`='1 2',`outdata`='3',`hint`='Sample problem',`source`='local',`author`='admin',`create_time`='2014-12-26 21:55:38',`contest_num`=0,`level`=0,`memory`=64,`time`=500,`special`=0,`accepted`=0,`submit`=7,`solved`=1,`visibily`=1 WHERE ( pid=1 ) [ RunTime:0.011997s ]
+SQL: INSERT INTO `solution` (`uid`,`pid`,`language`,`result`,`code`,`length`) VALUES (12,1,1,0,'#include<cstdio>\nint main()\n{\n    int a,b;\n    while(scanf(\"%d%d\",&a,&b)!=EOF)\n       printf(\"%d\\n\",a+b);\n    return 0;\n}',121) [ RunTime:0.003380s ]
+
+[ 2015-01-31T15:47:17+08:00 ] 192.168.1.103 /oj/index.php/Index/Index/Submit
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000362s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000424s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /var/www/html/oj/ThinkPHP/Lib/Driver/Db/DbMysql.class.php 第 55 行.
+SQL: SHOW COLUMNS FROM `solution` [ RunTime:0.000582s ]
+SQL: SHOW COLUMNS FROM `problem` [ RunTime:0.000691s ]
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead /var/www/html/oj/ThinkPHP/Lib/Core/Db.class.php 第 604 行.
+SQL: SELECT * FROM `problem` WHERE ( pid=1 ) LIMIT 1   [ RunTime:0.000416s ]
+SQL: UPDATE `problem` SET `pid`=1,`uid`=1,`pname`='A + B Problem',`desci`='Calculate a+b',`input`='Two integer a,b',`output`='Output a+b',`indata`='1 2',`outdata`='3',`hint`='Sample problem',`source`='local',`author`='admin',`create_time`='2014-12-26 21:55:38',`contest_num`=0,`level`=0,`memory`=64,`time`=500,`special`=0,`accepted`=0,`submit`=8,`solved`=1,`visibily`=1 WHERE ( pid=1 ) [ RunTime:0.056763s ]
+SQL: INSERT INTO `solution` (`uid`,`pid`,`language`,`result`,`code`,`length`) VALUES (12,1,1,0,'#include<cstdio>\nint main()\n{\n    int a,b;\n    while(scanf(\"%d%d\",&a,&b)!=EOF)\n       printf(\"%d\\n\",a+b);\n    return 0;\n}',121) [ RunTime:0.003416s ]
+
+[ 2015-01-31T15:47:37+08:00 ] 192.168.1.103 /oj/index.php/Index/Index/Submit
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000339s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000401s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /var/www/html/oj/ThinkPHP/Lib/Driver/Db/DbMysql.class.php 第 55 行.
+SQL: SHOW COLUMNS FROM `solution` [ RunTime:0.000597s ]
+SQL: SHOW COLUMNS FROM `problem` [ RunTime:0.000534s ]
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead /var/www/html/oj/ThinkPHP/Lib/Core/Db.class.php 第 604 行.
+SQL: SELECT * FROM `problem` WHERE ( pid=1 ) LIMIT 1   [ RunTime:0.000308s ]
+SQL: UPDATE `problem` SET `pid`=1,`uid`=1,`pname`='A + B Problem',`desci`='Calculate a+b',`input`='Two integer a,b',`output`='Output a+b',`indata`='1 2',`outdata`='3',`hint`='Sample problem',`source`='local',`author`='admin',`create_time`='2014-12-26 21:55:38',`contest_num`=0,`level`=0,`memory`=64,`time`=500,`special`=0,`accepted`=0,`submit`=9,`solved`=1,`visibily`=1 WHERE ( pid=1 ) [ RunTime:0.056597s ]
+SQL: INSERT INTO `solution` (`uid`,`pid`,`language`,`result`,`code`,`length`) VALUES (12,1,1,0,'#include<cstdio>\nint main()\n{\n    int a,b;\n    while(scanf(\"%d%d\",&a,&b)!=EOF)\n       printf(\"%d\\n\",a+b);\n    return 0;\n}\n\n\n\n\n\n',127) [ RunTime:0.002656s ]
+
+[ 2015-01-31T16:03:53+08:00 ] 192.168.1.103 /oj/index.php/Index/Index/User.php?1
+ERR: 非法操作:User.php
+
+[ 2015-01-31T18:08:45+08:00 ] 192.168.1.103 /oj/index.php/Contest/Index/Form
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000575s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000644s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /var/www/html/oj/ThinkPHP/Lib/Driver/Db/DbMysql.class.php 第 55 行.
+SQL: SHOW COLUMNS FROM `contest` [ RunTime:0.000753s ]
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead /var/www/html/oj/ThinkPHP/Lib/Core/Db.class.php 第 604 行.
+SQL: SELECT * FROM `contest` WHERE ( `cid` = 1 )  [ RunTime:0.000382s ]
+NOTIC: [8] Undefined index: item /var/www/html/oj/php/Lib/Action/Contest/IndexAction.class.php 第 63 行.
+
+[ 2015-01-31T18:08:53+08:00 ] 192.168.1.103 /oj/index.php/Contest/Index/Form
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000419s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000466s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /var/www/html/oj/ThinkPHP/Lib/Driver/Db/DbMysql.class.php 第 55 行.
+SQL: SHOW COLUMNS FROM `contest` [ RunTime:0.000585s ]
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead /var/www/html/oj/ThinkPHP/Lib/Core/Db.class.php 第 604 行.
+SQL: SELECT * FROM `contest` WHERE ( `cid` = 1 )  [ RunTime:0.000326s ]
+NOTIC: [8] Undefined index: item /var/www/html/oj/php/Lib/Action/Contest/IndexAction.class.php 第 63 行.
+
+[ 2015-01-31T18:08:54+08:00 ] 192.168.1.103 /oj/index.php/Contest/Index/Form
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000252s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000285s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /var/www/html/oj/ThinkPHP/Lib/Driver/Db/DbMysql.class.php 第 55 行.
+SQL: SHOW COLUMNS FROM `contest` [ RunTime:0.001020s ]
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead /var/www/html/oj/ThinkPHP/Lib/Core/Db.class.php 第 604 行.
+SQL: SELECT * FROM `contest` WHERE ( `cid` = 1 )  [ RunTime:0.000602s ]
+NOTIC: [8] Undefined index: item /var/www/html/oj/php/Lib/Action/Contest/IndexAction.class.php 第 63 行.
+
+[ 2015-01-31T18:09:38+08:00 ] 192.168.1.103 /oj/index.php/Contest/Index/Form
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000315s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000360s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /var/www/html/oj/ThinkPHP/Lib/Driver/Db/DbMysql.class.php 第 55 行.
+SQL: SHOW COLUMNS FROM `contest` [ RunTime:0.000653s ]
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead /var/www/html/oj/ThinkPHP/Lib/Core/Db.class.php 第 604 行.
+SQL: SELECT * FROM `contest` WHERE ( `cid` = 1 )  [ RunTime:0.000326s ]
+NOTIC: [8] Undefined index: item /var/www/html/oj/php/Lib/Action/Contest/IndexAction.class.php 第 63 行.
+
+[ 2015-01-31T18:09:45+08:00 ] 192.168.1.103 /oj/index.php/Contest/Index/Form
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000454s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000517s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /var/www/html/oj/ThinkPHP/Lib/Driver/Db/DbMysql.class.php 第 55 行.
+SQL: SHOW COLUMNS FROM `contest` [ RunTime:0.000612s ]
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead /var/www/html/oj/ThinkPHP/Lib/Core/Db.class.php 第 604 行.
+SQL: SELECT * FROM `contest` WHERE ( `cid` = 1 )  [ RunTime:0.000321s ]
+NOTIC: [8] Undefined index: item /var/www/html/oj/php/Lib/Action/Contest/IndexAction.class.php 第 63 行.
+
+[ 2015-01-31T18:09:51+08:00 ] 192.168.1.103 /oj/index.php/Contest/Index/Form
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000314s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000356s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /var/www/html/oj/ThinkPHP/Lib/Driver/Db/DbMysql.class.php 第 55 行.
+SQL: SHOW COLUMNS FROM `contest` [ RunTime:0.000629s ]
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead /var/www/html/oj/ThinkPHP/Lib/Core/Db.class.php 第 604 行.
+SQL: SELECT * FROM `contest` WHERE ( `cid` = 1 )  [ RunTime:0.000319s ]
+NOTIC: [8] Undefined index: item /var/www/html/oj/php/Lib/Action/Contest/IndexAction.class.php 第 63 行.
+
+[ 2015-01-31T18:42:12+08:00 ] 192.168.1.103 /oj/index.php/Contest/Index/Form
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000356s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000399s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /var/www/html/oj/ThinkPHP/Lib/Driver/Db/DbMysql.class.php 第 55 行.
+SQL: SHOW COLUMNS FROM `contest` [ RunTime:0.000629s ]
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead /var/www/html/oj/ThinkPHP/Lib/Core/Db.class.php 第 604 行.
+SQL: SELECT * FROM `contest` WHERE ( `cid` = 1 )  [ RunTime:0.000322s ]
+NOTIC: [8] Undefined index: item /var/www/html/oj/php/Lib/Action/Contest/IndexAction.class.php 第 63 行.
+
+[ 2015-01-31T18:42:19+08:00 ] 192.168.1.103 /oj/index.php/Contest/Index/Form
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000264s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000302s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /var/www/html/oj/ThinkPHP/Lib/Driver/Db/DbMysql.class.php 第 55 行.
+SQL: SHOW COLUMNS FROM `contest` [ RunTime:0.000543s ]
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead /var/www/html/oj/ThinkPHP/Lib/Core/Db.class.php 第 604 行.
+SQL: SELECT * FROM `contest` WHERE ( `cid` = 1 )  [ RunTime:0.000450s ]
+NOTIC: [8] Undefined index: item /var/www/html/oj/php/Lib/Action/Contest/IndexAction.class.php 第 63 行.
+
+[ 2015-01-31T18:47:06+08:00 ] 192.168.1.103 /oj/index.php/Contest/Index/Form
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000313s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000356s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /var/www/html/oj/ThinkPHP/Lib/Driver/Db/DbMysql.class.php 第 55 行.
+SQL: SHOW COLUMNS FROM `contest` [ RunTime:0.000673s ]
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead /var/www/html/oj/ThinkPHP/Lib/Core/Db.class.php 第 604 行.
+SQL: SELECT * FROM `contest` WHERE ( `cid` = 1 )  [ RunTime:0.000420s ]
+NOTIC: [8] Undefined index: item /var/www/html/oj/php/Lib/Action/Contest/IndexAction.class.php 第 63 行.
+
+[ 2015-01-31T18:47:11+08:00 ] 192.168.1.103 /oj/index.php/Contest/Index/Form
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000248s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000337s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /var/www/html/oj/ThinkPHP/Lib/Driver/Db/DbMysql.class.php 第 55 行.
+SQL: SHOW COLUMNS FROM `contest` [ RunTime:0.000945s ]
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead /var/www/html/oj/ThinkPHP/Lib/Core/Db.class.php 第 604 行.
+SQL: SELECT * FROM `contest` WHERE ( `cid` = 1 )  [ RunTime:0.000453s ]
+NOTIC: [8] Undefined index: item /var/www/html/oj/php/Lib/Action/Contest/IndexAction.class.php 第 63 行.
+
+[ 2015-01-31T18:47:14+08:00 ] 192.168.1.103 /oj/index.php/Contest/Index/Form
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000315s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000358s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /var/www/html/oj/ThinkPHP/Lib/Driver/Db/DbMysql.class.php 第 55 行.
+SQL: SHOW COLUMNS FROM `contest` [ RunTime:0.000638s ]
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead /var/www/html/oj/ThinkPHP/Lib/Core/Db.class.php 第 604 行.
+SQL: SELECT * FROM `contest` WHERE ( `cid` = 1 )  [ RunTime:0.000342s ]
+NOTIC: [8] Undefined index: item /var/www/html/oj/php/Lib/Action/Contest/IndexAction.class.php 第 63 行.
+
+[ 2015-01-31T18:47:15+08:00 ] 192.168.1.103 /oj/index.php/Contest/Index/Form
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000368s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000429s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /var/www/html/oj/ThinkPHP/Lib/Driver/Db/DbMysql.class.php 第 55 行.
+SQL: SHOW COLUMNS FROM `contest` [ RunTime:0.000532s ]
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead /var/www/html/oj/ThinkPHP/Lib/Core/Db.class.php 第 604 行.
+SQL: SELECT * FROM `contest` WHERE ( `cid` = 1 )  [ RunTime:0.000291s ]
+NOTIC: [8] Undefined index: item /var/www/html/oj/php/Lib/Action/Contest/IndexAction.class.php 第 63 行.
+
+[ 2015-01-31T18:47:15+08:00 ] 192.168.1.103 /oj/index.php/Contest/Index/Form
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000368s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000420s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /var/www/html/oj/ThinkPHP/Lib/Driver/Db/DbMysql.class.php 第 55 行.
+SQL: SHOW COLUMNS FROM `contest` [ RunTime:0.000570s ]
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead /var/www/html/oj/ThinkPHP/Lib/Core/Db.class.php 第 604 行.
+SQL: SELECT * FROM `contest` WHERE ( `cid` = 1 )  [ RunTime:0.000279s ]
+NOTIC: [8] Undefined index: item /var/www/html/oj/php/Lib/Action/Contest/IndexAction.class.php 第 63 行.
+
+[ 2015-01-31T18:47:15+08:00 ] 192.168.1.103 /oj/index.php/Contest/Index/Form
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000275s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000317s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /var/www/html/oj/ThinkPHP/Lib/Driver/Db/DbMysql.class.php 第 55 行.
+SQL: SHOW COLUMNS FROM `contest` [ RunTime:0.000572s ]
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead /var/www/html/oj/ThinkPHP/Lib/Core/Db.class.php 第 604 行.
+SQL: SELECT * FROM `contest` WHERE ( `cid` = 1 )  [ RunTime:0.000328s ]
+NOTIC: [8] Undefined index: item /var/www/html/oj/php/Lib/Action/Contest/IndexAction.class.php 第 63 行.
+
+[ 2015-01-31T18:47:16+08:00 ] 192.168.1.103 /oj/index.php/Contest/Index/Form
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000534s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000605s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /var/www/html/oj/ThinkPHP/Lib/Driver/Db/DbMysql.class.php 第 55 行.
+SQL: SHOW COLUMNS FROM `contest` [ RunTime:0.000685s ]
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead /var/www/html/oj/ThinkPHP/Lib/Core/Db.class.php 第 604 行.
+SQL: SELECT * FROM `contest` WHERE ( `cid` = 1 )  [ RunTime:0.000284s ]
+NOTIC: [8] Undefined index: item /var/www/html/oj/php/Lib/Action/Contest/IndexAction.class.php 第 63 行.
+
+[ 2015-01-31T18:47:16+08:00 ] 192.168.1.103 /oj/index.php/Contest/Index/Form
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000371s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000425s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /var/www/html/oj/ThinkPHP/Lib/Driver/Db/DbMysql.class.php 第 55 行.
+SQL: SHOW COLUMNS FROM `contest` [ RunTime:0.000565s ]
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead /var/www/html/oj/ThinkPHP/Lib/Core/Db.class.php 第 604 行.
+SQL: SELECT * FROM `contest` WHERE ( `cid` = 1 )  [ RunTime:0.000538s ]
+NOTIC: [8] Undefined index: item /var/www/html/oj/php/Lib/Action/Contest/IndexAction.class.php 第 63 行.
+
+[ 2015-01-31T18:57:07+08:00 ] 192.168.1.103 /oj/index.php/Contest/Index/Form
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.001157s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001304s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /var/www/html/oj/ThinkPHP/Lib/Driver/Db/DbMysql.class.php 第 55 行.
+SQL: SHOW COLUMNS FROM `contest` [ RunTime:0.001006s ]
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead /var/www/html/oj/ThinkPHP/Lib/Core/Db.class.php 第 604 行.
+SQL: SELECT * FROM `contest` WHERE ( `cid` = 1 )  [ RunTime:0.000566s ]
+NOTIC: [8] Undefined index: item /var/www/html/oj/php/Lib/Action/Contest/IndexAction.class.php 第 63 行.
+
+[ 2015-01-31T18:57:12+08:00 ] 192.168.1.103 /oj/index.php/Contest/Index/Form
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000538s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000707s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /var/www/html/oj/ThinkPHP/Lib/Driver/Db/DbMysql.class.php 第 55 行.
+SQL: SHOW COLUMNS FROM `contest` [ RunTime:0.001660s ]
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead /var/www/html/oj/ThinkPHP/Lib/Core/Db.class.php 第 604 行.
+SQL: SELECT * FROM `contest` WHERE ( `cid` = 1 )  [ RunTime:0.000689s ]
+NOTIC: [8] Undefined index: item /var/www/html/oj/php/Lib/Action/Contest/IndexAction.class.php 第 63 行.
+
+[ 2015-01-31T18:57:13+08:00 ] 192.168.1.103 /oj/index.php/Contest/Index/Form
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000726s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000840s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /var/www/html/oj/ThinkPHP/Lib/Driver/Db/DbMysql.class.php 第 55 行.
+SQL: SHOW COLUMNS FROM `contest` [ RunTime:0.000887s ]
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead /var/www/html/oj/ThinkPHP/Lib/Core/Db.class.php 第 604 行.
+SQL: SELECT * FROM `contest` WHERE ( `cid` = 1 )  [ RunTime:0.000305s ]
+NOTIC: [8] Undefined index: item /var/www/html/oj/php/Lib/Action/Contest/IndexAction.class.php 第 63 行.
+
+[ 2015-01-31T18:57:13+08:00 ] 192.168.1.103 /oj/index.php/Contest/Index/Form
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000288s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000324s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /var/www/html/oj/ThinkPHP/Lib/Driver/Db/DbMysql.class.php 第 55 行.
+SQL: SHOW COLUMNS FROM `contest` [ RunTime:0.000551s ]
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead /var/www/html/oj/ThinkPHP/Lib/Core/Db.class.php 第 604 行.
+SQL: SELECT * FROM `contest` WHERE ( `cid` = 1 )  [ RunTime:0.000447s ]
+NOTIC: [8] Undefined index: item /var/www/html/oj/php/Lib/Action/Contest/IndexAction.class.php 第 63 行.
+
+[ 2015-01-31T18:57:14+08:00 ] 192.168.1.103 /oj/index.php/Contest/Index/Form
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000555s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000647s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /var/www/html/oj/ThinkPHP/Lib/Driver/Db/DbMysql.class.php 第 55 行.
+SQL: SHOW COLUMNS FROM `contest` [ RunTime:0.000574s ]
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead /var/www/html/oj/ThinkPHP/Lib/Core/Db.class.php 第 604 行.
+SQL: SELECT * FROM `contest` WHERE ( `cid` = 1 )  [ RunTime:0.000266s ]
+NOTIC: [8] Undefined index: item /var/www/html/oj/php/Lib/Action/Contest/IndexAction.class.php 第 63 行.
+
+[ 2015-01-31T18:57:14+08:00 ] 192.168.1.103 /oj/index.php/Contest/Index/Form
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000299s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000338s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /var/www/html/oj/ThinkPHP/Lib/Driver/Db/DbMysql.class.php 第 55 行.
+SQL: SHOW COLUMNS FROM `contest` [ RunTime:0.000567s ]
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead /var/www/html/oj/ThinkPHP/Lib/Core/Db.class.php 第 604 行.
+SQL: SELECT * FROM `contest` WHERE ( `cid` = 1 )  [ RunTime:0.000645s ]
+NOTIC: [8] Undefined index: item /var/www/html/oj/php/Lib/Action/Contest/IndexAction.class.php 第 63 行.
+
+[ 2015-01-31T18:57:38+08:00 ] 192.168.1.103 /oj/index.php/Contest/Index/Register
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000348s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000395s ]
+NOTIC: [8] Use of undefined constant id - assumed 'id' /var/www/html/oj/php/Lib/Action/Contest/IndexAction.class.php 第 306 行.
+
+[ 2015-01-31T21:39:13+08:00 ] 192.168.1.103 /oj/index.php/Contest/Index/Form
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000377s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000431s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /var/www/html/oj/ThinkPHP/Lib/Driver/Db/DbMysql.class.php 第 55 行.
+SQL: SHOW COLUMNS FROM `contest` [ RunTime:0.001730s ]
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead /var/www/html/oj/ThinkPHP/Lib/Core/Db.class.php 第 604 行.
+SQL: SELECT * FROM `contest` WHERE ( `cid` = 1 )  [ RunTime:0.071387s ]
+NOTIC: [8] Undefined index: item /var/www/html/oj/php/Lib/Action/Contest/IndexAction.class.php 第 63 行.
+
+[ 2015-01-31T21:39:16+08:00 ] 192.168.1.103 /oj/index.php/Contest/Index/Register
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000383s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000433s ]
+NOTIC: [8] Use of undefined constant id - assumed 'id' /var/www/html/oj/php/Lib/Action/Contest/IndexAction.class.php 第 309 行.
+
+[ 2015-01-31T21:39:27+08:00 ] 192.168.1.103 /oj/index.php/Index/Index/Login
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000327s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000393s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /var/www/html/oj/ThinkPHP/Lib/Driver/Db/DbMysql.class.php 第 55 行.
+SQL: SHOW COLUMNS FROM `user` [ RunTime:0.136296s ]
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead /var/www/html/oj/ThinkPHP/Lib/Core/Db.class.php 第 604 行.
+SQL: SELECT * FROM `user` WHERE ( `username` = 'z309241990' ) LIMIT 1   [ RunTime:0.000605s ]
+
+[ 2015-01-31T21:39:29+08:00 ] 192.168.1.103 /oj/index.php/Contest/Index/Register
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000320s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000359s ]
+NOTIC: [8] Use of undefined constant id - assumed 'id' /var/www/html/oj/php/Lib/Action/Contest/IndexAction.class.php 第 306 行.
+
+[ 2015-01-31T21:39:38+08:00 ] 192.168.1.103 /oj/index.php/Contest/Index/Form
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000277s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000314s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /var/www/html/oj/ThinkPHP/Lib/Driver/Db/DbMysql.class.php 第 55 行.
+SQL: SHOW COLUMNS FROM `contest` [ RunTime:0.060691s ]
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead /var/www/html/oj/ThinkPHP/Lib/Core/Db.class.php 第 604 行.
+SQL: SELECT * FROM `contest` WHERE ( `cid` = 2 )  [ RunTime:0.000365s ]
+NOTIC: [8] Undefined index: item /var/www/html/oj/php/Lib/Action/Contest/IndexAction.class.php 第 63 行.
+
+[ 2015-01-31T21:39:43+08:00 ] 192.168.1.103 /oj/index.php/Contest/Index/Form
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000286s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000332s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /var/www/html/oj/ThinkPHP/Lib/Driver/Db/DbMysql.class.php 第 55 行.
+SQL: SHOW COLUMNS FROM `contest` [ RunTime:0.000654s ]
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead /var/www/html/oj/ThinkPHP/Lib/Core/Db.class.php 第 604 行.
+SQL: SELECT * FROM `contest` WHERE ( `cid` = 3 )  [ RunTime:0.000327s ]
+NOTIC: [8] Undefined index: item /var/www/html/oj/php/Lib/Action/Contest/IndexAction.class.php 第 63 行.
+
+[ 2015-01-31T21:39:49+08:00 ] 192.168.1.103 /oj/index.php/Contest/Index/Form
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000271s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000311s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /var/www/html/oj/ThinkPHP/Lib/Driver/Db/DbMysql.class.php 第 55 行.
+SQL: SHOW COLUMNS FROM `contest` [ RunTime:0.000647s ]
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead /var/www/html/oj/ThinkPHP/Lib/Core/Db.class.php 第 604 行.
+SQL: SELECT * FROM `contest` WHERE ( `cid` = 6 )  [ RunTime:0.000322s ]
+
+[ 2015-01-31T21:39:50+08:00 ] 192.168.1.103 /oj/index.php/Contest/Index/Newscount
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000887s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001014s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /var/www/html/oj/ThinkPHP/Lib/Driver/Db/DbMysql.class.php 第 55 行.
+SQL: select * from news where cid=6 [ RunTime:0.087735s ]
+
